@@ -1,4 +1,4 @@
-package com.journaldev.spring.model;
+package com.team13.spring.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,12 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * Entity bean with JPA annotations
- * Hibernate provides JPA implementation
- * @author pankaj
- *
- */
 @Entity
 @Table(name="PERSON")
 public class Person {

@@ -1,8 +1,8 @@
-package com.journaldev.spring.service;
+package com.team13.spring.service;
 
 import java.util.List;
 
-import com.journaldev.spring.model.Person;
+import com.team13.spring.model.Person;
 
 public interface PersonService {
 
