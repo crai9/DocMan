@@ -90,6 +90,5 @@
 	</c:forEach>
 	</table>
 </c:if>
-	<img src="<c:url value="resources/coffee.jpg" />" />
 </body>
 </html>

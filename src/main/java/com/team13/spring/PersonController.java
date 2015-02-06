@@ -23,18 +23,16 @@ public class PersonController {
 		this.personService = ps;
 	}
 	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Model model) {
+		return "home";
+	}
+	
 	@RequestMapping(value = "/persons", method = RequestMethod.GET)
 	public String listPersons(Model model) {
 		model.addAttribute("person", new Person());
 		model.addAttribute("listPersons", this.personService.listPersons());
 		return "person";
-	}
-	
-	//Redirect to example
-	@RequestMapping(value= "/", method = RequestMethod.GET)
-	public String home(Model model) {	
-	
-		return "redirect:/persons";
 	}
 	
 	
