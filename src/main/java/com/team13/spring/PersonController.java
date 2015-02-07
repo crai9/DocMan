@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +25,20 @@ public class PersonController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
-		return "home";
+	public ModelAndView homePage() {
+		
+		ModelAndView model = new ModelAndView();
+		
+		//Not logged in
+		model.addObject("authenticated", false);
+		
+		//Logged in
+		//model.addObject("authenticated", true);
+		//model.addObject("username", "Craig");
+		
+		model.setViewName("home");
+		
+		return model;
 	}
 	
 	@RequestMapping(value = "/persons", method = RequestMethod.GET)

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="navbar-wrapper">
     <div class="container">
 
@@ -13,19 +14,38 @@
                     <a class="navbar-brand" href="#">Document Manager</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
+                
+                <c:choose>
+      				<c:when test="${authenticated == false}">
+					<ul class="nav navbar-nav navbar-right">
+                        <li><a href="persons">Login</a>
+                        </li>
+                        <li><a href="signup">Sign Up</a>
+                        </li>
+                    </ul>
+     			 	</c:when>
+
+      				<c:otherwise>
+					<ul class="nav navbar-nav navbar-right">
                         <li><a href="#">Your Docs</a>
                         </li>
                         <li><a href="#">Settings</a>
                         </li>
-                        <li><a href="#">Profile</a>
-                        </li>
-                        <li><a href="#">Help</a>
-                        </li>
+                        <li class="dropdown">
+                  			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${username} <span class="caret"></span></a>
+                  			<ul class="dropdown-menu" role="menu">
+                    			<li><a href="#">Profile</a></li>
+                    			<li class="divider"></li>
+                    			<li><a href="#">Log out</a></li>
+                  			</ul>
+                		</li>
                     </ul>
                     <form class="navbar-form navbar-right">
-                        <input type="text" class="form-control" placeholder="Search...">
+                        <input name="search" type="text" class="form-control" placeholder="Search...">
                     </form>
+      				</c:otherwise>
+				</c:choose>
+
                 </div>
             </div>
         </nav>

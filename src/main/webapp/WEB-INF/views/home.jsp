@@ -14,8 +14,7 @@
 
     <link href="resources/css/carousel.css" rel="stylesheet">
   </head>
-<!-- NAVBAR
-================================================== -->
+
   <body>
 
 	<%@ include file="menu.jsp" %>
@@ -70,8 +69,6 @@
     </div>
 
     <div class="container marketing">
-
-      <hr class="featurette-divider">
 
       <div class="row featurette">
         <div class="col-md-7">
