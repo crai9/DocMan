@@ -1,44 +1,57 @@
 package com.team13.spring;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/*import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import com.team13.spring.model.Person;
-import com.team13.spring.service.PersonService;
+import com.team13.spring.service.PersonService;*/
+
 
 @Controller
-public class PersonController {
-	
-	private PersonService personService;
-	
-	@Autowired(required=true)
-	@Qualifier(value="personService")
-	public void setPersonService(PersonService ps){
-		this.personService = ps;
-	}
+public class WebController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		
 		ModelAndView model = new ModelAndView();
 		
-		//Not logged in
-		model.addObject("authenticated", false);
+		Boolean loggedIn = true;
 		
-		//Logged in
-		//model.addObject("authenticated", true);
-		//model.addObject("username", "Craig");
+		if(loggedIn) {
+			
+			//Logged in
+			model.addObject("authenticated", true);
+			model.addObject("username", "Craig");
+	
+		} else {
+			
+			//Not logged in
+			model.addObject("authenticated", false);
+			
+		}
 		
 		model.setViewName("home");
 		
 		return model;
+	}
+	
+	//Experiments below -----------------------------------------
+
+/*	private PersonService personService;
+	
+	@Autowired(required=true)
+	@Qualifier(value="personService")
+	public void setPersonService(PersonService ps){
+		this.personService = ps;
 	}
 	
 	@RequestMapping(value = "/persons", method = RequestMethod.GET)
@@ -78,5 +91,7 @@ public class PersonController {
         model.addAttribute("listPersons", this.personService.listPersons());
         return "person";
     }
+    
+*/
 	
 }

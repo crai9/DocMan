@@ -33,6 +33,7 @@ public class PersonDAOImpl implements PersonDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(p);
 		logger.info("Person updated successfully, Person Details="+p);
+		System.out.println("Person updated successfully, Person Details="+p);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -62,6 +63,7 @@ public class PersonDAOImpl implements PersonDAO {
 			session.delete(p);
 		}
 		logger.info("Person deleted successfully, person details="+p);
+		
 	}
 
 }
