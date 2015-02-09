@@ -39,10 +39,24 @@ public class FileUploadController {
             	
                 byte[] bytes = file.getBytes();
                 
-                File dir = new File(System.getProperty("user.home") + File.separator + 
-                		"Documents" + File.separator + "workspace-sts-3.6.3.SR1" + File.separator +
-                		"DocMan" + File.separator + "src" + File.separator + "main" + File.separator +
-                		"webapp" + File.separator + "resources" + File.separator + "docs");
+                //choose where to write to
+                
+                
+                
+                if(System.getProperty("os.name").substring(0, 7) == "Windows"){
+                	
+                    File dir = new File(System.getProperty("user.home") + File.separator + 
+                    		"Documents" + File.separator + "workspace-sts-3.6.3.SR1" + File.separator +
+                    		"DocMan" + File.separator + "src" + File.separator + "main" + File.separator +
+                    		"webapp" + File.separator + "resources" + File.separator + "docs");
+                	System.out.println("dir is:" + dir);
+                } else {
+                	
+                	File dir = new File(System.getProperty("user.home") + File.separator + "src" + File.separator + "main" + File.separator +
+                    		"webapp" + File.separator + "resources" + File.separator + "docs");
+                	System.out.println("dir is:" + dir);
+                }
+
 
                 if (!dir.exists())
                     dir.mkdirs();
