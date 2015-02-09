@@ -39,10 +39,11 @@ public class FileUploadController {
             	
                 byte[] bytes = file.getBytes();
                 
-                //File dir = new File("src" + File.separator + "main" + File.separator + "webapp" + File.separator + "static" + File.separator + "resources" + File.separator + "doc");
+                File dir = new File(System.getProperty("user.home") + File.separator + 
+                		"Documents" + File.separator + "workspace-sts-3.6.3.SR1" + File.separator +
+                		"DocMan" + File.separator + "src" + File.separator + "main" + File.separator +
+                		"webapp" + File.separator + "resources" + File.separator + "docs");
 
-
-                File dir = new File("test");
                 if (!dir.exists())
                     dir.mkdirs();
                 
@@ -51,7 +52,6 @@ public class FileUploadController {
                 System.out.println(System.getProperty("user.dir"));
                 System.out.println(System.getProperty("user.home"));
                 System.out.println(System.getProperty("user.name"));
-                System.out.println(System.getProperty("os.name"));
                 
                 //need to rename files to stop duplicates
                 

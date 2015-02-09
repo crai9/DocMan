@@ -31,8 +31,8 @@
           <img src="resources/img/grey.gif" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Some sample text.</p>
+              <h1>Sign up now</h1>
+              <p>Manager your documents more efficiently</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
             </div>
           </div>
@@ -41,8 +41,8 @@
           <img src="resources/img/grey.gif" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Some more sample text.</p>
+              <h1>Full of features</h1>
+              <p>Such as upload, login [write more]</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
             </div>
           </div>
@@ -51,9 +51,9 @@
           <img src="resources/img/grey.gif" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Last sample text :)</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+              <h1>Document Manager</h1>
+              <p>The world's best document manger</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">See preview</a></p>
             </div>
           </div>
         </div>
