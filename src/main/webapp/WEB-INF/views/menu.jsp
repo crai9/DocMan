@@ -11,7 +11,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Document Manager</a>
+                    <a class="navbar-brand" href="http://localhost:8080/DocMan">Document Manager</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                 
@@ -27,16 +27,16 @@
 
       				<c:otherwise>
 					<ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Your Docs</a>
+                        <li><a href="dashboard">Your Docs</a>
                         </li>
-                        <li><a href="#">Settings</a>
+                        <li><a href="settings">Settings</a>
                         </li>
                         <li class="dropdown">
                   			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${username} <span class="caret"></span></a>
                   			<ul class="dropdown-menu" role="menu">
-                    			<li><a href="#">Profile</a></li>
+                    			<li><a href="profile">Profile</a></li>
                     			<li class="divider"></li>
-                    			<li><a href="#">Log out</a></li>
+                    			<li><a href="logout">Log out</a></li>
                   			</ul>
                 		</li>
                     </ul>

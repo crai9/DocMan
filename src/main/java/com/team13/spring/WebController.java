@@ -44,6 +44,31 @@ public class WebController {
 		return model;
 	}
 	
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public ModelAndView dashboard() {
+		
+		ModelAndView model = new ModelAndView();
+		
+		Boolean loggedIn = true;
+		
+		if(loggedIn) {
+			
+			//Logged in
+			model.addObject("authenticated", true);
+			model.addObject("username", "Craig");
+	
+		} else {
+			
+			//Not logged in
+			model.addObject("authenticated", false);
+			
+		}
+		
+		model.setViewName("dashboard");
+		
+		return model;
+	}
+	
 	//Experiments below -----------------------------------------
 
 /*	private PersonService personService;
