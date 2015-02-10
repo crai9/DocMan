@@ -20,13 +20,9 @@ public class FileUploadController {
 		return "form";
 	}
     
-    @RequestMapping(value="/upload", method=RequestMethod.GET)
-    public @ResponseBody String provideUploadInfo() {
-        return "You can upload a file by posting to this same URL.";
-    }
     
     @RequestMapping(value="/upload", method=RequestMethod.POST)
-    public @ResponseBody String handleFileUpload(@RequestParam("name") String name, 
+    public @ResponseBody String FileUpload(@RequestParam("name") String name, 
             @RequestParam("file") MultipartFile file){
         if (!file.isEmpty()) {
             try {
@@ -42,35 +38,30 @@ public class FileUploadController {
                 //choose where to write to
                 
                 
-                
-                if(System.getProperty("os.name").substring(0, 7) == "Windows"){
+                File f = new File(File.separator);
                 	
-                    File dir = new File(System.getProperty("user.home") + File.separator + 
-                    		"Documents" + File.separator + "workspace-sts-3.6.3.SR1" + File.separator +
-                    		"DocMan" + File.separator + "src" + File.separator + "main" + File.separator +
-                    		"webapp" + File.separator + "resources" + File.separator + "docs");
-                	System.out.println("dir is:" + dir);
-                } else {
+                //Change this depending on where Project's folder is
+                File home = new File(System.getProperty("user.home") + f + "Documents" + f + "Development" + f + "Java" + f + "DocMan");
                 	
-                	File dir = new File(System.getProperty("user.home") + File.separator + "src" + File.separator + "main" + File.separator +
-                    		"webapp" + File.separator + "resources" + File.separator + "docs");
-                	System.out.println("dir is:" + dir);
-                }
-
+                if (!home.exists())
+                    home.mkdirs();
+                	
+                File dir = new File(home.toString() + f + "src" + f + "main" + f + "webapp" + f + "resources" + f + "docs");
+                	
+                System.out.println("dir is:" + dir);
 
                 if (!dir.exists())
                     dir.mkdirs();
                 
-                System.out.println(dir);
                 System.out.println(dir.getAbsolutePath());
-                System.out.println(System.getProperty("user.dir"));
-                System.out.println(System.getProperty("user.home"));
-                System.out.println(System.getProperty("user.name"));
                 
                 //need to rename files to stop duplicates
                 
+                File afile = new File(dir + File.separator + name);
+                System.out.println("abs file: " + afile.getAbsoluteFile());
+                
                 BufferedOutputStream stream = 
-                        new BufferedOutputStream(new FileOutputStream(new File(dir.getAbsolutePath() + File.separator + name)));
+                        new BufferedOutputStream(new FileOutputStream(afile));
                 stream.write(bytes);
                 stream.close();
                 
