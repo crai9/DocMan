@@ -109,8 +109,6 @@
                   <td>Someone</td>
                   <td></td>
                 </tr>
-                </tr>
-                </tr>
               </tbody>
             </table>
           </div>
