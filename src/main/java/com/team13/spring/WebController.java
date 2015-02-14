@@ -5,12 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /*import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 import com.team13.spring.model.Person;
 import com.team13.spring.service.PersonService;*/
@@ -20,13 +23,11 @@ import com.team13.spring.service.PersonService;*/
 public class WebController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView homePage() {
+	public ModelAndView homePage(@RequestParam(value = "login", required = false, defaultValue = "false") Boolean login) {
 		
 		ModelAndView model = new ModelAndView();
 		
-		Boolean loggedIn = true;
-		
-		if(loggedIn) {
+		if(login) {
 			
 			//Logged in
 			model.addObject("authenticated", true);
@@ -67,6 +68,13 @@ public class WebController {
 		model.setViewName("dashboard");
 		
 		return model;
+	}
+	
+	@RequestMapping(value = "/add/{one}/{two}", method = RequestMethod.GET)
+	public @ResponseBody String Test(@PathVariable("one") int one, @PathVariable("two") int two){
+		int result = one + two;
+		
+		return new Integer(result).toString();
 	}
 	
 	//Experiments below -----------------------------------------
