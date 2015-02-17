@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PathVariable;
 
-/*import org.springframework.ui.Model;
+import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 import com.team13.spring.model.Person;
-import com.team13.spring.service.PersonService;*/
+import com.team13.spring.service.PersonService;
 
 
 @Controller
@@ -79,7 +79,7 @@ public class WebController {
 	
 	//Experiments below -----------------------------------------
 
-/*	private PersonService personService;
+	private PersonService personService;
 	
 	@Autowired(required=true)
 	@Qualifier(value="personService")
@@ -125,6 +125,6 @@ public class WebController {
         return "person";
     }
     
-*/
+
 	
 }
