@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PathVariable;
 
-/*import org.springframework.ui.Model;
+import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 import com.team13.spring.model.Person;
-import com.team13.spring.service.PersonService;*/
+import com.team13.spring.service.PersonService;
 
 
 @Controller
 public class WebController {
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "/home", "/index"}, method = RequestMethod.GET)
 	public ModelAndView homePage(@RequestParam(value = "login", required = false, defaultValue = "false") Boolean login) {
 		
 		ModelAndView model = new ModelAndView();
@@ -50,36 +50,27 @@ public class WebController {
 		
 		ModelAndView model = new ModelAndView();
 		
-		Boolean loggedIn = true;
-		
-		if(loggedIn) {
 			
-			//Logged in
-			model.addObject("authenticated", true);
-			model.addObject("username", "Craig");
+		//Logged in
+		model.addObject("authenticated", true);
+		model.addObject("username", "Craig");
 	
-		} else {
-			
-			//Not logged in
-			model.addObject("authenticated", false);
-			
-		}
 		
 		model.setViewName("dashboard");
 		
 		return model;
 	}
 	
-	@RequestMapping(value = "/add/{one}/{two}", method = RequestMethod.GET)
-	public @ResponseBody String Test(@PathVariable("one") int one, @PathVariable("two") int two){
+	//Experiments below -----------------------------------------
+	
+	@RequestMapping(value = "/add/{one}+{two}", method = RequestMethod.GET)
+	public @ResponseBody String add(@PathVariable("one") int one, @PathVariable("two") int two){
 		int result = one + two;
 		
 		return new Integer(result).toString();
 	}
 	
-	//Experiments below -----------------------------------------
-
-/*	private PersonService personService;
+	private PersonService personService;
 	
 	@Autowired(required=true)
 	@Qualifier(value="personService")
@@ -125,6 +116,6 @@ public class WebController {
         return "person";
     }
     
-*/
+
 	
 }
