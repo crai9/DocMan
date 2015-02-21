@@ -16,9 +16,7 @@ public class SessionTestController {
 		ModelAndView model = new ModelAndView();
 		
 		request.getSession().setAttribute("username", "Craig");
-		
-		model.addObject("message", "The username is:");
-		
+		model.addObject("message", "The username is:");	
 		model.setViewName("sessions");
 		
 		return model;
@@ -30,10 +28,18 @@ public class SessionTestController {
 		ModelAndView model = new ModelAndView();
 				
 		model.addObject("message", "The username is:");
-		
 		model.setViewName("sessions");
 		
 		return model;
+	}
+	
+	
+	@RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
+	public String logOut(HttpServletRequest request) {
+				
+			request.getSession().removeAttribute("username");
+			
+		return "redirect:/home";
 	}
 	
 }
