@@ -34,7 +34,7 @@ public class SessionTestController {
 	}
 	
 	
-	@RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/logout1"}, method = RequestMethod.GET)
 	public String logOut(HttpServletRequest request) {
 				
 			request.getSession().removeAttribute("username");
