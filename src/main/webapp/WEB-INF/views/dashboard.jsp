@@ -97,7 +97,7 @@
                 </tr>
                 <tr>
                   <td>1,005</td>
-                  <td><a href="resources/docs/pdf-sample.pdf" download>pdf-sample.pdf (force download)</a></td>
+                  <td><a href="resources/docs/pdf-sample.pdf">pdf-sample.pdf (force download)</a></td>
                   <td>Today</td>
                   <td>Someone</td>
                   <td></td>
