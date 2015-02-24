@@ -61,6 +61,8 @@ INSERT INTO users(userId,username,password,firstName,lastName,email,enabled)
 VALUES (NULL,'craig','test','Craig','Miller','craig@1.com', TRUE);
 INSERT INTO users(userId,username,password,firstName,lastName,email,enabled)
 VALUES (NULL,'john','test','John','Smith','john@1.com', TRUE);
+INSERT INTO users(userId,username,password,firstName,lastName,email,enabled)
+VALUES (NULL,'rob','test','Rob','Smith','rob@1.com', TRUE);
  
 INSERT INTO user_roles (user_role_id, userId, ROLE)
 VALUES (NULL, 1, 'ROLE_USER');
