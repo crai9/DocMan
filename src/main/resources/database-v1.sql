@@ -1,7 +1,10 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
--- Create Database called 'document manager', then paste what's bellow into the sql window.
+-- Create Database called 'documentmanager', then paste what's bellow into the sql window.
+
+CREATE DATABASE documentmanager;
+USE documentmanager;
 
 CREATE  TABLE users (
   userId INT(11) NOT NULL AUTO_INCREMENT,
@@ -50,6 +53,9 @@ CREATE TABLE revisions (
   status varchar(50) NOT NULL,
   PRIMARY KEY (revisionId)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE USER 'java'@'localhost' IDENTIFIED BY 'java';
+GRANT ALL PRIVILEGES ON * . * TO 'java'@'localhost';
 
 INSERT INTO users(userId,username,password,firstName,lastName,email,enabled)
 VALUES (NULL,'craig','test','Craig','Miller','craig@1.com', TRUE);
