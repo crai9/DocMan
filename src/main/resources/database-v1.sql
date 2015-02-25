@@ -1,7 +1,7 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
--- Create Database called 'documentmanager', then paste what's bellow into the sql window.
+-- Paste what's bellow into the sql window of PHPMyAdmin. -- 
 
 CREATE DATABASE documentmanager;
 USE documentmanager;
