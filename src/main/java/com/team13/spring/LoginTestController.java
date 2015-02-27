@@ -57,4 +57,31 @@ public class LoginTestController {
 		return "redirect:/home";
 	}
 	
+	
+	
+	@RequestMapping(value = "/registerPage", method = RequestMethod.GET)
+	public ModelAndView registerPage(){
+		
+		ModelAndView model = new ModelAndView();
+
+		model.setViewName("add-users");
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String register(
+			@RequestParam("fname") String fname, @RequestParam("lname") String lname,
+			@RequestParam("email") String email, @RequestParam("username") String username,
+			@RequestParam("password") String password
+			){
+		
+		System.out.println(fname);
+		System.out.println(lname);
+		System.out.println(email);
+		System.out.println(username);
+		System.out.println(password);
+		
+		return "redirect:/home";
+	}
 }
