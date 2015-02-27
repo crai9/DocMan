@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.team13.spring.login.Encrypt;
+
 public class DBManager {
 
     // JDBC driver name and database URL
@@ -50,15 +52,93 @@ public class DBManager {
 		
 		//main method for testing only
 		
-		String username = "craig";
-		String password = "test";
+		String username = "mark";
+		String password = Encrypt.crypt("test");
+		
+		if(checkIfUserExists(username) == true) {
+			System.out.println("User exists");
+		} else {
+			System.out.println("User doesn't exist");
+			
+
+			String fname = "123";
+			String lname = "456";
+			String email = "test@testing.com";
+			
+			createUser(username, password, fname, lname, email);
+		}
+		
+	
+//		try {
+//			login(username, password);
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+	}
+	
+	public static void createUser(String username, String password, String fname, String lname, String email){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "INSERT INTO users"
+				+ "(userId, username, password, firstName, lastName, email, enabled) VALUES"
+				+ "(NULL,?,?,?,?,?,1)";
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, password);
+			preparedStatement.setString(3, fname);
+			preparedStatement.setString(4, lname);
+			preparedStatement.setString(5, email);
+ 			
+			preparedStatement.executeUpdate();
+ 
+			System.out.println("Record is inserted into users table");
+ 
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		} 
+		
+	}
+	
+	public static Boolean checkIfUserExists(String username){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT * FROM users WHERE username = ?";
 		
 		try {
-			login(username, password);
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setString(1, username);
+
+			preparedStatement.executeQuery();
+			
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            if (!rs.isBeforeFirst() ) {    
+            	 return false;
+            	} else {
+            		return true;
+            	}
+ 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+ 
+			System.out.println(e.getMessage());
+ 
 		}
+		return null; 
 		
 	}
 	
