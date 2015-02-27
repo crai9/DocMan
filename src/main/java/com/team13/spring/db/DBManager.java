@@ -10,7 +10,7 @@ public class DBManager {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:8889/documentmanager";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/documentmanager";
     
     //  Database credentials
     static final String USER = "root";
@@ -68,7 +68,8 @@ public class DBManager {
 		
 		PreparedStatement preparedStatement = null;
  
-		String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+		String sql = "SELECT * FROM users WHERE username = ? AND password = ? LIMIT 1";
+		
  
 		try {
 			dbConnection = getDBConnection();

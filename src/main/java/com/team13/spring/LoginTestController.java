@@ -26,8 +26,7 @@ public class LoginTestController {
 	@RequestMapping(value = {"/login"}, method = RequestMethod.POST)
 	public String process(HttpServletRequest request, @RequestParam("username") String username, @RequestParam("password") String password) {
 		
-		Encrypt e = new Encrypt();
-		String newPass = e.encryptString(password);
+		String newPass = Encrypt.encryptString(password);
 		
 		System.out.println("Username: " + username);
 		System.out.println("Password: " + password);

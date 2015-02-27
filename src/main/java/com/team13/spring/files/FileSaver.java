@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileSaver {
 	
-	public String writeFile(String name, MultipartFile file) {
+	public static String writeFile(String name, MultipartFile file) {
 
 		if (!file.isEmpty()) {
             try {

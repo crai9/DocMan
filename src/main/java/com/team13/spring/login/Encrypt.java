@@ -13,7 +13,7 @@ import javax.crypto.SecretKey;
 public class Encrypt
 {    
 	
-	public String encryptString(String string) {
+	public static String encryptString(String string) {
  
 		try{
  
