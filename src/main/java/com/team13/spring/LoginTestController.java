@@ -57,8 +57,7 @@ public class LoginTestController {
 		return "redirect:/home";
 	}
 	
-	
-	
+	// Register Page
 	@RequestMapping(value = "/registerPage", method = RequestMethod.GET)
 	public ModelAndView registerPage(){
 		
