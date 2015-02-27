@@ -75,12 +75,28 @@ public class LoginTestController {
 			@RequestParam("password") String password
 			){
 		
-		System.out.println(fname);
-		System.out.println(lname);
-		System.out.println(email);
-		System.out.println(username);
-		System.out.println(password);
+		if (DBManager.checkIfUserExists(username)){
+			
+			System.out.println("User exists");
+			
+		} else {
+			
+			String encPass = Encrypt.crypt(password);
+			
+			DBManager.createUser(username, encPass, fname, lname, email);
+			
+			System.out.println(fname);
+			System.out.println(lname);
+			System.out.println(email);
+			System.out.println(username);
+			System.out.println(password + " (" + encPass + ")");
+
 		
-		return "redirect:/home";
+		}
+		
+		
+		
+		
+		return "redirect:/registerPage";
 	}
 }
