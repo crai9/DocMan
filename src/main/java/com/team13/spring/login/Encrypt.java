@@ -9,9 +9,53 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+
+import java.security.MessageDigest;
  
-public class Encrypt
-{    
+public class Encrypt {    
+	
+	private static MessageDigest digester;
+	
+	public static void main(String[] args){
+		//testing it
+		
+		String s = "Craig's Pass";
+		
+		
+		String enc = crypt(s);
+		String enc2 = encryptString(s);
+		
+		System.out.println("Original: " + s + ", Crypt: " + enc);
+		System.out.println("Original: " + s + ", Crypt2: " + enc2);
+	}
+	
+    static {
+        try {
+            digester = MessageDigest.getInstance("MD5");
+        }
+        catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String crypt(String str) {
+        if (str == null || str.length() == 0) {
+            throw new IllegalArgumentException("String to encript cannot be null or zero length");
+        }
+
+        digester.update(str.getBytes());
+        byte[] hash = digester.digest();
+        StringBuffer hexString = new StringBuffer();
+        for (int i = 0; i < hash.length; i++) {
+            if ((0xff & hash[i]) < 0x10) {
+                hexString.append("0" + Integer.toHexString((0xFF & hash[i])));
+            }
+            else {
+                hexString.append(Integer.toHexString(0xFF & hash[i]));
+            }
+        }
+        return hexString.toString();
+    }
 	
 	public static String encryptString(String string) {
  

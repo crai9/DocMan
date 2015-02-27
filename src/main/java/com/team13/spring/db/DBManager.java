@@ -10,11 +10,11 @@ public class DBManager {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/documentmanager";
+    static final String DB_URL = "jdbc:mysql://localhost:8889/documentmanager";
     
     //  Database credentials
-    static final String USER = "root";
-    static final String PASS = "root";
+    static final String USER = "java";
+    static final String PASS = "java";
     
 	public static Connection getDBConnection() {
 		 
@@ -62,7 +62,7 @@ public class DBManager {
 		
 	}
 	
-	public static void login(String username, String password) throws SQLException {
+	public static Boolean login(String username, String password) throws SQLException {
 		 
 		Connection dbConnection = null;
 		
@@ -90,8 +90,11 @@ public class DBManager {
                 System.out.print("First Name: " + name);
                 System.out.print(", Last Name: " + country);
                 System.out.print("\n");
+                
+                return true;
 
             }
+            
  
  
 		} catch (SQLException e) {
@@ -109,6 +112,7 @@ public class DBManager {
 			}
  
 		}
+		return false;
  
 	}
 	

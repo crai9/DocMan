@@ -1,7 +1,10 @@
 package com.team13.spring;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 
+import com.team13.spring.db.DBManager;
 import com.team13.spring.login.Encrypt;
 
 import org.springframework.stereotype.Controller;
@@ -26,11 +29,22 @@ public class LoginTestController {
 	@RequestMapping(value = {"/login"}, method = RequestMethod.POST)
 	public String process(HttpServletRequest request, @RequestParam("username") String username, @RequestParam("password") String password) {
 		
-		String newPass = Encrypt.encryptString(password);
+		String encPass = Encrypt.encryptString(password);
 		
 		System.out.println("Username: " + username);
 		System.out.println("Password: " + password);
-		System.out.println("Password Encrypted: " + newPass);
+		System.out.println("Password Encrypted: " + encPass);
+		
+		try {
+			if(DBManager.login(username, password)){
+				System.out.println("Success");
+			} else { 
+				System.out.println("Failed");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return "redirect:/home";
 	}
