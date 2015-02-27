@@ -29,14 +29,14 @@ public class LoginTestController {
 	@RequestMapping(value = {"/login"}, method = RequestMethod.POST)
 	public String process(HttpServletRequest request, @RequestParam("username") String username, @RequestParam("password") String password) {
 		
-		String encPass = Encrypt.encryptString(password);
+		String encPass = Encrypt.crypt(password);
 		
 		System.out.println("Username: " + username);
 		System.out.println("Password: " + password);
 		System.out.println("Password Encrypted: " + encPass);
 		
 		try {
-			if(DBManager.login(username, password)){
+			if(DBManager.login(username, encPass)){
 				System.out.println("Success");
 			} else { 
 				System.out.println("Failed");

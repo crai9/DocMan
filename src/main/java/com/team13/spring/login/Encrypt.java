@@ -1,15 +1,14 @@
 package com.team13.spring.login;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
- 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+//import java.security.InvalidKeyException;
+//import javax.crypto.BadPaddingException;
+//import javax.crypto.Cipher;
+//import javax.crypto.IllegalBlockSizeException;
+//import javax.crypto.KeyGenerator;
+//import javax.crypto.NoSuchPaddingException;
+//import javax.crypto.SecretKey;
 
+import java.security.NoSuchAlgorithmException;
 import java.security.MessageDigest;
  
 public class Encrypt {    
@@ -23,10 +22,8 @@ public class Encrypt {
 		
 		
 		String enc = crypt(s);
-		String enc2 = encryptString(s);
 		
 		System.out.println("Original: " + s + ", Crypt: " + enc);
-		System.out.println("Original: " + s + ", Crypt2: " + enc2);
 	}
 	
     static {
@@ -57,13 +54,13 @@ public class Encrypt {
         return hexString.toString();
     }
 	
-	public static String encryptString(String string) {
+/*	public static String encryptString(String string) {
  
 		try{
  
 		    KeyGenerator keygenerator = KeyGenerator.getInstance("DES");
 		    SecretKey myDesKey = keygenerator.generateKey();
- 
+ s
 		    Cipher desCipher;
  
 		    desCipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
@@ -91,5 +88,5 @@ public class Encrypt {
 			e.printStackTrace();
 		} 
 		return "";
-	}
+	}*/
 }
