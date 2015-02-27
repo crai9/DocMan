@@ -7,6 +7,7 @@
 		Email:		<input type="email" name="email"><br>
 		Username:	<input type="text" name="username"><br>
 		Password:	<input type="password" name="password"><br> 
+		Confirm Password: <input type="password" name="cpassword"><br>
 		<input type="submit" name="submit" value="Register User">
 	</form>
 </body>

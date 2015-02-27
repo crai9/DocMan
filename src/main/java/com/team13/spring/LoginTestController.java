@@ -72,7 +72,7 @@ public class LoginTestController {
 	public String register(
 			@RequestParam("fname") String fname, @RequestParam("lname") String lname,
 			@RequestParam("email") String email, @RequestParam("username") String username,
-			@RequestParam("password") String password
+			@RequestParam("password") String password, @RequestParam("cpassword") String cpassword
 			){
 		
 		System.out.println(fname);
@@ -80,6 +80,7 @@ public class LoginTestController {
 		System.out.println(email);
 		System.out.println(username);
 		System.out.println(password);
+		System.out.println(cpassword);
 		
 		return "redirect:/home";
 	}
