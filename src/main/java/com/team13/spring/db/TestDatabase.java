@@ -5,11 +5,11 @@ import java.sql.*;
 public class TestDatabase {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/documentmanager";
+    static final String DB_URL = "jdbc:mysql://localhost:8889/testDB";
     
     //  Database credentials
-    static final String USER = "java";
-    static final String PASS = "java";
+    static final String USER = "root";
+    static final String PASS = "root";
     
     public static void main(String[] args) {
         Connection conn = null;

@@ -22,10 +22,8 @@ public class FileUploadController {
     @RequestMapping(value="/upload", method=RequestMethod.POST)
     public @ResponseBody String FileUpload(@RequestParam("name") String name, 
             @RequestParam("file") MultipartFile file){
-        
-    	FileSaver saver = new FileSaver();
     	
-    	return saver.writeFile(name, file);
+    	return FileSaver.writeFile(name, file);
     }
 
 }
