@@ -18,9 +18,9 @@
                 <c:choose>
       				<c:when test="${authenticated == false}">
 					<ul class="nav navbar-nav navbar-right">
-                        <li><a href="persons">Login</a>
+                        <li><a href="loginPage">Login</a>
                         </li>
-                        <li><a href="signup">Sign Up</a>
+                        <li><a href="">Sign Up</a>
                         </li>
                     </ul>
      			 	</c:when>

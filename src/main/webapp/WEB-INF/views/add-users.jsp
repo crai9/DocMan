@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=iso-8859-1" language="java" %>
 <html>
+<head>
+	<title>Register Page</title>
+</head>
 <body>
 	<form method="POST" action="register">
 		First Name: <input type="text" name="fname"><br>
