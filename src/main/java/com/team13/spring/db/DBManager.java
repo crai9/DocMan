@@ -20,7 +20,7 @@ public class DBManager {
     static final String USER = "java";
     static final String PASS = "java";
     
-	public static Connection getDBConnection() {
+	private static Connection getDBConnection() {
 		 
 		Connection dbConnection = null;
  
@@ -108,6 +108,30 @@ public class DBManager {
 			System.out.println(e.getMessage());
  
 		} 
+		
+	}
+	
+	public static void deleteUserById(int id){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "DELETE FROM users WHERE userId = ?";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setInt(1, id);
+
+			preparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
 		
 	}
 	
