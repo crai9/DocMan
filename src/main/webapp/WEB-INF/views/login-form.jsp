@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=iso-8859-1" language="java" %>
 <html>
 <head>
+	<title>Login Page</title>
 	<link rel="stylesheet" href="resources/css/login.css" type="text/css">
 </head>
 <body>

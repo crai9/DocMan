@@ -7,14 +7,16 @@
 			<td>Last Name</td>
 			<td>Email</td>
 			<td>Username</td>
-			<td>Actions</td>
+			<th>Edit</th>
+			<th>Delete</th>
 		</tr>
 		<tr>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
-			<td><a href="">Reset Password</a> | <a href="">Edit User</a> | <a href="">Delete</a></td>
+			<td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
+			<td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td>
 		</tr>
 	</table>
 </body>

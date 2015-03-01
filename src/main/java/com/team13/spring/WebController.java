@@ -74,6 +74,7 @@ public class WebController {
 	
 	private PersonService personService;
 	
+	
 	@Autowired(required=true)
 	@Qualifier(value="personService")
 	public void setPersonService(PersonService ps){
@@ -86,8 +87,7 @@ public class WebController {
 		model.addAttribute("listPersons", this.personService.listPersons());
 		return "person";
 	}
-	
-	
+
 	//For add and update person both
 	@RequestMapping(value= "/person/add", method = RequestMethod.POST)
 	public String addPerson(@ModelAttribute("person") Person p){
@@ -110,6 +110,7 @@ public class WebController {
         this.personService.removePerson(id);
         return "redirect:/persons";
     }
+	
  
     @RequestMapping("/edit/{id}")
     public String editPerson(@PathVariable("id") int id, Model model){
