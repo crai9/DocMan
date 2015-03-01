@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.team13.spring.login.Encrypt;
 
@@ -133,6 +135,41 @@ public class DBManager {
             		return true;
             	}
  
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return null; 
+		
+	}
+	
+	public static String[] allUsersToArray(){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT username FROM users";
+		
+		try {
+			dbConnection = getDBConnection();
+			
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.executeQuery();
+			
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            List<String> all = new ArrayList<String>();
+            while(rs.next()){
+            	all.add(rs.getString("username"));
+            }
+
+           String[] array = (String[]) all.toArray(new String[all.size()]);
+           
+           return array;
+           
 		} catch (SQLException e) {
  
 			System.out.println(e.getMessage());

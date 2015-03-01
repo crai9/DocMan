@@ -35,6 +35,8 @@ public class LoginTestController {
 		System.out.println("Password: " + password);
 		System.out.println("Password Encrypted: " + encPass);
 		
+		//TODO Validate
+		
 		try {
 			if(DBManager.login(username, encPass)){
 				System.out.println("Success");
@@ -45,6 +47,8 @@ public class LoginTestController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//TODO Implement session
 		
 		return "redirect:/home";
 	}
@@ -74,6 +78,8 @@ public class LoginTestController {
 			@RequestParam("email") String email, @RequestParam("username") String username,
 			@RequestParam("password") String password, @RequestParam("cpassword") String cpassword
 			){
+		
+		//TODO Add more validation
 		
 		if (DBManager.checkIfUserExists(username)){
 			

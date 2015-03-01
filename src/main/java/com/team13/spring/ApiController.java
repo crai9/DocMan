@@ -27,4 +27,12 @@ public class ApiController {
 		return u;
 	}
 	
+	@RequestMapping(value = {"/getAllUsers"})
+	public String[] allUsers(){
+		
+		String[] s = DBManager.allUsersToArray();
+		
+		return s;
+	}
+	
 }
