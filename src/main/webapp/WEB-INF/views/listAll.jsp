@@ -4,12 +4,13 @@
 <html>
 <body>
 <h3>Persons List</h3>
-<h2>${message}</h2>
 <c:if test="${!empty list}">
 	<table border="1" class="tg">
 	<tr>
 		<th width="80">UserId</th>
 		<th width="120">Username</th>
+		<th width="120">First Name</th>
+		<th width="120">Last Name</th>
 		<th width="120">Email</th>
 		<th width="60">Edit</th>
 		<th width="60">Delete</th>
@@ -18,8 +19,10 @@
 		<tr>
 			<td>${user.id}</td>
 			<td>${user.username}</td>
+			<td>${user.firstName}</td>
+			<td>${user.lastName}</td>
 			<td>${user.email}</td>
-			<td><a href="<c:url value='/edit/${user.id}' />" >Edit</a></td>
+			<td><a href="<c:url value='user/edit/${user.id}' />" >Edit</a></td>
 			<td><a href="<c:url value='/user/delete/${user.id}' />" >Delete</a></td>
 		</tr>
 	</c:forEach>

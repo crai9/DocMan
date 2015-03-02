@@ -76,7 +76,7 @@ public class DBManager {
 //			login(username, password);
 //
 //		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
+//			
 //			e.printStackTrace();
 //		}
 		
@@ -134,6 +134,40 @@ public class DBManager {
  
 		}
 		
+	}
+	
+	public static User editUserById(int id){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT * FROM users WHERE userId = ?";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setInt(1, id);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			User u = new User();
+			
+        	u.setId(rs.getInt("userId"));
+        	u.setUsername(rs.getString("username"));
+        	u.setEmail(rs.getString("email"));
+        	u.setFirstName(rs.getString("firstName"));
+        	u.setLastName(rs.getString("lastName"));
+			
+			return u;
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return null;
 	}
 	
 	public static Boolean checkIfUserExists(String username){
@@ -228,6 +262,8 @@ public class DBManager {
             	u.setId(rs.getInt("userId"));
             	u.setUsername(rs.getString("username"));
             	u.setEmail(rs.getString("email"));
+            	u.setFirstName(rs.getString("firstName"));
+            	u.setLastName(rs.getString("lastName"));
             	
             	all.add(u);
             }
@@ -242,7 +278,6 @@ public class DBManager {
 		return null; 
 		
 	}
-	
 	
 	public static Boolean login(String username, String password) throws SQLException {
 		 

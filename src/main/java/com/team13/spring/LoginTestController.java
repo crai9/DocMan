@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.team13.spring.db.DBManager;
 import com.team13.spring.login.Encrypt;
+import com.team13.spring.model.User;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +47,7 @@ public class LoginTestController {
 				System.out.println("Failed");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		
@@ -115,10 +116,21 @@ public class LoginTestController {
 	@RequestMapping(value = "/listAll")
 	public String listAll(Model model){
 		
-		model.addAttribute("message", "Test message");
+		//TODO Require Admin Role
+		
 		model.addAttribute("list", DBManager.allUsers());
 		
 		return "listAll";
+	}
+	
+	@RequestMapping(value = "user/edit/{id}")
+	public String editUser(Model model, @PathVariable int id){
+		
+		User u = DBManager.editUserById(id);
+		
+		model.addAttribute("user", u);
+		
+		return "editUser";
 	}
 	
 	@RequestMapping(value = "/user/delete/{id}")
@@ -130,7 +142,7 @@ public class LoginTestController {
 		
 		System.out.println("Removed row with id " + id);
 		
-		return "redirect:/home";
+		return "redirect:/listAll";
 	}
 
 }
