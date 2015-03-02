@@ -154,11 +154,13 @@ public class DBManager {
 			
 			User u = new User();
 			
-        	u.setId(rs.getInt("userId"));
-        	u.setUsername(rs.getString("username"));
-        	u.setEmail(rs.getString("email"));
-        	u.setFirstName(rs.getString("firstName"));
-        	u.setLastName(rs.getString("lastName"));
+			if(rs.next()){
+	        	u.setId(rs.getInt("userId"));
+	        	u.setUsername(rs.getString("username"));
+	        	u.setEmail(rs.getString("email"));
+	        	u.setFirstName(rs.getString("firstName"));
+	        	u.setLastName(rs.getString("lastName"));
+			}
 			
 			return u;
 			
