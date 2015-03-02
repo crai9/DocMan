@@ -8,6 +8,7 @@ import com.team13.spring.db.DBManager;
 import com.team13.spring.login.Encrypt;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -109,6 +110,15 @@ public class LoginTestController {
 		
 		
 		return "redirect:/registerPage";
+	}
+	
+	@RequestMapping(value = "/listAll")
+	public String listAll(Model model){
+		
+		model.addAttribute("message", "Test message");
+		model.addAttribute("list", DBManager.allUsers());
+		
+		return "listAll";
 	}
 	
 	@RequestMapping(value = "/user/delete/{id}")

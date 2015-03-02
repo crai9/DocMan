@@ -22,8 +22,6 @@ public class ApiController {
 			u.setAvailable(true);
 		}
 		
-		
-		
 		return u;
 	}
 	

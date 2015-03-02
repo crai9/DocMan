@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.team13.spring.login.Encrypt;
+import com.team13.spring.model.User;
 
 public class DBManager {
 
@@ -202,6 +203,46 @@ public class DBManager {
 		return null; 
 		
 	}
+	
+	public static List<User> allUsers(){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT * FROM users";
+		
+		try {
+			dbConnection = getDBConnection();
+			
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.executeQuery();
+			
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            List<User> all = new ArrayList<User>();
+            while(rs.next()){
+            	User u = new User();
+            	
+            	u.setId(rs.getInt("userId"));
+            	u.setUsername(rs.getString("username"));
+            	u.setEmail(rs.getString("email"));
+            	
+            	all.add(u);
+            }
+
+           return all;
+           
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return null; 
+		
+	}
+	
 	
 	public static Boolean login(String username, String password) throws SQLException {
 		 
