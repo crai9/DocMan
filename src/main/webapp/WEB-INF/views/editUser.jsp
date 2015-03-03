@@ -8,7 +8,8 @@
 </head>
 <body>
 	<h3>Update User's details</h3>
-	<form method="POST" action="">
+	<form method="POST" action="postUpdate">
+		<input type="hidden" name="userId" value="${user.id}">
 		First Name: <input type="text" name="fname" value="${user.firstName}"><br>
 		Last Name:	<input type="text" name="lname" value="${user.lastName}"><br>
 		Email:		<input type="email" name="email" value="${user.email}"><br>

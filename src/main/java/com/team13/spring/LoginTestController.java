@@ -110,7 +110,34 @@ public class LoginTestController {
 		
 		
 		
-		return "redirect:/registerPage";
+		return "redirect:/listAll";
+	}
+	
+	@RequestMapping(value = "/postUpdate", method = RequestMethod.POST)
+	public String postUpdate(
+			@RequestParam("userId") int userId,
+			@RequestParam("fname") String fname, @RequestParam("lname") String lname,
+			@RequestParam("email") String email, @RequestParam("username") String username
+			){
+		
+		//TODO Add more validation
+		
+		if (DBManager.checkIfUserExists(username)){
+			
+			System.out.println("User exists");
+			
+		} 
+			else {
+			
+			DBManager.updateUser(userId, username, fname, lname, email);
+			
+			System.out.println(fname);
+			System.out.println(lname);
+			System.out.println(email);
+			System.out.println(username);
+			}
+
+		return "redirect:/listAll";
 	}
 	
 	@RequestMapping(value = "/listAll")
@@ -128,10 +155,15 @@ public class LoginTestController {
 		
 		User u = DBManager.editUserById(id);
 		
+		if(u == null){
+			System.out.println("Error");
+		}
 		model.addAttribute("user", u);
 		
 		return "editUser";
 	}
+	
+	
 	
 	@RequestMapping(value = "/user/delete/{id}")
 	public String deleteUser(@PathVariable int id){
