@@ -123,10 +123,25 @@ public class LoginTestController {
 		return "listAll";
 	}
 	
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public String editPost(@RequestParam("fname") String fname, @RequestParam("lname") String lname,
+			@RequestParam("email") String email, @RequestParam("username") String username, @RequestParam("id") int id){
+		
+		System.out.println(id);
+		System.out.println(fname);
+		System.out.println(lname);
+		System.out.println(email);
+		System.out.println(username);
+		
+		DBManager.updateUser(id, username, fname, lname, email);
+		
+		return "redirect:/user/edit/" + id;
+	}
+	
 	@RequestMapping(value = "user/edit/{id}")
 	public String editUser(Model model, @PathVariable int id){
 		
-		User u = DBManager.editUserById(id);
+		User u = DBManager.getUserById(id);
 		
 		model.addAttribute("user", u);
 		

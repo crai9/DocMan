@@ -112,6 +112,41 @@ public class DBManager {
 		
 	}
 	
+	public static void updateUser(int id, String username, String fname, String lname, String email){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "UPDATE users SET "
+				+ "username = ?, firstName = ?, lastName = ?, email = ? "
+				+ "WHERE userId = ?";
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, fname);
+			preparedStatement.setString(3, lname);
+			preparedStatement.setString(4, email);
+			preparedStatement.setInt(5, id);
+			
+			
+ 			
+			preparedStatement.executeUpdate();
+ 
+			System.out.println(preparedStatement.toString());
+			
+			System.out.println("Record is updated in users table");
+ 
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		} 
+		
+	}
+	
 	public static void deleteUserById(int id){
 		
 		Connection dbConnection = null;
@@ -136,7 +171,7 @@ public class DBManager {
 		
 	}
 	
-	public static User editUserById(int id){
+	public static User getUserById(int id){
 		
 		Connection dbConnection = null;
 		
