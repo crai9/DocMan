@@ -4,6 +4,7 @@
 <html>
 <body>
 <h3>Persons List</h3>
+<h4><a href="registerPage">Add new</a></h4>
 <c:if test="${!empty list}">
 	<table border="1" class="tg">
 	<tr>

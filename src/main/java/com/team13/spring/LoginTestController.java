@@ -110,7 +110,7 @@ public class LoginTestController {
 		
 		
 		
-		return "redirect:/registerPage";
+		return "redirect:/listAll";
 	}
 	
 	@RequestMapping(value = "/listAll")
@@ -135,7 +135,7 @@ public class LoginTestController {
 		
 		DBManager.updateUser(id, username, fname, lname, email);
 		
-		return "redirect:/user/edit/" + id;
+		return "redirect:/listAll";
 	}
 	
 	@RequestMapping(value = "user/edit/{id}")

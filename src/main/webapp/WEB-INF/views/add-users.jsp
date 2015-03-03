@@ -4,6 +4,7 @@
 	<title>Register Page</title>
 </head>
 <body>
+	<a href="listAll">Back to list</a>
 	<form method="POST" action="register">
 		First Name: <input type="text" name="fname"><br>
 		Last Name:	<input type="text" name="lname"><br>
