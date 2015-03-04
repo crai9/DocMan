@@ -113,12 +113,25 @@ public class LoginTestController {
 		return "redirect:/listAll";
 	}
 	
+	
+	@RequestMapping(value = "/listAll/search/{search}")
+	public String listAllSearch(Model model, @PathVariable String search){
+		
+		//TODO Require Admin Role
+		
+		model.addAttribute("list", DBManager.allUsers(search));
+		
+		return "listAll";
+	}
+	
 	@RequestMapping(value = "/listAll")
 	public String listAll(Model model){
 		
 		//TODO Require Admin Role
 		
-		model.addAttribute("list", DBManager.allUsers());
+		String s = null;
+		
+		model.addAttribute("list", DBManager.allUsers(s));
 		
 		return "listAll";
 	}
