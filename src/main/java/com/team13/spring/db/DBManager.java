@@ -275,20 +275,36 @@ public class DBManager {
 		
 	}
 	
-	public static List<User> allUsers(){
+	public static List<User> allUsers(String search){
 		
 		Connection dbConnection = null;
 		
 		PreparedStatement preparedStatement = null;
- 
-		String sql = "SELECT * FROM users";
 		
+		String sql = null;
+		
+		if(search == null){
+			sql = "SELECT * FROM users";
+		} else {
+			sql = "SELECT * FROM users WHERE username LIKE ?";
+		}
+		
+			
+	
 		try {
 			dbConnection = getDBConnection();
 			
 			preparedStatement = dbConnection.prepareStatement(sql);
- 
+			
+			if(search != null){
+				
+				preparedStatement.setString(1, "%" + search + "%");
+			
+			}
+			
 			preparedStatement.executeQuery();
+			
+			System.out.println(preparedStatement.toString());
 			
             ResultSet rs = preparedStatement.executeQuery();
             

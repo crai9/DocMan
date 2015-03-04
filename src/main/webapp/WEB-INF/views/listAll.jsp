@@ -5,7 +5,8 @@
 <body>
 <h3>Persons List</h3>
 <h4><a href="registerPage">Add new</a></h4>
-<c:if test="${!empty list}">
+<c:choose>
+<c:when test="${!empty list}">
 	<table border="1" class="tg">
 	<tr>
 		<th width="80">UserId</th>
@@ -28,6 +29,10 @@
 		</tr>
 	</c:forEach>
 	</table>
-</c:if>
+</c:when>
+<c:otherwise>
+<h4 style="color: red;">No results!</h4>
+</c:otherwise>
+</c:choose>
 </body>
 </html>
