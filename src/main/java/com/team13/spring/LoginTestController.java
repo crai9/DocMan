@@ -147,7 +147,7 @@ public class LoginTestController {
 		
 		return "editUser";
 	}
-	
+	//Delete User
 	@RequestMapping(value = "/user/delete/{id}")
 	public String deleteUser(@PathVariable int id){
 		
