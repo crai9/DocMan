@@ -7,12 +7,41 @@ public class Validator {
 
 	public static void main(String[] args) {
 		
-		String email = "Craig@email.c";
+		String email = "test@test.com";
+		String firstName = "Test";
+		String lastName = "Test";
+		String username = "test12345";
+		String password = "test123"; 
+		
+		if(checkFirstName(firstName)){
+			System.out.println("First Name Valid");
+		} else {
+			System.out.println("First name Invalid");
+		}
+		
+		if(checkFirstName(lastName)){
+			System.out.println("Last Name Valid");
+		} else {
+			System.out.println("Last name Invalid");
+		}
 		
 		if(checkEmail(email)){
-			System.out.println("Valid");
+			System.out.println("Email Valid");
 		} else {
-			System.out.println("Not Valid");
+			System.out.println("Email Invalid");
+		}
+		
+		
+		if(usernameValidate(username)){
+			System.out.println("Username Valid");
+		} else {
+			System.out.println("Username Invalid");
+		}
+		
+		if(validatePassword(password)){
+			System.out.println("Password Valid");
+		} else {
+			System.out.println("Password Invalid");
 		}
 	}
 	
@@ -25,6 +54,33 @@ public class Validator {
 		      result = false;
 		   }
 		   return result;
+	}
+	
+	 public static boolean validatePassword(String password){
+
+	    	String pattern = "(?=.*[0-9])(?=.*[a-z]).{6,20}";
+		    return password.matches(pattern);
+	    }
+	
+	 public static boolean usernameValidate(String username){
+		
+		String pattern = "(?=.*[a-z]).{6,20}";
+		
+		return username.matches(pattern);
+	}
+	
+	public static Boolean checkFirstName(String firstName){
+		
+		String pattern = "(?=.*[a-z]).{1,99}";
+		
+		return firstName.matches(pattern);
+	}
+	
+	public static Boolean checkLasttName(String lastName){
+		
+		String pattern = "(?=.*[a-z]).{1,99}";
+		System.out.println("Last Name: " + lastName);
+		return lastName.matches(pattern);
 	}
 
 }
