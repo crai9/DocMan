@@ -21,14 +21,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LoginTestController {
 
-	@RequestMapping(value = "/addRoles")
-	public @ResponseBody String addRoles(HttpServletRequest request){
+	public static Boolean hasRole(HttpServletRequest request, String role){
+		String[] roles = (String[])request.getSession().getAttribute("roles");
+		if(roles == null){
+			return false;
+		} else {
+			if(!Arrays.asList(roles).contains(role)){
+				return false;
+			}
+			return true;
+		}
+	}
+	
+	
+	@RequestMapping(value = "/showRoles")
+	public @ResponseBody String showRoles(HttpServletRequest request){
 		
-		String[] roles = DBManager.getUserRolesById(1);
+		String[] roles = (String[])request.getSession().getAttribute("roles");
 		
-		request.getSession().setAttribute("roles", roles);
+		for(String role : roles){
+			System.out.println(role);
+		}
 		
-		return "Added";
+		return "shown";
 	}
 	
 	
@@ -54,8 +69,14 @@ public class LoginTestController {
 		//TODO Validate
 		
 		try {
-			if(DBManager.login(username, encPass)){
+			int id = DBManager.login(username, encPass);
+			if(id != 0){
 				System.out.println("Success");
+				String[] roles = DBManager.getUserRolesById(id);
+				
+				request.getSession().setAttribute("roles", roles);
+				System.out.println("Added roles to session");
+				return "redirect:/listAll";
 			} else { 
 				System.out.println("Failed");
 			}
@@ -64,9 +85,7 @@ public class LoginTestController {
 			e.printStackTrace();
 		}
 		
-		//TODO Implement session
-		
-		return "redirect:/home";
+		return "redirect:/loginPage";
 	}
 	
 	@RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
@@ -79,21 +98,25 @@ public class LoginTestController {
 	
 	// Register Page
 	@RequestMapping(value = "/registerPage", method = RequestMethod.GET)
-	public ModelAndView registerPage(){
+	public String registerPage(HttpServletRequest request){
 		
-		ModelAndView model = new ModelAndView();
-
-		model.setViewName("add-users");
+		if(!hasRole(request, "ROLE_ADMIN")){
+			return "403";
+		}
 		
-		return model;
+		return "add-users";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(
 			@RequestParam("fname") String fname, @RequestParam("lname") String lname,
 			@RequestParam("email") String email, @RequestParam("username") String username,
-			@RequestParam("password") String password, @RequestParam("cpassword") String cpassword
-			){
+			@RequestParam("password") String password, @RequestParam("cpassword") String cpassword,
+			HttpServletRequest request){
+		
+		if(!hasRole(request, "ROLE_ADMIN")){
+			return "403";
+		}
 		
 		//TODO Add more validation
 		
@@ -120,17 +143,16 @@ public class LoginTestController {
 		
 		}
 		
-		
-		
-		
 		return "redirect:/listAll";
 	}
 	
 	
 	@RequestMapping(value = "/listAll/search/{search}")
-	public String listAllSearch(Model model, @PathVariable String search){
+	public String listAllSearch(HttpServletRequest request, Model model, @PathVariable String search){
 		
-		//TODO Require Admin Role
+		if(!hasRole(request, "ROLE_USER")){
+			return "403";
+		}
 		
 		model.addAttribute("list", DBManager.allUsers(search));
 		
@@ -141,13 +163,9 @@ public class LoginTestController {
 	public String listAll(Model model, HttpServletRequest request){
 		
 		//Check if admin
-		String[] roles = (String[])request.getSession().getAttribute("roles");
-		if(roles == null){
+		
+		if(!hasRole(request, "ROLE_USER")){
 			return "403";
-		} else {
-			if(!Arrays.asList(roles).contains("ROLE_ADMIN")){
-				return "403";
-			}
 		}
 		
 		String s = null;
@@ -158,8 +176,13 @@ public class LoginTestController {
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String editPost(@RequestParam("fname") String fname, @RequestParam("lname") String lname,
-			@RequestParam("email") String email, @RequestParam("username") String username, @RequestParam("id") int id){
+	public String editPost(HttpServletRequest request, @RequestParam("fname") String fname,
+			@RequestParam("lname") String lname, @RequestParam("email") String email,
+			@RequestParam("username") String username, @RequestParam("id") int id){
+		
+		if(!hasRole(request, "ROLE_ADMIN")){
+			return "403";
+		}
 		
 		System.out.println(id);
 		System.out.println(fname);
@@ -173,7 +196,11 @@ public class LoginTestController {
 	}
 	
 	@RequestMapping(value = "user/edit/{id}")
-	public String editUser(Model model, @PathVariable int id){
+	public String editUser(HttpServletRequest request, Model model, @PathVariable int id){
+		
+		if(!hasRole(request, "ROLE_ADMIN")){
+			return "403";
+		}
 		
 		User u = DBManager.getUserById(id);
 		
@@ -181,11 +208,14 @@ public class LoginTestController {
 		
 		return "editUser";
 	}
+	
 	//Delete User
 	@RequestMapping(value = "/user/delete/{id}")
-	public String deleteUser(@PathVariable int id){
+	public String deleteUser(HttpServletRequest request, @PathVariable int id){
 		
-		//TODO Require admin role
+		if(!hasRole(request, "ROLE_ADMIN")){
+			return "403";
+		}
 		
 		DBManager.deleteUserById(id);
 		

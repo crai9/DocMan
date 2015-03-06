@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.team13.spring.login.Encrypt;
+//import com.team13.spring.login.Encrypt;
 import com.team13.spring.model.User;
 
 public class DBManager {
@@ -351,7 +351,7 @@ public class DBManager {
 		
 	}
 	
-	public static Boolean login(String username, String password) throws SQLException {
+	public static int login(String username, String password) throws SQLException {
 		 
 		Connection dbConnection = null;
 		
@@ -374,13 +374,13 @@ public class DBManager {
             while(rs.next()){
  
                 String name = rs.getString("firstName");
-                String country = rs.getString("lastName");
+                String last = rs.getString("lastName");
                 
                 System.out.print("First Name: " + name);
-                System.out.print(", Last Name: " + country);
+                System.out.print(", Last Name: " + last);
                 System.out.print("\n");
                 
-                return true;
+                return rs.getInt("userId");
 
             }
             
@@ -401,7 +401,7 @@ public class DBManager {
 			}
  
 		}
-		return false;
+		return 0;
  
 	}
 	
