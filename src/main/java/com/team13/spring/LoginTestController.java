@@ -1,6 +1,7 @@
 package com.team13.spring;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,10 +16,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginTestController {
 
+	@RequestMapping(value = "/addRoles")
+	public @ResponseBody String addRoles(HttpServletRequest request){
+		
+		String[] roles = DBManager.getUserRolesById(1);
+		
+		request.getSession().setAttribute("roles", roles);
+		
+		return "Added";
+	}
+	
+	
 	@RequestMapping(value = {"/loginPage"}, method = RequestMethod.GET)
 	public ModelAndView loginPage(HttpServletRequest request) {
 		
@@ -59,7 +72,7 @@ public class LoginTestController {
 	@RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
 	public String logOut(HttpServletRequest request) {
 				
-			request.getSession().removeAttribute("username");
+			request.getSession().removeAttribute("roles");
 			
 		return "redirect:/home";
 	}
@@ -125,9 +138,17 @@ public class LoginTestController {
 	}
 	
 	@RequestMapping(value = "/listAll")
-	public String listAll(Model model){
+	public String listAll(Model model, HttpServletRequest request){
 		
-		//TODO Require Admin Role
+		//Check if admin
+		String[] roles = (String[])request.getSession().getAttribute("roles");
+		if(roles == null){
+			return "403";
+		} else {
+			if(!Arrays.asList(roles).contains("ROLE_ADMIN")){
+				return "403";
+			}
+		}
 		
 		String s = null;
 		

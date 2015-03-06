@@ -55,31 +55,50 @@ public class DBManager {
 		
 		//main method for testing only
 		
-		String username = "mark";
-		String password = Encrypt.crypt("test");
+		int id = 1;
 		
-		if(checkIfUserExists(username) == true) {
-			System.out.println("User exists");
-		} else {
-			System.out.println("User doesn't exist");
-			
-
-			String fname = "123";
-			String lname = "456";
-			String email = "test@testing.com";
-			
-			createUser(username, password, fname, lname, email);
+		String[] roles = getUserRolesById(id);
+		
+		for(String role : roles){
+			System.out.println(role);
 		}
 		
+	}
 	
-//		try {
-//			login(username, password);
-//
-//		} catch (SQLException e) {
-//			
-//			e.printStackTrace();
-//		}
+	public static String[] getUserRolesById(int id){
+		Connection dbConnection = null;
 		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT users.userId, user_roles.`ROLE` "
+				+ "FROM users "
+				+ "INNER JOIN user_roles "
+				+ "ON users.userId=user_roles.userId "
+				+ "WHERE users.userId = ?";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setInt(1, id);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+            List<String> all = new ArrayList<String>();
+            while(rs.next()){
+            	all.add(rs.getString("ROLE"));
+            }
+
+           String[] array = (String[]) all.toArray(new String[all.size()]);
+           
+           return array;
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return null;
 	}
 	
 	public static void createUser(String username, String password, String fname, String lname, String email){
