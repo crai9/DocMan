@@ -75,6 +75,7 @@ public class LoginController {
 				String[] roles = DBManager.getUserRolesById(id);
 				
 				request.getSession().setAttribute("roles", roles);
+				request.getSession().setAttribute("id", id);
 				System.out.println("Added roles to session");
 				return "redirect:/listAll";
 			} else { 

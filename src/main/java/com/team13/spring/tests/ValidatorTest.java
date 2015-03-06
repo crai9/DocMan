@@ -1,10 +1,6 @@
 package com.team13.spring.tests;
 
 import static org.junit.Assert.*;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
-import org.junit.*;
 
 import com.team13.spring.validation.*;
 
