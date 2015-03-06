@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class LoginTestController {
+public class LoginController {
 
 	public static Boolean hasRole(HttpServletRequest request, String role){
 		String[] roles = (String[])request.getSession().getAttribute("roles");
