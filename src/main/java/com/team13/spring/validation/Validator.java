@@ -14,34 +14,42 @@ public class Validator {
 		String password = "test123"; 
 		
 		if(checkFirstName(firstName)){
-			System.out.println("First Name Valid");
+			System.out.println("First Name Valid: " + firstName);
 		} else {
 			System.out.println("First name Invalid");
 		}
 		
 		if(checkFirstName(lastName)){
-			System.out.println("Last Name Valid");
+			System.out.println("Last Name Valid: " + lastName);
 		} else {
 			System.out.println("Last name Invalid");
 		}
 		
 		if(checkEmail(email)){
-			System.out.println("Email Valid");
+			System.out.println("Email Valid: " + email);
 		} else {
 			System.out.println("Email Invalid");
 		}
 		
 		
 		if(usernameValidate(username)){
-			System.out.println("Username Valid");
+			System.out.println("Username Valid: " + username);
 		} else {
 			System.out.println("Username Invalid");
 		}
 		
 		if(validatePassword(password)){
-			System.out.println("Password Valid");
+			System.out.println("Password Valid: " + password);
 		} else {
 			System.out.println("Password Invalid");
+		}
+		
+		// added this. Checks if password matches user then it wont create a user.
+		if(username == password){
+			System.out.println("Password cannot match username");
+		}
+		else {
+			System.out.println("Password is different from username");
 		}
 	}
 	
