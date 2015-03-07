@@ -12,6 +12,10 @@
 		Username:	<input type="text" name="username"><br>
 		Password:	<input type="password" name="password"><br> 
 		Confirm Password: <input type="password" name="cpassword"><br>
+		Roles: <select>
+					<option id="admin" name="admin">Admin</option>
+					<option id="user" name="user">User</option>
+				</select><br> 
 		<input type="submit" name="submit" value="Register User">
 	</form>
 </body>
