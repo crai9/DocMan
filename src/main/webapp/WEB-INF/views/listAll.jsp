@@ -14,6 +14,7 @@
 		<th width="120">First Name</th>
 		<th width="120">Last Name</th>
 		<th width="120">Email</th>
+		
 		<th width="60">Edit</th>
 		<th width="60">Delete</th>
 	</tr>
@@ -24,6 +25,7 @@
 			<td>${user.firstName}</td>
 			<td>${user.lastName}</td>
 			<td>${user.email}</td>
+		
 			<td><a href="<c:url value='user/edit/${user.id}' />" >Edit</a></td>
 			<td><a href="<c:url value='/user/delete/${user.id}' />" >Delete</a></td>
 		</tr>
