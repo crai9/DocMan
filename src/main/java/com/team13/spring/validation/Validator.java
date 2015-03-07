@@ -12,6 +12,7 @@ public class Validator {
 		String lastName = "Test";
 		String username = "test12345";
 		String password = "test123"; 
+		String cpassword = "test123";
 		
 		if(checkFirstName(firstName)){
 			System.out.println("First Name Valid: " + firstName);
@@ -44,6 +45,12 @@ public class Validator {
 			System.out.println("Password Invalid");
 		}
 		
+		if(cpassword == password){
+			System.out.println("Confirm Password Valid: " + cpassword);
+		} else {
+			System.out.println("Confirm Password Invalid");
+		}
+		
 		// added this. Checks if password matches user then it wont create a user.
 		if(username == password){
 			System.out.println("Password cannot match username");
@@ -68,6 +75,12 @@ public class Validator {
 
 	    	String pattern = "(?=.*[0-9])(?=.*[a-z]).{6,20}";
 		    return password.matches(pattern);
+	    }
+	 
+	 public static boolean validateCPassword(String cpassword){
+
+	    	String pattern = "(?=.*[0-9])(?=.*[a-z]).{6,20}";
+		    return cpassword.matches(pattern);
 	    }
 	
 	 public static boolean usernameValidate(String username){
