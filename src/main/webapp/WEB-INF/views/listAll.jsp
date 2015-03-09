@@ -4,6 +4,7 @@
 <html>
 <body>
 <h3>Persons List</h3>
+<h4>Welcome, ${name}</h4>
 <h4><a href="registerPage">Add new</a></h4>
 <c:choose>
 <c:when test="${!empty list}">
