@@ -2,7 +2,6 @@ package com.team13.spring;
 
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -92,21 +91,9 @@ public class LoginController {
 	
 	@RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
 	public String logOut(HttpServletRequest request) {
+				
+			request.getSession().removeAttribute("roles");
 			
-		@SuppressWarnings("rawtypes")
-		Enumeration e = request.getSession().getAttributeNames();
-		
-		while(e.hasMoreElements()){
-			request.getSession().removeAttribute(e.nextElement().toString());
-		}
-		
-		
-		System.out.println("------------------------");
-		
-		while(e.hasMoreElements()){
-			System.out.println(e.nextElement().toString());
-		}
-	
 		return "redirect:/home";
 	}
 	
@@ -181,13 +168,9 @@ public class LoginController {
 		if(!hasRole(request, "ROLE_USER")){
 			return "403";
 		}
-		String id = request.getSession().getAttribute("id").toString();
-		int userId = Integer.parseInt(id);
-		User u = DBManager.getUserById(userId);
-		String name = u.getFirstName();
 		
 		String s = null;
-		model.addAttribute("name", name);
+		
 		model.addAttribute("list", DBManager.allUsers(s));
 		
 		return "listAll";

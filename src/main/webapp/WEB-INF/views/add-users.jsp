@@ -5,16 +5,16 @@
 </head>
 <body>
 	<a href="listAll">Back to list</a>
-	<form method="POST" action="register">
+	<form method="POST" action="register" onsubmit="return validatePassword()">
+		<h3 style="color: red;" id="message"></h3>
 		First Name: <input type="text" name="fname"><br>
 		Last Name:	<input type="text" name="lname"><br>
 		Email:		<input type="email" name="email"><br>
-		Username:	<input type="text" name="username"><br>
-		Password:	<input type="password" name="password"><br> 
-		Confirm Password: <input type="password" name="cpassword"><br>
-		Admin Role: <input type="checkbox" name="adminRole"><br>
-		User Role: <input type="checkbox" name="userRole"><br>
+		Username:	<input id="username" type="text" name="username"><br>
+		Password:	<input id="p1" type="password" name="password"><br> 
+		Confirm Password: <input id="p2" type="password" name="cpassword"><br>
 		<input type="submit" name="submit" value="Register User">
 	</form>
+	<script src="resources/js/main.js"></script>
 </body>
 </html>

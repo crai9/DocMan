@@ -12,51 +12,36 @@ public class Validator {
 		String lastName = "Test";
 		String username = "test12345";
 		String password = "test123"; 
-		String cpassword = "test123";
 		
 		if(checkFirstName(firstName)){
-			System.out.println("First Name Valid: " + firstName);
+			System.out.println("First Name Valid");
 		} else {
 			System.out.println("First name Invalid");
 		}
 		
 		if(checkFirstName(lastName)){
-			System.out.println("Last Name Valid: " + lastName);
+			System.out.println("Last Name Valid");
 		} else {
 			System.out.println("Last name Invalid");
 		}
 		
 		if(checkEmail(email)){
-			System.out.println("Email Valid: " + email);
+			System.out.println("Email Valid");
 		} else {
 			System.out.println("Email Invalid");
 		}
 		
 		
 		if(usernameValidate(username)){
-			System.out.println("Username Valid: " + username);
+			System.out.println("Username Valid");
 		} else {
 			System.out.println("Username Invalid");
 		}
 		
 		if(validatePassword(password)){
-			System.out.println("Password Valid: " + password);
+			System.out.println("Password Valid");
 		} else {
 			System.out.println("Password Invalid");
-		}
-		
-		if(cpassword == password){
-			System.out.println("Confirm Password Valid: " + cpassword);
-		} else {
-			System.out.println("Confirm Password Invalid");
-		}
-		
-		// added this. Checks if password matches user then it wont create a user.
-		if(username == password){
-			System.out.println("Password cannot match username");
-		}
-		else {
-			System.out.println("Password is different from username");
 		}
 	}
 	
@@ -75,12 +60,6 @@ public class Validator {
 
 	    	String pattern = "(?=.*[0-9])(?=.*[a-z]).{6,20}";
 		    return password.matches(pattern);
-	    }
-	 
-	 public static boolean validateCPassword(String cpassword){
-
-	    	String pattern = "(?=.*[0-9])(?=.*[a-z]).{6,20}";
-		    return cpassword.matches(pattern);
 	    }
 	
 	 public static boolean usernameValidate(String username){
