@@ -23,4 +23,9 @@ $(document).ready(function() {
 			}
 		}
 	});
+	var success = getParameterByName("success");
+	if(success == "no"){
+		$("#error").removeClass("hidden");
+		$("#error").addClass("show");
+	} 
 });

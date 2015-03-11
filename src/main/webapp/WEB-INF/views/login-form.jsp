@@ -8,11 +8,14 @@
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="resources/css/formValidation.min.css" rel="stylesheet">
 	<link href="resources/css/global.css" rel="stylesheet">
+	<link href="resources/css/signin.css" rel="stylesheet">
 </head>
 <body>
+
+<%@ include file="menu.jsp" %>
 	<div class="container top">
-	<div class="page-header">
-  		<h1>Login Someone</h1>
+<%-- 	<div class="page-header">
+  		<h1>Login</h1>
 	</div>
 	<form id="loginForm" class="form-horizontal" method="POST" action="login">
 		<div class="form-group">
@@ -29,12 +32,32 @@
         </div>
         </div>
 		<div class="form-group">
-        <div class="col-xs-9 col-xs-offset-3">
-            <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Submit</button>
+        <div class="col-xs-2 col-xs-offset-3">
+            <button type="submit" class="btn btn-lg btn-primary btn-block"" name="signup" value="Sign up">Submit</button>
         </div>
-    </div>
-		
-	</form>
+    </div> 	
+	</form>--%>
+	
+ 	<form id="loginForm" class="form-signin" method="POST" action="login">
+		<div class="page-header">
+        	<h2 class="form-signin-heading">Log into Document Manager</h2>
+        </div>
+        <div id="error" class="alert alert-danger hidden" role="alert">
+			Incorrect login details, try again
+		</div>
+        <div class="form-group">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Username">
+        </div>
+        <div class="form-group">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
+        </div>
+        <div class="form-group">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </div>
+      </form>
+	
 	<div class="container top">
 <%@ include file="footer.jsp" %>
 </div>

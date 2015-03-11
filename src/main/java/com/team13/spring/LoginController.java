@@ -90,7 +90,7 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/loginPage";
+		return "redirect:/loginPage?success=no";
 	}
 	
 	@RequestMapping(value = {"/logout"}, method = RequestMethod.GET)

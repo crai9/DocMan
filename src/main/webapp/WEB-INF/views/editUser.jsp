@@ -14,10 +14,9 @@
 	
 	<div class="container top">
 	<div class="page-header">
-	<a href="../../listAll" class="btn btn-default btn-xs" role="button">&laquo Back to list</a><br><br>
-  		<h1>Edit Someone</h1>
+  		<h1>Edit a User</h1>
 	</div>
-	
+	<a href="../../listAll" class="btn btn-default btn-xs" role="button">&laquo Back to list</a><br><br>
 	<c:choose>
 	<c:when test="${user.id != 0}">
 	<form id="editForm" class="form-horizontal" method="GET" action="../../edit">
@@ -59,7 +58,9 @@
 	</form>
 	</c:when>
 	<c:otherwise>
-	<h4 style="color: red;'">Not valid user id</h4>
+	<div class="alert alert-danger" role="alert">
+		User with that id doesn't exist
+	</div>
 	</c:otherwise>
 	</c:choose>
 	

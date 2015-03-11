@@ -55,13 +55,17 @@ public class DBManager {
 		
 		//main method for testing only
 		
-		int id = 1;
+		int id = 656;
 		
-		String[] roles = getUserRolesById(id);
+		User u = getUserById(id);
 		
-		for(String role : roles){
-			System.out.println(role);
-		}
+		System.out.println(u.getFirstName());
+		
+//		String[] roles = getUserRolesById(id);
+//		
+//		for(String role : roles){
+//			System.out.println(role);
+//		}
 		
 	}
 	
@@ -214,6 +218,13 @@ public class DBManager {
 	        	u.setEmail(rs.getString("email"));
 	        	u.setFirstName(rs.getString("firstName"));
 	        	u.setLastName(rs.getString("lastName"));
+			} else {
+				//don't return null
+				u.setId(0);
+	        	u.setUsername("");
+	        	u.setEmail("");
+	        	u.setFirstName("");
+	        	u.setLastName("");
 			}
 			
 			return u;

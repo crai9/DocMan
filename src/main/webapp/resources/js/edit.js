@@ -50,6 +50,11 @@ $(document).ready(function() {
                     remote: {
                         message: 'The username is not available',
                         url: '../../checkUser',
+                        data: function(validator) {
+                            return {
+                                id: validator.getFieldElements('id').val()
+                            };
+                        },
                         type: 'GET'
                     }
                 }

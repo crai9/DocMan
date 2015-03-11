@@ -1,6 +1,30 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
+<head>
+	<title>List of users</title>
+	<link href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet">
+	<link href="<c:url value='/resources/css/formValidation.min.css' />" rel="stylesheet">
+	<link href="<c:url value='/resources/css/global.css' />" rel="stylesheet">
+</head>
 <body>
-<h2 style="color: red;">You don't have access to this page</h2>
-<h4><a href="http://localhost:8080/DocMan/home">Go home</a></h4>
+<%@ include file="menu.jsp" %>
+<div class="container top">
+<div class="page-header">
+<h1>Error 403</h1>
+</div>
+<a href="<c:url value='/home' />" class="btn btn-info btn-sm" role="button">&laquo Go home</a><br><br>
+<div class="alert alert-danger" role="alert">
+	Sorry, you don't have access to this page
+</div>
+
+<%@ include file="footer.jsp" %>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
+    <script src="<c:url value='/resources/js/formValidation.min.js' />"></script>
+    <script src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
+    <script src="<c:url value='/resources/js/main.js' />"></script>
 </body>
 </html>
