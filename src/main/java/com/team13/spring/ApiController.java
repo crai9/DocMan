@@ -17,9 +17,9 @@ public class ApiController {
 		UserStatus u = new UserStatus();
 		
 		if(DBManager.checkIfUserExists(username)){
-			u.setAvailable(false);
+			u.setValid(false);
 		} else {
-			u.setAvailable(true);
+			u.setValid(true);
 		}
 		
 		return u;

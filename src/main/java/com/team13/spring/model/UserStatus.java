@@ -2,14 +2,14 @@ package com.team13.spring.model;
 
 public class UserStatus {
 
-	private Boolean available;
+	private Boolean valid;
 
-	public Boolean getAvailable() {
-		return available;
+	public Boolean getValid() {
+		return valid;
 	}
 
-	public void setAvailable(Boolean available) {
-		this.available = available;
+	public void setValid(Boolean valid) {
+		this.valid = valid;
 	}
 	
 	

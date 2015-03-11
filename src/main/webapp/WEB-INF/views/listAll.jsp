@@ -4,9 +4,13 @@
 <html>
 <body>
 <h3>Persons List</h3>
-<h4><a href="registerPage">Add new</a></h4>
+<h4><a href="<c:url value='/registerPage' />">Add new</a></h4>
 <c:choose>
 <c:when test="${!empty list}">
+	<form id="search">
+	<input id="query" type="text" placeholder="search for users...">
+	<button type="submit">go</button>
+	</form>
 	<table border="1" class="tg">
 	<tr>
 		<th width="80">UserId</th>
@@ -24,7 +28,7 @@
 			<td>${user.firstName}</td>
 			<td>${user.lastName}</td>
 			<td>${user.email}</td>
-			<td><a href="<c:url value='user/edit/${user.id}' />" >Edit</a></td>
+			<td><a href="<c:url value='/user/edit/${user.id}' />" >Edit</a></td>
 			<td><a href="#" onclick="confirmDelete(${user.id})">Delete</a></td>
 		</tr>
 	</c:forEach>
@@ -35,6 +39,6 @@
 </c:otherwise>
 </c:choose>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="resources/js/main.js"></script>
+    <script src="<c:url value='/resources/js/main.js' />"></script>
 </body>
 </html>

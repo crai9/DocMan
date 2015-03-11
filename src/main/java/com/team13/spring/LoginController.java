@@ -74,8 +74,12 @@ public class LoginController {
 				System.out.println("Success");
 				String[] roles = DBManager.getUserRolesById(id);
 				
+				User u = DBManager.getUserById(id);
+				String fn = u.getFirstName();
+				
 				request.getSession().setAttribute("roles", roles);
 				request.getSession().setAttribute("id", id);
+				request.getSession().setAttribute("username", fn);
 				System.out.println("Added roles to session");
 				return "redirect:/listAll";
 			} else { 
@@ -154,7 +158,6 @@ public class LoginController {
 		if(!hasRole(request, "ROLE_USER")){
 			return "403";
 		}
-		
 		model.addAttribute("list", DBManager.allUsers(search));
 		
 		return "listAll";

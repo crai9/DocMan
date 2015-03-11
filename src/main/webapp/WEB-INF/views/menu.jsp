@@ -27,14 +27,14 @@
 
       				<c:otherwise>
 					<ul class="nav navbar-nav navbar-right">
-                        <li><a href="dashboard">Your Docs</a>
+                        <li><a href="#">Your Docs</a>
                         </li>
-                        <li><a href="settings">Settings</a>
+                        <li><a href="#">Settings</a>
                         </li>
                         <li class="dropdown">
                   			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${username} <span class="caret"></span></a>
                   			<ul class="dropdown-menu" role="menu">
-                    			<li><a href="profile">Profile</a></li>
+                    			<li><a href="#">Profile</a></li>
                     			<li class="divider"></li>
                     			<li><a href="logout">Log out</a></li>
                   			</ul>
