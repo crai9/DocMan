@@ -2,17 +2,25 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
+<head>
+	<title>List of users</title>
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+	<link href="resources/css/formValidation.min.css" rel="stylesheet">
+	<link href="resources/css/global.css" rel="stylesheet">
+</head>
 <body>
+<%@ include file="menu.jsp" %>
 <h3>Persons List</h3>
 <h4><a href="<c:url value='/registerPage' />">Add new</a></h4>
 <c:choose>
 <c:when test="${!empty list}">
-	<form id="search">
-	<input id="query" type="text" placeholder="search for users...">
-	<button type="submit">go</button>
+	<form id="search"">
+	<input id="query" type="text" name="search" class="form-control" placeholder="Search for users..."/>
+	<button type="submit" class="btn btn-default" >Search</button>
 	</form>
-	<table border="1" class="tg">
-	<tr>
+	<div class="table-responsive">
+	<table border="1" class="table">
+	<tr class="active">
 		<th width="80">UserId</th>
 		<th width="120">Username</th>
 		<th width="120">First Name</th>
@@ -24,7 +32,7 @@
 	<c:forEach items="${list}" var="user">
 		<tr>
 			<td>${user.id}</td>
-			<td>${user.username}</td>
+			<td class="success">${user.username}</td>
 			<td>${user.firstName}</td>
 			<td>${user.lastName}</td>
 			<td>${user.email}</td>
@@ -33,6 +41,7 @@
 		</tr>
 	</c:forEach>
 	</table>
+	</div>
 </c:when>
 <c:otherwise>
 <h4 style="color: red;">No results!</h4>

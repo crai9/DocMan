@@ -5,6 +5,7 @@ function confirmDelete(id) {
     }
 }
 
+
 $(document).ready(function() {
     $("#search").submit(function() {
         var query = document.getElementById("query").value;
@@ -17,6 +18,5 @@ $(document).ready(function() {
             //same again
             return false;
         }
-
-    })
-})
+    });
+});

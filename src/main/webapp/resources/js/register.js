@@ -8,7 +8,7 @@ $(document).ready(function() {
         },
         fields: {
             fname: {
-                row: '.col-xs-4',
+                row: '.col-xs-2',
                 validators: {
                     notEmpty: {
                         message: 'The first name is required'
@@ -16,7 +16,7 @@ $(document).ready(function() {
                 }
             },
             lname: {
-                row: '.col-xs-4',
+                row: '.col-xs-3',
                 validators: {
                     notEmpty: {
                         message: 'The last name is required'
