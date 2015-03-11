@@ -80,6 +80,7 @@ public class LoginController {
 				request.getSession().setAttribute("roles", roles);
 				request.getSession().setAttribute("id", id);
 				request.getSession().setAttribute("username", fn);
+				request.getSession().setAttribute("authenticated", true);
 				System.out.println("Added roles to session");
 				return "redirect:/listAll";
 			} else { 
@@ -97,6 +98,9 @@ public class LoginController {
 	public String logOut(HttpServletRequest request) {
 				
 			request.getSession().removeAttribute("roles");
+			request.getSession().removeAttribute("id");
+			request.getSession().removeAttribute("username");
+			request.getSession().setAttribute("authenticated", false);
 			
 		return "redirect:/home";
 	}

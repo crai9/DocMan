@@ -8,7 +8,8 @@
     <meta name="author" content="">
 
     <title>Document Manager Home</title>
-
+	<link rel="shortcut icon" href="/DocMan/resources/img/icon.png">
+	
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="resources/css/carousel.css" rel="stylesheet">

@@ -16,19 +16,6 @@ public class WebController {
 		
 		ModelAndView model = new ModelAndView();
 		
-		if(login) {
-			
-			//Logged in
-			model.addObject("authenticated", true);
-			model.addObject("username", "Craig");
-	
-		} else {
-			
-			//Not logged in
-			model.addObject("authenticated", false);
-			
-		}
-		
 		model.setViewName("home");
 		
 		return model;
