@@ -55,19 +55,16 @@ public class DBManager {
 		
 		//main method for testing only
 		
-		int id = 656;
-		
-		User u = getUserById(id);
-		
-		System.out.println(u.getFirstName());
-		
-//		String[] roles = getUserRolesById(id);
-//		
-//		for(String role : roles){
-//			System.out.println(role);
-//		}
-		
+			String username = "mark";
+			String password = "test";
+			String fname = "123";
+			String lname = "456";
+			String email = "test@testing.com";
+					
+			createUser(username, password, fname, lname, email);
 	}
+		
+	
 	
 	public static String[] getUserRolesById(int id){
 		Connection dbConnection = null;
@@ -122,11 +119,50 @@ public class DBManager {
 			preparedStatement.setString(3, fname);
 			preparedStatement.setString(4, lname);
 			preparedStatement.setString(5, email);
- 			
+			
 			preparedStatement.executeUpdate();
  
 			System.out.println("Record is inserted into users table");
+			
+			PreparedStatement getLastInsertId = dbConnection.prepareStatement("SELECT LAST_INSERT_ID()");
+			ResultSet rs = getLastInsertId.executeQuery();
+			long userId;
+			if (rs.next())
+			{
+			 userId = rs.getLong("last_insert_id()");   
+			 System.out.println("Last userId inserted: " + userId);
+			 addRole(userId, "ROLE_USER");
+			}
+			
+			
+		} catch (SQLException e) {
  
+			System.out.println(e.getMessage());
+ 
+		} 
+		
+	}
+	
+	public static void addRole(long userId, String ROLE){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "INSERT INTO user_roles"
+				+ "(user_role_id, userId, ROLE) VALUES"
+				+ "(NULL, ?, ?)";
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setLong(1, userId);
+			preparedStatement.setString(2, ROLE);
+			
+			preparedStatement.executeUpdate();
+ 
+			System.out.println("Role Added");
+
+			
 		} catch (SQLException e) {
  
 			System.out.println(e.getMessage());

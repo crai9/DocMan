@@ -8,6 +8,7 @@ function confirmDelete(id) {
 		confirmButtonText: 'Delete!',
 		cancelButtonText: "Cancel!",
 		closeOnConfirm: false,
+		allowOutsideClick: true,
 		closeOnCancel: false
     },
     function(response){

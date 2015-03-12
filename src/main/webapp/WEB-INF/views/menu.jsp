@@ -16,7 +16,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                 
                 <c:choose>
-      				<c:when test="${authenticated == false}">
+      				<c:when test="${authenticated == false || empty authenticated}">
 					<ul class="nav navbar-nav navbar-right">
                         <li><a href="loginPage">Login</a>
                         </li>
