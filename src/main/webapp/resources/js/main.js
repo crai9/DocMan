@@ -1,9 +1,38 @@
 function confirmDelete(id) {
-    var x = confirm("Are you sure you want to delete that user?");
-    if (x == true) {
-        window.location.href = "/DocMan/user/delete/" + id;
+    swal({
+		title: "Sure?",
+		text: "Are you sure you want to delete this user?!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: '#DD6B55',
+		confirmButtonText: 'Delete!',
+		cancelButtonText: "Cancel!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+    },
+    function(response){
+    if (response == true) {
+      
+       
+    	window.location.href = "/DocMan/user/delete/" + id;
+
+        swal({
+        	title:"Deleted!", 
+        	text:"It was deleted!",
+        	type:"error",
+        	timer:1000
+        });	
+    }else {
+    	 swal({
+         	title:"Canceled!", 
+         	text:"It was not deleted!",
+         	type:"success",
+         	timer:2000
+         });
     }
+    });
 }
+
 
 
 $(document).ready(function() {
@@ -27,3 +56,5 @@ function getParameterByName(name) {
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+
+

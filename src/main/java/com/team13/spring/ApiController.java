@@ -11,7 +11,7 @@ import com.team13.spring.model.UserStatus;
 
 @RestController
 public class ApiController {
-
+	
 	@RequestMapping(value = {"/checkUser"})
 	public UserStatus person(@RequestParam("username") String username, @RequestParam(value = "id", required = false) Integer id){
 		

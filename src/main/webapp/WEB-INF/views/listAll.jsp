@@ -7,6 +7,8 @@
 	<link href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet">
 	<link href="<c:url value='/resources/css/formValidation.min.css' />" rel="stylesheet">
 	<link href="<c:url value='/resources/css/global.css' />" rel="stylesheet">
+	<link href="<c:url value='/resources/css/sweet-alert.css' />" rel="stylesheet">
+	
 </head>
 <body>
 <%@ include file="menu.jsp" %>
@@ -47,7 +49,7 @@
 			<td>${user.lastName}</td>
 			<td>${user.email}</td>
 			<td><a href="<c:url value='/user/edit/${user.id}' />" class="btn btn-primary" >Edit</a></td>
-			<td><a href="#" class="btn btn-danger"onclick="confirmDelete(${user.id})">Delete</a></td>
+			<td><a href="#" class="btn btn-lg btn-danger" id="delete" onclick="confirmDelete(${user.id})">Delete</a></td>
 		</tr>
 	</c:forEach>
 	</table>
@@ -68,5 +70,7 @@ No results!
     <script src="<c:url value='/resources/js/formValidation.min.js' />"></script>
     <script src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
     <script src="<c:url value='/resources/js/main.js' />"></script>
+    <script src="<c:url value='/resources/js/sweet-alert.min.js' />"></script>
+    <script src="<c:url value='/resources/js/sweet-alert.min.js' />"></script>
 </body>
 </html>
