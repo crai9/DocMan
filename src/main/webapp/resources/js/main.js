@@ -15,21 +15,23 @@ function confirmDelete(id) {
       
         swal({
         	title:"Deleted!", 
-        	text:"It was deleted!",
+        	text:"User was removed from database!",
         	type:"success",
-        	timer:2000
+        	timer:1000,
+        	showConfirmButton: false
         });	
         setTimeout(function(){
         	window.location.href = "/DocMan/user/delete/" + id;
-        }, 2000);
+        }, 1000);
         
         
     }else {
     	 swal({
          	title:"Canceled!", 
-         	text:"It was not deleted!",
+         	text:"Request cancelled",
          	type:"success",
-         	timer:2000
+         	timer:1000,
+         	showConfirmButton: false
          });
     }
     });
@@ -45,13 +47,31 @@ $(document).ready(function() {
             //don't actually submit
             return false;
         } else {
-            alert("You can't search for nothing!");
+           // alert("You can't search for nothing!");
             //same again
             return false;
         }
     });
 });
 
+$('#search').formValidation({
+	framwork: 'bootstrap',
+	icon: {
+		valid: 'glyphican glyphican-ok',
+		invalid: 'glyphican glyphican-remove',
+		validating: 'glyphican glyphican-refresh',
+	}, 
+	fields: {
+		search: {
+			validators: {
+				notEmpty: {
+					message: 'Please enter something in the search box for results'
+				}
+			}
+		}
+	}
+});
+		
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
