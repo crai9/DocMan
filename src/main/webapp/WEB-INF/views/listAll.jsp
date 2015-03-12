@@ -42,7 +42,7 @@
 		<th>Delete</th>
 	</tr>
 	<c:forEach items="${list}" var="user">
-		<tr>
+		<tr id="${user.id}">
 			<td>${user.id}</td>
 			<td>${user.username}</td>
 			<td>${user.firstName}</td>

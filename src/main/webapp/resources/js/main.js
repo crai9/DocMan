@@ -13,7 +13,10 @@ function confirmDelete(id) {
     },
     function(response){
     if (response == true) {
-      
+    	$("#"+id).fadeOut(800, function(){
+    		$("#"+id).remove();
+            return false;
+        });
         swal({
         	title:"Deleted!", 
         	text:"User was removed from database!",
