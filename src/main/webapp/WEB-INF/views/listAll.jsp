@@ -28,16 +28,10 @@
 		<button type="submit" class="btn btn-primary" >Search</button>
 		<c:choose>
 			<c:when test="${!empty search}">
-			<button type="submit" onclick="goBack()" class="btn btn-primary">Go Back</button>
+			<a href="../../listAll" class="btn btn-primary">Go Back</a>
 			</c:when>
 		</c:choose>
 		</div>
-		<!-- Script for going back after search -->
-		<script>
-			function goBack() {
-    		window.history.back()
-			}
-		</script>
 	</div>
 	</form>
 	<br>
