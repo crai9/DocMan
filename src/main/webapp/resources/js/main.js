@@ -45,7 +45,7 @@ function confirmDelete(id) {
 
 $(document).ready(function() {
     $("#search").submit(function() {
-        var query = document.getElementById("query").value;
+        var query = document.getElementById("query").value.replace('/','');
         if (query) {
             window.location.href = '/DocMan/listAll/search/' + query;
             //don't actually submit
