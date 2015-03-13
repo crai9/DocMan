@@ -44,7 +44,73 @@
             <input type="text" class="form-control" name="username" value="${user.username}"/>
         </div>
     </div>
-	
+    <c:choose>
+    <c:when test="${!admin}">
+    <div class="form-group">
+       <label class="col-xs-3 control-label">Admin</label>
+       <div class="col-xs-3">
+           <div class="radio">
+               <label>
+                   <input type="radio" name="adminRole" value="no" /> No
+               </label>
+           </div>
+           <div class="radio">
+               <label>
+                   <input type="radio" name="adminRole" value="yes" checked="checked" /> Yes
+               </label>
+           </div>
+       </div>
+    </div>
+    <div class="form-group hidden">
+        <label class="col-xs-3 control-label">Original Admin</label>
+        <div class="col-xs-3">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="originalAdminRole" value="no" disabled /> No
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="originalAdminRole" value="yes" checked="checked" /> Yes
+                </label>
+            </div>
+        </div>
+    </div>
+    </c:when>
+    <c:otherwise>
+    <div class="form-group">
+       <label class="col-xs-3 control-label">Admin</label>
+       <div class="col-xs-3">
+           <div class="radio">
+               <label>
+                   <input type="radio" name="adminRole" value="no" checked="checked" /> No
+               </label>
+           </div>
+           <div class="radio">
+               <label>
+                   <input type="radio" name="adminRole" value="yes" /> Yes
+               </label>
+           </div>
+       </div>
+    </div>
+    <div class="form-group hidden">
+        <label class="col-xs-3 control-label">Original Admin</label>
+        <div class="col-xs-3">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="originalAdminRole" value="no" checked="checked" /> No
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="originalAdminRole" value="yes" disabled/> Yes
+                </label>
+            </div>
+        </div>
+    </div>
+    </c:otherwise>
+    </c:choose>
+    
 	<div class="form-group">
         <div class="col-xs-9 col-xs-offset-3">
             <button type="submit" class="btn btn-primary" name="signup" value="Update User">Update User</button>

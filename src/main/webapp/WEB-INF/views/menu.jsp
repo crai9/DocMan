@@ -18,7 +18,7 @@
                 <c:choose>
       				<c:when test="${authenticated == false || empty authenticated}">
 					<ul class="nav navbar-nav navbar-right">
-                        <li><a href="loginPage">Login</a>
+                        <li><a href="<c:url value='/loginPage' />">Login</a>
                         </li>
                         <li><a href="">Sign Up</a>
                         </li>
@@ -36,7 +36,7 @@
                   			<ul class="dropdown-menu" role="menu">
                     			<li><a href="#">Profile</a></li>
                     			<li class="divider"></li>
-                    			<li><a href="logout">Log out</a></li>
+                    			<li><a href="<c:url value='/logout' />">Log out</a></li>
                   			</ul>
                 		</li>
                     </ul>

@@ -182,17 +182,31 @@ public class LoginController {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editPost(HttpServletRequest request, @RequestParam("fname") String fname,
 			@RequestParam("lname") String lname, @RequestParam("email") String email,
-			@RequestParam("username") String username, @RequestParam("id") int id){
+			@RequestParam("username") String username, @RequestParam("id") int id,
+			@RequestParam("adminRole") String adminRole, @RequestParam("originalAdminRole") String originalAdminRole){
 		
 		if(!hasRole(request, "ROLE_ADMIN")){
 			return "403";
 		}
 		
 		System.out.println(id);
-		System.out.println(fname);
-		System.out.println(lname);
-		System.out.println(email);
-		System.out.println(username);
+		if(!adminRole.equals(originalAdminRole)){
+			//roles don't need updated
+			System.out.println("Roles need updated");
+			
+			if(adminRole.equals("yes")){
+				//request to add the role
+				DBManager.addRole(id, "ROLE_ADMIN");
+			} else {
+				//request to remove the role
+				DBManager.removeRole(id, "ROLE_ADMIN");
+			}
+			
+		} else {
+			//something changed
+			System.out.println("Roles stay the same");
+		}
+
 		
 		DBManager.updateUser(id, username, fname, lname, email);
 		
@@ -209,6 +223,17 @@ public class LoginController {
 		User u = DBManager.getUserById(id);
 		
 		model.addAttribute("user", u);
+		
+		String[] roles = DBManager.getUserRolesById(id);
+		if(roles == null){
+			model.addAttribute("admin", false);
+		} else {
+			if(!Arrays.asList(roles).contains("ROLE_ADMIN")){
+				model.addAttribute("admin", true);
+			} else {
+			model.addAttribute("admin", false);
+			}
+		}
 		
 		return "editUser";
 	}
