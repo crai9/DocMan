@@ -26,7 +26,18 @@
 			<input id="query" type="text" name="search" class="form-control" placeholder="Search for users..."/>
 		</div>
 		<button type="submit" class="btn btn-primary" >Search</button>
+		<c:choose>
+			<c:when test="${!empty search}">
+			<button type="submit" onclick="goBack()" class="btn btn-primary">Go Back</button>
+			</c:when>
+		</c:choose>
 		</div>
+		<!-- Script for going back after search -->
+		<script>
+			function goBack() {
+    		window.history.back()
+			}
+		</script>
 	</div>
 	</form>
 	<br>

@@ -160,6 +160,9 @@ public class LoginController {
 		}
 		model.addAttribute("list", DBManager.allUsers(search));
 		
+		model.addAttribute("search", true);
+		model.addAttribute("search", false);
+		
 		return "listAll";
 	}
 	
