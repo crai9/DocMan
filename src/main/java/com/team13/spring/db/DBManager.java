@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 //import com.team13.spring.login.Encrypt;
 import com.team13.spring.model.User;
 
@@ -60,8 +61,9 @@ public class DBManager {
 			String fname = "123";
 			String lname = "456";
 			String email = "test@testing.com";
+			String adminRole = "yes";
 					
-			createUser(username, password, fname, lname, email);
+			createUser(username, password, fname, lname, email, adminRole);
 	}
 		
 	
@@ -102,7 +104,7 @@ public class DBManager {
 		return null;
 	}
 	
-	public static void createUser(String username, String password, String fname, String lname, String email){
+	public static void createUser(String username, String password, String fname, String lname, String email, String adminRole){
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
  
@@ -132,6 +134,13 @@ public class DBManager {
 			 userId = rs.getLong("last_insert_id()");   
 			 System.out.println("Last userId inserted: " + userId);
 			 addRole(userId, "ROLE_USER");
+				if(adminRole.equals("yes")){
+					System.out.println("This user should be an admin.");
+					addRole(userId, "ROLE_ADMIN");
+				} else {
+					System.out.println("This user shouldn't be an admin.");
+				}
+
 			}
 			
 			

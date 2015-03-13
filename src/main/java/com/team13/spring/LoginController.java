@@ -121,7 +121,7 @@ public class LoginController {
 			@RequestParam("fname") String fname, @RequestParam("lname") String lname,
 			@RequestParam("email") String email, @RequestParam("username") String username,
 			@RequestParam("password") String password, @RequestParam("cpassword") String cpassword,
-			HttpServletRequest request){
+			@RequestParam("adminRole") String adminRole, HttpServletRequest request){
 		
 		if(!hasRole(request, "ROLE_ADMIN")){
 			return "403";
@@ -141,13 +141,9 @@ public class LoginController {
 			
 			String encPass = Encrypt.crypt(password);
 			
-			DBManager.createUser(username, encPass, fname, lname, email);
-			
-			System.out.println(fname);
-			System.out.println(lname);
-			System.out.println(email);
-			System.out.println(username);
-			System.out.println(password + " (" + encPass + ")");
+			DBManager.createUser(username, encPass, fname, lname, email, adminRole);
+
+
 			}
 		
 		}

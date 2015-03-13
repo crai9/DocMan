@@ -63,7 +63,7 @@
         <div class="col-xs-3">
             <div class="radio">
                 <label>
-                    <input type="radio" name="adminRole" value="no" /> No
+                    <input type="radio" name="adminRole" value="no" checked="checked" /> No
                 </label>
             </div>
             <div class="radio">
