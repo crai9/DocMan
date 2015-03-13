@@ -56,14 +56,10 @@ public class DBManager {
 		
 		//main method for testing only
 		
-			String username = "mark";
-			String password = "test";
-			String fname = "123";
-			String lname = "456";
-			String email = "test@testing.com";
-			String adminRole = "yes";
-					
-			createUser(username, password, fname, lname, email, adminRole);
+			long userId = 24;
+			String ROLE = "ROLE_ADMIN";
+		
+			removeRole(userId, ROLE);
 	}
 		
 	
@@ -170,6 +166,33 @@ public class DBManager {
 			preparedStatement.executeUpdate();
  
 			System.out.println("Role Added");
+
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		} 
+		
+	}
+	
+	public static void removeRole(long userId, String ROLE){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "DELETE FROM user_roles "
+				+ "WHERE userId = ? AND ROLE = ?";
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setLong(1, userId);
+			preparedStatement.setString(2, ROLE);
+			
+			preparedStatement.executeUpdate();
+ 
+			System.out.println("Role Removed");
 
 			
 		} catch (SQLException e) {
