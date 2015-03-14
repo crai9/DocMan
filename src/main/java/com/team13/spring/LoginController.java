@@ -82,7 +82,7 @@ public class LoginController {
 				request.getSession().setAttribute("username", fn);
 				request.getSession().setAttribute("authenticated", true);
 				System.out.println("Added roles to session");
-				return "redirect:/listAll";
+				return "redirect:/users/page/1";
 			} else { 
 				System.out.println("Failed");
 			}
@@ -148,26 +148,11 @@ public class LoginController {
 		
 		}
 		
-		return "redirect:/listAll";
+		return "redirect:/users/page/1";
 	}
 	
-	
-	@RequestMapping(value = "/listAll/search/{search}")
-	public String listAllSearch(HttpServletRequest request, Model model, @PathVariable String search){
-		
-		if(!hasRole(request, "ROLE_USER")){
-			return "403";
-		}
-		model.addAttribute("list", DBManager.allUsers(search));
-		
-		model.addAttribute("search", true);
-		model.addAttribute("search", false);
-		
-		return "listAll";
-	}
-	
-	@RequestMapping(value = "/listAll")
-	public String listAll(Model model, HttpServletRequest request){
+	@RequestMapping(value = "/users/page/{pageNo}")
+	public String paginatedList(Model model, HttpServletRequest request, @PathVariable int pageNo){
 		
 		//Check if admin
 		
@@ -177,11 +162,78 @@ public class LoginController {
 		
 		String s = null;
 		
-		model.addAttribute("list", DBManager.allUsers(s));
+		double total = DBManager.countUsers();
+		double perPage = 10;
+		int pages = (int) Math.ceil(total / perPage);
+		int nextPage, prevPage;
 		
-		return "listAll";
+		if(pageNo <= 1){
+			pageNo = 1;
+			prevPage = pageNo;
+			nextPage = pageNo + 1;
+		} else if(pageNo >= pages) {
+			pageNo = pages;
+			nextPage = pageNo;
+			prevPage = pageNo - 1;
+		} else {
+			nextPage = pageNo + 1;
+			prevPage = pageNo - 1;
+		}
+		
+		int start = (int) ((pageNo - 1) * (perPage));
+		
+		System.out.println("There will be " + pages + " pages.");
+		System.out.println("You are on page:  " + pageNo);
+		
+		model.addAttribute("list", DBManager.allUsersPaged(s, perPage, start));
+		model.addAttribute("totalPages", (int) pages);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("nextPage", nextPage);
+		model.addAttribute("prevPage", prevPage);
+		
+		return "pagedList";
 	}
 	
+	@RequestMapping(value = "/users/search/{search}/page/{pageNo}")
+	public String paginatedListSearch(HttpServletRequest request, Model model, @PathVariable String search, @PathVariable int pageNo){
+		
+		if(!hasRole(request, "ROLE_USER")){
+			return "403";
+		}
+		
+		double total = DBManager.countUsers(search);
+		double perPage = 10;
+		int pages = (int) Math.ceil(total / perPage);
+		int nextPage, prevPage;
+		
+		if(pageNo <= 1){
+			pageNo = 1;
+			prevPage = pageNo;
+			nextPage = pageNo + 1;
+		} else if(pageNo >= pages) {
+			pageNo = pages;
+			nextPage = pageNo;
+			prevPage = pageNo - 1;
+		} else {
+			nextPage = pageNo + 1;
+			prevPage = pageNo - 1;
+		}
+		
+		int start = (int) ((pageNo - 1) * (perPage));
+		
+		System.out.println("There will be " + pages + " pages.");
+		System.out.println("You are on page:  " + pageNo);
+		
+		model.addAttribute("list", DBManager.allUsersPaged(search, perPage, start));
+		model.addAttribute("totalPages", (int) pages);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("nextPage", nextPage);
+		model.addAttribute("prevPage", prevPage);
+	
+		model.addAttribute("search", true);
+		
+		return "pagedList";
+	}
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editPost(HttpServletRequest request, @RequestParam("fname") String fname,
 			@RequestParam("lname") String lname, @RequestParam("email") String email,
@@ -213,7 +265,7 @@ public class LoginController {
 		
 		DBManager.updateUser(id, username, fname, lname, email);
 		
-		return "redirect:/listAll";
+		return "redirect:/users/page/1";
 	}
 	
 	@RequestMapping(value = "user/edit/{id}")
@@ -253,7 +305,7 @@ public class LoginController {
 		
 		System.out.println("Removed row with id " + id);
 		
-		return "redirect:/listAll";
+		return "redirect:/users/page/1";
 	}
 
 }

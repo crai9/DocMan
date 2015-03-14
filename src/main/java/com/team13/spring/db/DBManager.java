@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
+import com.team13.spring.login.Encrypt;
 //import com.team13.spring.login.Encrypt;
 import com.team13.spring.model.User;
 
@@ -55,11 +58,20 @@ public class DBManager {
 	public static void main(String[] args){
 		
 		//main method for testing only
+
+/*		String username = "mark";
+		String password = Encrypt.crypt("hi");
+		String fname = "123";
+		String lname = "456";
+		String email = "test@testing.com";
+		String adminRole = "no";
 		
-			long userId = 24;
-			String ROLE = "ROLE_ADMIN";
+        for(int i=1; i<25; i++){
+        	createUser(username, password, fname, lname, email, adminRole);
+        }*/
 		
-			removeRole(userId, ROLE);
+		System.out.println(countUsers("mark"));
+		
 	}
 		
 	
@@ -398,6 +410,133 @@ public class DBManager {
 				
 				preparedStatement.setString(1, "%" + search + "%");
 			
+			}
+			
+			preparedStatement.executeQuery();
+			
+			System.out.println(preparedStatement.toString());
+			
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            List<User> all = new ArrayList<User>();
+            while(rs.next()){
+            	User u = new User();
+            	
+            	u.setId(rs.getInt("userId"));
+            	u.setUsername(rs.getString("username"));
+            	u.setEmail(rs.getString("email"));
+            	u.setFirstName(rs.getString("firstName"));
+            	u.setLastName(rs.getString("lastName"));
+            	
+            	all.add(u);
+            }
+
+           return all;
+           
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return null;
+		
+	}
+	
+	public static int countUsers(String s){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT count(userId) AS total FROM users WHERE username = ?";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+
+			preparedStatement.setString(1, s);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			
+			
+			if(rs.next()){
+				int count = rs.getInt("total");
+				return count;
+			} 
+			
+
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return 0;
+	}
+	
+	public static int countUsers(){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT count(userId) AS total FROM users";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			
+			
+			if(rs.next()){
+				int count = rs.getInt("total");
+				return count;
+			} 
+			
+
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return 0;
+	}
+	
+	public static List<User> allUsersPaged(String search, double perPage, int start){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+		
+		String sql = null;
+		
+		if(search == null){
+			sql = "SELECT * FROM users ORDER BY userId LIMIT ? OFFSET ?";
+		} else {
+			sql = "SELECT * FROM users WHERE username LIKE ? ORDER BY userId LIMIT ? OFFSET ?";
+		}
+		
+			
+	
+		try {
+			dbConnection = getDBConnection();
+			
+			preparedStatement = dbConnection.prepareStatement(sql);
+			if(search != null){
+				
+				preparedStatement.setString(1, "%" + search + "%");
+				preparedStatement.setInt(2, (int)perPage);
+				preparedStatement.setInt(3, start);
+			
+			} else {
+				
+				preparedStatement.setInt(1, (int)perPage);
+				preparedStatement.setInt(2, start);
+				
 			}
 			
 			preparedStatement.executeQuery();

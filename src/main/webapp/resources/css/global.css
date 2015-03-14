@@ -5,3 +5,7 @@ body{
 .top{
 	padding-top: 60px;
 }
+
+.centered-nav{
+	text-align: center;
+}

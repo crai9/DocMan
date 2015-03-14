@@ -19,7 +19,7 @@
 	<div class="page-header">
   		<h1>Edit a User</h1>
 	</div>
-	<a href="../../listAll" class="btn btn-default btn-xs" role="button">&laquo Back to list</a><br><br>
+	<a href="../../users/page/1" class="btn btn-default btn-xs" role="button">&laquo Back to list</a><br><br>
 	<c:choose>
 	<c:when test="${user.id != 0}">
 	<form id="editForm" class="form-horizontal" method="GET" action="../../edit">

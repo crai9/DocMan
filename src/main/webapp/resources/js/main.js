@@ -47,7 +47,7 @@ $(document).ready(function() {
     $("#search").submit(function() {
         var query = document.getElementById("query").value.replace('/','');
         if (query) {
-            window.location.href = '/DocMan/listAll/search/' + query;
+            window.location.href = '/DocMan/users/search/' + query + "/page/1";
             //don't actually submit
             return false;
         } else {
