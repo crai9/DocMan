@@ -3,6 +3,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>List of users</title>
 	<link href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet">
 	<link href="<c:url value='/resources/css/formValidation.min.css' />" rel="stylesheet">
@@ -28,7 +31,7 @@
 		<button type="submit" class="btn btn-primary" >Search</button>
 		<c:choose>
 			<c:when test="${!empty search}">
-			<a href="../../listAll" class="btn btn-primary">Go Back</a>
+			<a href="<c:url value='/listAll' />" class="btn btn-primary">&laquo; Go Back</a>
 			</c:when>
 		</c:choose>
 		</div>
@@ -61,7 +64,7 @@
 	</div>
 </c:when>
 <c:otherwise>
-<a href="../../listAll" class="btn btn-info btn-sm" role="button">&laquo Go back</a><br><br>
+<a href="../../listAll" class="btn btn-primary" role="button">&laquo; Go back</a><br><br>
 <div class="alert alert-danger btn-sm" role="alert">
 No results!
 </div>
@@ -74,7 +77,6 @@ No results!
     <script src="<c:url value='/resources/js/formValidation.min.js' />"></script>
     <script src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
     <script src="<c:url value='/resources/js/main.js' />"></script>
-    <script src="<c:url value='/resources/js/sweet-alert.min.js' />"></script>
     <script src="<c:url value='/resources/js/sweet-alert.min.js' />"></script>
 </body>
 
