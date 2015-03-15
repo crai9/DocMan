@@ -17,7 +17,7 @@
 <div class="page-header">
 <h1>Error 403</h1>
 </div>
-<a href="<c:url value='/home' />" class="btn btn-info btn-sm" role="button">&laquo Go home</a><br><br>
+<a href="<c:url value='/home' />" class="btn btn-info btn-sm" role="button">&laquo; Go home</a><br><br>
 <div class="alert alert-danger" role="alert">
 	Sorry, you don't have access to this page
 </div>

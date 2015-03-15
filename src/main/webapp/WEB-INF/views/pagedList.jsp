@@ -64,25 +64,28 @@
                             </c:forEach>
                         </table>
                     </div>
+                    <c:if test="${pageNo == 1}"></c:if>
+                    <c:if test="${nextPage != 0}">
                     <div class="container">
                         <nav class="centered-nav">
                             <ul class="pagination">
                                 <li>
-                                    <a href="${prevPage}" aria-label="Previous">
+                                    <a <c:if test="${pageNo > 1}">href="${prevPage}"</c:if> aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                                 <c:forEach begin="1" end="${totalPages}" varStatus="loop">
-                                	<li><a href="${loop.index}">${loop.index}</a></li>
+                                	<li class='<c:if test="${pageNo == loop.index}">active</c:if>'><a href="${loop.index}">${loop.index}</a></li>
                                 </c:forEach>
                                 <li>
-                                    <a href="${nextPage}" aria-label="Next">
+                                    <a <c:if test="${pageNo < totalPages}">href="${nextPage}"</c:if> aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
+                    </c:if>
                 </c:when>
 
                 <c:otherwise>

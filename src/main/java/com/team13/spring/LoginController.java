@@ -167,18 +167,24 @@ public class LoginController {
 		int pages = (int) Math.ceil(total / perPage);
 		int nextPage, prevPage;
 		
-		if(pageNo <= 1){
-			pageNo = 1;
-			prevPage = pageNo;
-			nextPage = pageNo + 1;
-		} else if(pageNo >= pages) {
-			pageNo = pages;
-			nextPage = pageNo;
-			prevPage = pageNo - 1;
+		if(pages > 1){
+			if(pageNo <= 1){
+				pageNo = 1;
+				prevPage = pageNo;
+				nextPage = pageNo + 1;
+			} else if(pageNo >= pages) {
+				pageNo = pages;
+				nextPage = pageNo;
+				prevPage = pageNo - 1;
+			} else {
+				nextPage = pageNo + 1;
+				prevPage = pageNo - 1;
+			}	
 		} else {
-			nextPage = pageNo + 1;
-			prevPage = pageNo - 1;
+			nextPage = 0;
+			prevPage = 0;
 		}
+
 		
 		int start = (int) ((pageNo - 1) * (perPage));
 		
@@ -206,17 +212,22 @@ public class LoginController {
 		int pages = (int) Math.ceil(total / perPage);
 		int nextPage, prevPage;
 		
-		if(pageNo <= 1){
-			pageNo = 1;
-			prevPage = pageNo;
-			nextPage = pageNo + 1;
-		} else if(pageNo >= pages) {
-			pageNo = pages;
-			nextPage = pageNo;
-			prevPage = pageNo - 1;
+		if(pages > 1){
+			if(pageNo <= 1){
+				pageNo = 1;
+				prevPage = pageNo;
+				nextPage = pageNo + 1;
+			} else if(pageNo >= pages) {
+				pageNo = pages;
+				nextPage = pageNo;
+				prevPage = pageNo - 1;
+			} else {
+				nextPage = pageNo + 1;
+				prevPage = pageNo - 1;
+			}	
 		} else {
-			nextPage = pageNo + 1;
-			prevPage = pageNo - 1;
+			nextPage = 0;
+			prevPage = 0;
 		}
 		
 		int start = (int) ((pageNo - 1) * (perPage));
@@ -229,7 +240,6 @@ public class LoginController {
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("nextPage", nextPage);
 		model.addAttribute("prevPage", prevPage);
-	
 		model.addAttribute("search", true);
 		
 		return "pagedList";

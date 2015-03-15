@@ -20,7 +20,7 @@
 	<div class="page-header">
   		<h1>Register Someone</h1>
 	</div>
-	<a href="users/page/1" class="btn btn-default btn-xs" role="button">&laquo Back to list</a><br><br>
+	<a href="users/page/1" class="btn btn-default btn-xs" role="button">&laquo; Back to list</a><br><br>
 
 	<form id="registerForm" class="form-horizontal" action="register" method="POST">
     <div class="form-group">
