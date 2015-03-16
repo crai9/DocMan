@@ -59,7 +59,7 @@
                                     <td>${user.lastName}</td>
                                     <td>${user.email}</td>
                                     <td><a href="<c:url value='/user/edit/${user.id}' />" class="btn btn-primary btn-sm">Edit</a></td>
-                                    <td><a href="#" class="btn btn-sm btn-danger" id="delete" onclick="confirmDelete(${user.id})">Delete</a></td>
+                                    <td><a class="btn btn-sm btn-danger" id="delete" onclick="confirmDelete(${user.id})">Delete</a></td>
                                 </tr>
                             </c:forEach>
                         </table>
