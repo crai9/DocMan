@@ -59,7 +59,7 @@ public class DBManager {
 		
 		//main method for testing only
 
-/*		String username = "mark";
+		String username = "mark";
 		String password = Encrypt.crypt("hi");
 		String fname = "123";
 		String lname = "456";
@@ -68,7 +68,7 @@ public class DBManager {
 		
         for(int i=1; i<25; i++){
         	createUser(username, password, fname, lname, email, adminRole);
-        }*/
+        }
 		
 		System.out.println(countUsers("mark"));
 		

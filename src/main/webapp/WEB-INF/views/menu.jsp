@@ -11,7 +11,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="http://localhost:8080/DocMan">Document Manager</a>
+                    <a href="http://localhost:8080/DocMan"><img class="navbar-brand" src="<c:url value='/resources/img/DocMan.png' />" /></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                 

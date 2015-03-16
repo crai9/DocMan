@@ -25,7 +25,8 @@ function confirmDelete(id) {
         	showConfirmButton: false
         });	
         setTimeout(function(){
-        	window.location.href = "/DocMan/user/delete/" + id;
+        	url = "/DocMan/user/delete/" + id;
+        	$.get( url );
         }, 1000);
         
         
