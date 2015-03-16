@@ -28,8 +28,8 @@ public class WebController {
 		
 			
 		//Logged in
-		model.addObject("authenticated", true);
-		model.addObject("username", "Craig");
+		//model.addObject("authenticated", true);
+		//model.addObject("username", "Craig");
 	
 		
 		model.setViewName("dashboard");
