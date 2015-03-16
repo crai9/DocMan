@@ -29,7 +29,7 @@
 					<ul class="nav navbar-nav navbar-right">
                         <li><a href="#">Your Docs</a>
                         </li>
-                        <li><a href="#">Settings</a>
+                        <li><a href="<c:url value='/dashboard' />">Dashboard</a>
                         </li>
                         <li class="dropdown">
                   			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${username} <span class="caret"></span></a>
