@@ -17,7 +17,7 @@
   		<h1>Create Document</h1>
 	</div>
 	<a href="dashboard" class="btn btn-warning" role="button">Dashboard</a><br><br>
-	<a href="" class="btn btn-primary" role="button">View Documents</a><br><br>
+	<a href="documents" class="btn btn-primary" role="button">View Documents</a><br><br>
 	
 <div id="createDocument">
 	<h2 class="text-center">Create Document</h2>
