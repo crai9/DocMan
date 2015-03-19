@@ -47,10 +47,7 @@ public class DocumentController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(
 			@RequestParam("title") String title, @RequestParam("description") String description,
-			@RequestParam("authorName") String authorName, /*@RequestParam("revNo") String revNo,
-			@RequestParam("docAttach") File docAttach, @RequestParam("dateCreated") String dateCreated,
-			@RequestParam("status") String status, @RequestParam("userName") String userName,
-			@RequestParam("date") String date,*/
+			@RequestParam("authorName") String authorName,
 			HttpServletRequest request){
 		
 		if(!hasRole(request, "ROLE_USER")){
@@ -59,6 +56,7 @@ public class DocumentController {
 		
 		//DBManager.createDocument(title, description, authorName, revNo, fileName, dateCreated, status, userName, date);
 		DBManager.createDocument(title, description, authorName);
+		
 
 		return "redirect:/createDocument";
 	}

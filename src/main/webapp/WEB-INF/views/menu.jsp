@@ -27,8 +27,6 @@
 
       				<c:otherwise>
 					<ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Your Docs</a>
-                        </li>
                         <li><a href="<c:url value='/dashboard' />">Dashboard</a>
                         </li>
                         <li class="dropdown">

@@ -626,14 +626,14 @@ public class DBManager {
 	}
 	
 	public static void createDocument(String title, String description, 
-			String authorName /*String revNo, String fileName, String dateCreated,
-			String status, String userName, String date*/){
+			String authorName){
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
  
 		String sql = "INSERT INTO document_records "
 				+ "(documentId, title, description, author) "
 				+ "VALUES (NULL, ?, ?, ?)";
+		
  
 		try {
 			dbConnection = getDBConnection();
@@ -642,12 +642,8 @@ public class DBManager {
 			preparedStatement.setString(1, title);
 			preparedStatement.setString(2, description);
 			preparedStatement.setString(3, authorName);
-//			preparedStatement.setString(4, revNo);
-//			preparedStatement.setString(5, fileName);
-//			preparedStatement.setString(6, dateCreated);
-//			preparedStatement.setString(7, status);
-//			preparedStatement.setString(8, userName);
-//			preparedStatement.setString(9, date);
+
+
 			
 			preparedStatement.executeUpdate();
  
