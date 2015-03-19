@@ -21,6 +21,7 @@
             <div class="page-header">
                 <h1>User List</h1>
             </div>
+            <h4><a class="btn btn-warning" href="<c:url value='/dashboard' />">Dashboard</a></h4>
             <h4><a class="btn btn-success" href="<c:url value='/registerPage' />">Add new</a></h4>
             <c:choose>
                 <c:when test="${!empty list}">

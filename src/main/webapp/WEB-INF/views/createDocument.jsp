@@ -30,7 +30,7 @@
 <div id="uploadDocument" class="hidden">
 	<h2 class="text-center">Upload Document</h2>
 		Revision Number: <input type="text" class="form-control" name="revNo"><br/>
-		Document Attachment: <input type="file" class="form-control" name="docAttach"><br/>
+		Document Attachment: <input type="text" class="form-control" name="file"><br/>
 		Date Created: <input type="text" class="form-control" name="dateCreated"><br/>
 		Status: <input type="text" class="form-control" name="status"><br/>
 	<input type="button" name="previous" id="previous" class="btn btn-success" value="Previous">

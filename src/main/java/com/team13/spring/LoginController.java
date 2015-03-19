@@ -82,7 +82,7 @@ public class LoginController {
 				request.getSession().setAttribute("username", fn);
 				request.getSession().setAttribute("authenticated", true);
 				System.out.println("Added roles to session");
-				return "redirect:/users/page/1";
+				return "redirect:/dashboard";
 			} else { 
 				System.out.println("Failed");
 			}
