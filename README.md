@@ -1,5 +1,6 @@
 # DocMan
 Java/Spring MVC in progress for Integrated Project 3
+![alt text](https://raw.githubusercontent.com/crai9/DocMan/master/src/main/webapp/resources/img/DocMan.png "Logo")
 
 #Set up
 
