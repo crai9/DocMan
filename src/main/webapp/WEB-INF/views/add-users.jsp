@@ -20,7 +20,8 @@
 	<div class="page-header">
   		<h1>Register Someone</h1>
 	</div>
-	<a href="dashboard" class="btn btn-default btn-xs" role="button">&laquo; Back to list</a><br><br>
+	<a href="dashboard" class="btn btn-warning" role="button">Dashboard</a><br><br>
+	<a href="users/page/1" class="btn btn-primary" role="button">View users</a><br><br>
 
 	<form id="registerForm" class="form-horizontal" action="register" method="POST">
     <div class="form-group">

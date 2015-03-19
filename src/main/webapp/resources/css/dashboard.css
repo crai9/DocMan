@@ -138,54 +138,43 @@ body {
 .strips__strip:nth-child(4) {
   left: 60vw;
 }
-.strips__strip:nth-child(5) {
-  left: 80vw;
-}
 .strips__strip:nth-child(1) .strip__content {
-  background: #244F75;
+  background: #ce0114;
   -webkit-transform: translate3d(-100%, 0, 0);
           transform: translate3d(-100%, 0, 0);
   -webkit-animation-name: strip1;
           animation-name: strip1;
-  -webkit-animation-delay: 0.1s;
-          animation-delay: 0.1s;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
 }
 .strips__strip:nth-child(2) .strip__content {
-  background: #60BFBF;
+  background: #00abe4;
   -webkit-transform: translate3d(0, 100%, 0);
           transform: translate3d(0, 100%, 0);
   -webkit-animation-name: strip2;
           animation-name: strip2;
-  -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s;
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
 }
 .strips__strip:nth-child(3) .strip__content {
-  background: #8C4B7E;
+  background: #ff8259;
   -webkit-transform: translate3d(0, -100%, 0);
           transform: translate3d(0, -100%, 0);
   -webkit-animation-name: strip3;
           animation-name: strip3;
-  -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
 }
 .strips__strip:nth-child(4) .strip__content {
-  background: #F8BB44;
+  background: #eec000;
   -webkit-transform: translate3d(0, 100%, 0);
           transform: translate3d(0, 100%, 0);
   -webkit-animation-name: strip4;
           animation-name: strip4;
-  -webkit-animation-delay: 0.4s;
-          animation-delay: 0.4s;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
 }
-.strips__strip:nth-child(5) .strip__content {
-  background: #F24B4B;
-  -webkit-transform: translate3d(100%, 0, 0);
-          transform: translate3d(100%, 0, 0);
-  -webkit-animation-name: strip5;
-          animation-name: strip5;
-  -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
-}
+
 @media screen and (max-width: 760px) {
   .strips__strip {
     min-height: 20vh;
@@ -207,11 +196,6 @@ body {
   }
   .strips__strip:nth-child(4) {
     top: 60vh;
-    left: 0;
-    width: 100%;
-  }
-  .strips__strip:nth-child(5) {
-    top: 80vh;
     left: 0;
     width: 100%;
   }
@@ -319,6 +303,12 @@ body {
   color: white;
   -webkit-transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
           transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.strip__title a{
+	color:white;
+}
+.strip__title a:hover{
+	text-decoration:none;
 }
 @media screen and (max-width: 760px) {
   .strip__title {
