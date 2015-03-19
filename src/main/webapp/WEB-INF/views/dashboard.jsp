@@ -42,7 +42,7 @@
 <c:if test="${admin == true}">
   <article class="strips__strip">
     <div class="strip__content">
-      <h1 class="strip__title" data-name="Lorem"><a href="/DocMan/registerPage">Register Page</a></h1>
+      <h1 class="strip__title" data-name="Lorem"><a href="/DocMan/registerPage">Register User</a></h1>
       <div class="strip__inner-text">
 		
       </div>
@@ -53,7 +53,7 @@
 <c:if test="${admin == true}">
   <article class="strips__strip">
     <div class="strip__content">
-      <h1 class="strip__title" data-name="Ipsum"><a href="users/page/1">View users</a></h1>
+      <h1 class="strip__title" data-name="Ipsum"><a href="users/page/1">View Users</a></h1>
       <div class="strip__inner-text">
        
       </div>
@@ -72,7 +72,7 @@
 
   <article class="strips__strip">
     <div class="strip__content">
-      <h1 class="strip__title" data-name="Dolor"><a href="">View Documents</a></h1>
+      <h1 class="strip__title" data-name="Dolor"><a href="documents">View Documents</a></h1>
       <div class="strip__inner-text">
       
       </div>

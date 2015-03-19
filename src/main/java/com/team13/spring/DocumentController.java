@@ -61,4 +61,13 @@ public class DocumentController {
 		return "redirect:/createDocument";
 	}
 	
+	@RequestMapping(value = {"/documents"}, method = RequestMethod.GET)
+	public String documents(HttpServletRequest request){
+		if(!hasRole(request, "ROLE_USER")){
+			return "403";
+		}
+		
+		return "viewDocuments";
+	}
+	
 }
