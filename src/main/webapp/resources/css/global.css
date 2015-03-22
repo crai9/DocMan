@@ -9,3 +9,24 @@ body{
 .centered-nav{
 	text-align: center;
 }
+
+.open-sidebar{
+	transform: scale(2.5, 2) rotate(-90deg);
+	position: fixed;
+ 	top: 17px;
+  	left: 163px;
+  	z-index: 1031;
+}
+
+.open-sidebar a{
+	/* color: #9d9d9d; */
+	color: red;
+}
+
+.move-logo-right{
+	padding-left: 25px;
+}
+
+navbar-brand img{
+	background-color: white;
+}

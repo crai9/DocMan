@@ -9,9 +9,9 @@
 
     <title>Document Manager Home</title>
 	<link rel="shortcut icon" href="/DocMan/resources/img/icon.png">
-	
+	<link href="resources/css/jquery.mmenu.all.css" rel="stylesheet">
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-
+	<link href="resources/css/global.css" rel="stylesheet">
     <link href="resources/css/carousel.css" rel="stylesheet">
   </head>
 
@@ -109,8 +109,13 @@
 		<%@ include file="footer.jsp" %>
 		
     </div>
-
+	<%@ include file="sidemenu.jsp" %>
+	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/jquery.mmenu.min.all.js"></script>
+    <script src="resources/js/main.js"></script>
+    
+    
   </body>
 </html>

@@ -43,7 +43,11 @@ function confirmDelete(id) {
     return false;
 }
 
-
+$(function() {
+    $('nav#menu').mmenu({
+    		setSelected: false
+    	});
+});
 
 $(document).ready(function() {
     $("#search").submit(function() {
@@ -58,24 +62,6 @@ $(document).ready(function() {
             return false;
         }
     });
-});
-
-$('#search').formValidation({
-	framwork: 'bootstrap',
-	icon: {
-		valid: 'glyphican glyphican-ok',
-		invalid: 'glyphican glyphican-remove',
-		validating: 'glyphican glyphican-refresh',
-	}, 
-	fields: {
-		search: {
-			validators: {
-				notEmpty: {
-					message: 'Please enter something in the search box for results'
-				}
-			}
-		}
-	}
 });
 		
 function getParameterByName(name) {

@@ -105,6 +105,7 @@
         <script src="<c:url value='/resources/js/formValidation.min.js' />"></script>
         <script src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
         <script src="<c:url value='/resources/js/main.js' />"></script>
+        <script src="<c:url value='/resources/js/users.js' />"></script>
         <script src="<c:url value='/resources/js/sweet-alert.min.js' />"></script>
 </body>
 

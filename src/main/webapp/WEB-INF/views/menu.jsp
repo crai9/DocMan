@@ -11,7 +11,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="http://localhost:8080/DocMan"><img class="navbar-brand" src="<c:url value='/resources/img/DocMan.png' />" /></a>
+                    <div>
+                  	  <a href="#menu"><img class="move-logo-right navbar-brand" src="<c:url value='/resources/img/DocMan.png' />" /></a>
+                	</div>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                 
@@ -27,8 +29,7 @@
 
       				<c:otherwise>
 					<ul class="nav navbar-nav navbar-right">
-                        <li><a href="<c:url value='/dashboard' />">Dashboard</a>
-                        </li>
+                        <li><a href="<c:url value='/dashboard' />">Dashboard</a></li>
                         <li class="dropdown">
                   			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${username} <span class="caret"></span></a>
                   			<ul class="dropdown-menu" role="menu">
@@ -49,4 +50,7 @@
         </nav>
 
     </div>
+</div>
+<div class="open-sidebar">
+<a href="#menu"><span class="caret"></span></a>
 </div>

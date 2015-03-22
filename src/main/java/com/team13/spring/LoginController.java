@@ -82,6 +82,14 @@ public class LoginController {
 				request.getSession().setAttribute("username", fn);
 				request.getSession().setAttribute("authenticated", true);
 				System.out.println("Added roles to session");
+				
+				if(hasRole(request, "ROLE_ADMIN")){
+					request.getSession().setAttribute("admin", true);
+				}
+				if(hasRole(request, "ROLE_USER")){
+					request.getSession().setAttribute("user", true);
+				}
+				
 				return "redirect:/dashboard";
 			} else { 
 				System.out.println("Failed");
@@ -101,6 +109,9 @@ public class LoginController {
 			request.getSession().removeAttribute("id");
 			request.getSession().removeAttribute("username");
 			request.getSession().setAttribute("authenticated", false);
+			request.getSession().removeAttribute("admin");
+			request.getSession().removeAttribute("user");
+
 			
 		return "redirect:/home";
 	}
