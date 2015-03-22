@@ -17,3 +17,19 @@ $(document).ready(function() {
     });
 });
 
+$('#link1').click(function () {
+    window.location = '/DocMan/registerPage';
+});
+
+$('#link2').click(function () {
+    window.location = '/DocMan/users/page/1';
+});
+
+$('#link3').click(function () {
+    window.location = '/DocMan/createDocument';
+});
+
+$('#link4').click(function () {
+    window.location = '/DocMan/documents';
+});
+

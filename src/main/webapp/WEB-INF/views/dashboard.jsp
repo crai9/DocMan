@@ -38,50 +38,39 @@
 
 
 
-<section class="strips">
-<c:if test="${admin == true}">
-  <article class="strips__strip">
-    <div class="strip__content">
-      <h1 class="strip__title" data-name="Lorem"><a href="/DocMan/registerPage">Register User</a></h1>
-      <div class="strip__inner-text">
+	<section class="strips">
 		
-      </div>
-      
-    </div>
-  </article>
-</c:if>
-<c:if test="${admin == true}">
-  <article class="strips__strip">
-    <div class="strip__content">
-      <h1 class="strip__title" data-name="Ipsum"><a href="users/page/1">View Users</a></h1>
-      <div class="strip__inner-text">
-       
-      </div>
-    </div>
-  </article>
-</c:if>
-  <article class="strips__strip">
-    <div class="strip__content">
-      <h1 class="strip__title" data-name="Dolor"><a href="/DocMan/createDocument">Create Document</a></h1>
-      <div class="strip__inner-text">
-       
-      </div>
-    </div>
-  </article>
+		<c:if test="${admin == true}">
+  			<article class="strips__strip" id="link1">
+    			<div class="strip__content">
+      				<h1 class="strip__title" data-name="Lorem"><a href="/DocMan/registerPage">Register User</a></h1>
+    			</div>
+  			</article>
+		</c:if>
+
+		<c:if test="${admin == true}">
+  			<article class="strips__strip" id="link2">
+    			<div class="strip__content">
+      				<h1 class="strip__title" data-name="Ipsum"><a href="users/page/1">View Users</a></h1>
+    			</div>
+  			</article>
+		</c:if>
+  
+  			<article class="strips__strip" id="link3">
+    			<div class="strip__content">
+      				<h1 class="strip__title" data-name="Dolor"><a href="/DocMan/createDocument">Create Document</a></h1>
+    			</div>
+  			</article>
 
 
-  <article class="strips__strip">
-    <div class="strip__content">
-      <h1 class="strip__title" data-name="Dolor"><a href="documents">View Documents</a></h1>
-      <div class="strip__inner-text">
-      
-      </div>
-    </div>
-  </article>
+  			<article class="strips__strip" id="link4">
+    			<div class="strip__content">
+      				<h1 class="strip__title" data-name="Dolor"><a href="documents">View Documents</a></h1>
+    			</div>
+  			</article>
 
-
-  <i class="fa fa-close strip__close"></i>
-</section>
+	</section>
+    
         </div>
       </div>
     </div>
