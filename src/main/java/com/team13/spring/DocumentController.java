@@ -62,12 +62,25 @@ public class DocumentController {
 	}
 	
 	@RequestMapping(value = {"/documents"}, method = RequestMethod.GET)
-	public String documents(HttpServletRequest request){
+	public String documents(Model model, HttpServletRequest request){
 		if(!hasRole(request, "ROLE_USER")){
 			return "403";
 		}
 		
+		String s = null;
+		
+		model.addAttribute("document", DBManager.allDocuments(s));
 		return "viewDocuments";
+	}
+	
+	@RequestMapping(value = {"/viewDoc/{id}"}, method = RequestMethod.GET)
+	public String viewDocs(Model model, HttpServletRequest request, @PathVariable int id){
+		if(!hasRole(request, "ROLE_USER")){
+			return "403";
+		}
+		
+		model.addAttribute("document", DBManager.getDocumentById(id));
+		return "viewDoc";
 	}
 	
 }

@@ -13,7 +13,9 @@ import java.util.List;
 
 
 
+
 import com.team13.spring.login.Encrypt;
+import com.team13.spring.model.Document;
 //import com.team13.spring.login.Encrypt;
 import com.team13.spring.model.User;
 
@@ -659,5 +661,104 @@ public class DBManager {
 		
 	}
 	
+public static List<Document> allDocuments(String search){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+		
+		String sql = null;
+
+		sql = "SELECT document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status "
+				+ "FROM document_records "
+				+ "INNER JOIN revisions "
+				+ "ON document_records.documentId = revisions.documentId ";
 	
+		try {
+			dbConnection = getDBConnection();
+			
+			preparedStatement = dbConnection.prepareStatement(sql);
+			
+			preparedStatement.executeQuery();
+			
+			System.out.println(preparedStatement.toString());
+			
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            List<Document> all = new ArrayList<Document>();
+            while(rs.next()){
+            	Document u = new Document();
+            	
+            	u.setId(rs.getInt("documentId"));
+            	u.setTitle(rs.getString("title"));
+            	u.setAuthor(rs.getString("author"));
+            	u.setCreatedDate(rs.getString("createdDate"));
+            	u.setStatus(rs.getString("status"));
+            	
+            	all.add(u);
+            }
+
+           return all;
+           
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return null; 
+		
+	}
+
+public static Document getDocumentById(int id){
+	
+	Connection dbConnection = null;
+	
+	PreparedStatement preparedStatement = null;
+	
+	String sql = null;
+
+	sql = "SELECT document_records.documentId, document_records.title, document_records.description, document_records.author, revisions.revisionId, revisions.revisionNo, revisions.documentAttachment, revisions.createdDate, revisions.status "
+			+ "FROM document_records "
+			+ "INNER JOIN revisions "
+			+ "ON document_records.documentId = revisions.documentId "
+			+ "WHERE document_records.documentId = ?";
+
+	try {
+		dbConnection = getDBConnection();
+		
+		preparedStatement = dbConnection.prepareStatement(sql);
+		
+		preparedStatement.setInt(1, id);
+		
+		preparedStatement.executeQuery();
+		
+		System.out.println(preparedStatement.toString());
+		
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        Document d = new Document();
+        
+        while(rs.next()){
+        	
+        	
+        	d.setId(rs.getInt("documentId"));
+        	d.setTitle(rs.getString("title"));
+        	d.setDescription(rs.getString("description"));
+        	d.setAuthor(rs.getString("author"));
+        	d.setRevisionNo(rs.getString("revisionNo"));
+        	d.setDocumentAttached(rs.getString("documentAttachment"));
+        	d.setCreatedDate(rs.getString("createdDate"));
+        	d.setStatus(rs.getString("status"));
+        	
+        }
+
+       return d;
+       
+	} catch (SQLException e) {
+
+		System.out.println(e.getMessage());
+
+	}
+	return null;
+}
 }
