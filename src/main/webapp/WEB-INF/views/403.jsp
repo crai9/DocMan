@@ -6,10 +6,11 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>List of users</title>
+	<title>403</title>
 	<link href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet">
 	<link href="<c:url value='/resources/css/formValidation.min.css' />" rel="stylesheet">
 	<link href="<c:url value='/resources/css/global.css' />" rel="stylesheet">
+	<link href="<c:url value='/resources/css/jquery.mmenu.all.css' />" rel="stylesheet">
 </head>
 <body>
 <%@ include file="menu.jsp" %>
@@ -23,11 +24,13 @@
 </div>
 
 <%@ include file="footer.jsp" %>
+<%@ include file="sidemenu.jsp" %>
 </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
     <script src="<c:url value='/resources/js/formValidation.min.js' />"></script>
     <script src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
+    <script src="<c:url value='/resources/js/jquery.mmenu.min.all.js' />"></script>
     <script src="<c:url value='/resources/js/main.js' />"></script>
 </body>
 </html>

@@ -3,14 +3,15 @@
     <ul>
         <li><a href="<c:url value='/home'/>">Home</a></li>
         <c:if test="${authenticated == false || empty authenticated}"><li><a href="<c:url value='/loginPage'/>">Log in</a></li></c:if>
-        <li><a href="#about">Stuff</a>
-            <ul>
-                <li><a href="#about/history">Create Doc</a></li>
-                <li><a href="#about/team">View Docs</a></li>
-                <li><a href="#about/address">Delete Docs</a></li>
-            </ul>
-        </li>
-        <li><a href="#contact">Admin</a></li>
-        <li></li>
+        <c:if test="${admin == true}">
+        <li><a href="<c:url value='/users/page/1'/>">View Users</a></li>
+        <li><a href="<c:url value='/registerPage'/>">Add a User</a></li>
+        </c:if>
+        <c:if test="${user == true}">
+        <li><a href="<c:url value='/documents'/>">View Documents</a></li>
+        <li><a href="<c:url value='/createDocument'/>">Create Documents</a></li>
+        <li><a href="<c:url value='/dashboard'/>">Dashboard</a></li>
+        <li><a href="<c:url value='/logout'/>">Log Out</a></li>
+        </c:if>       
     </ul>
 </nav>

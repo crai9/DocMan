@@ -51,6 +51,3 @@
 
     </div>
 </div>
-<div class="open-sidebar">
-<a href="#menu"><span class="caret"></span></a>
-</div>

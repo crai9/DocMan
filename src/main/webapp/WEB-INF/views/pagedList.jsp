@@ -11,6 +11,7 @@
     <link href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet">
     <link href="<c:url value='/resources/css/formValidation.min.css' />" rel="stylesheet">
     <link href="<c:url value='/resources/css/global.css' />" rel="stylesheet">
+    <link href="<c:url value='/resources/css/jquery.mmenu.all.css' />" rel="stylesheet">
     <link href="<c:url value='/resources/css/sweet-alert.css' />" rel="stylesheet">
 
 </head>
@@ -99,6 +100,7 @@
                 </c:otherwise>
             </c:choose>
             <%@ include file="footer.jsp" %>
+            <%@ include file="sidemenu.jsp" %>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
@@ -106,6 +108,7 @@
         <script src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
         <script src="<c:url value='/resources/js/main.js' />"></script>
         <script src="<c:url value='/resources/js/users.js' />"></script>
+		<script src="<c:url value='/resources/js/jquery.mmenu.min.all.js' />"></script>
         <script src="<c:url value='/resources/js/sweet-alert.min.js' />"></script>
 </body>
 
