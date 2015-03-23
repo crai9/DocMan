@@ -6,6 +6,7 @@ import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,29 +40,19 @@ public class WebController {
 	}
 	
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public ModelAndView dashboard(HttpServletRequest request) {
+	public String dashboard(Model model, HttpServletRequest request) {
 
-		
-		ModelAndView model = new ModelAndView();
+		if(!hasRole(request, "ROLE_USER")){
+			return "403";
+		}
 
-			
-		//Logged in
-		//model.addObject("authenticated", true);
-		//model.addObject("username", "Craig");
-	
-		
-		model.setViewName("dashboard");
-		
-		
 		if(hasRole(request, "ROLE_ADMIN")){
-			model.addObject("admin", true);
+			model.addAttribute("admin", true);
 		} else {
-			model.addObject("admin", false);
+			model.addAttribute("admin", false);
 		}
 		
-
-		
-		return model;
+		return "dashboard";
 	}
 		
 }
