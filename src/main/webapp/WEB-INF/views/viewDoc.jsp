@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Documents</title>
+    <title>View Docs</title>
     <link href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet">
     <link href="<c:url value='/resources/css/formValidation.min.css' />" rel="stylesheet">
     <link href="<c:url value='/resources/css/global.css' />" rel="stylesheet">
@@ -21,37 +21,62 @@
     <%@ include file="menu.jsp" %>
         <div class="container top">
             <div class="page-header">
-                <h1>Document List</h1>
+                <h1>Document Information</h1>
             </div>
             <h4><a class="btn btn-warning" href="<c:url value='/dashboard' />">Dashboard</a></h4>
             <h4><a class="btn btn-success" href="<c:url value='/createDocument' />">Create Document</a></h4>
 
-            <div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered">
-                    <tr>
-						<th>Document Name</th>
-						<th>Document Author</th>
-						<th>Date Created</th>
-						<th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                    <c:forEach items="${document}" var="document">
-                    <tr id="${document.id}">
-                        <td>${document.title}</td>
-                        <td>${document.author}</td>
-                        <td>${document.createdDate}</td>
-                        <td>${document.status}</td>
-                        
+			<div class="row">
+	  <div class="col-md-6">
+	  
+	  <h3>Title: ${document.title}</h3>
+	  <p><b>Description:</b> ${document.description}</p>
+	  <p><b>Author:</b> ${document.author}</p>  
+	
+	  </div>
+  	  
 
-                        <td><a href="" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="" class="btn btn-sm btn-danger">Delete</a>
-                            <a href="" class="btn btn-sm btn-warning">Download</a>
-                            <a href='viewDoc/${document.id}' class="btn btn-sm btn-info">View Doc</a>
-                        </td>
-                    </tr>
-                    </c:forEach>
-                </table>
-            </div>
+  	  <div class="col-md-6">
+  	  	
+  	  <table class="table table-bordered">
+  	  <tr>
+  	  	<th>Revision Number</th>
+  	  	<td>${document.revisionNo}</td>
+  	  </tr>
+  	    	  <tr>
+  	  	<th>Document Attached</th>
+  	  	<td>${document.documentAttached}</td>
+  	  </tr>
+  	    	  <tr>
+  	  	<th>Date Created</th>
+  	  	<td>${document.createdDate}</td>
+  	  </tr>
+  	  <tr>
+  	  	<th>Status</th>
+  	  	<td>${document.status}</td>
+  	  </tr>
+  	  
+  	  <tr>
+  	  	<th>From</th>
+  	  	<td>Edmond</td>
+  	  </tr>
+  	  
+  	  <tr>
+  	  	<th>To</th>
+  	  	<td>Craig</td>
+  	  </tr>
+  	  
+  	  <tr>
+  	  	<th>Distribution Date</th>
+  	  	<td>21/02/2014</td>
+  	  </tr>
+  	  </table>
+  	  </div>
+  	  
+  	<!--<embed src="../resources/docs/eh.pdf" width="500" height="375">-->
+</div>
+
+           
             <%@ include file="sidemenu.jsp" %>
         </div>
 
