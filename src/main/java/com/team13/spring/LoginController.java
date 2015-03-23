@@ -127,6 +127,16 @@ public class LoginController {
 		return "add-users";
 	}
 	
+	@RequestMapping(value = "/account", method = RequestMethod.GET)
+	public String viewAccount(HttpServletRequest request){
+		
+		if(!hasRole(request, "ROLE_USER")){
+			return "403";
+		}
+		
+		return "notImplemented";
+	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(
 			@RequestParam("fname") String fname, @RequestParam("lname") String lname,
