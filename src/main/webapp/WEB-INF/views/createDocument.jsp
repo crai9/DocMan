@@ -11,6 +11,7 @@
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="resources/css/global.css" rel="stylesheet">
 	<link href="<c:url value='/resources/css/jquery.mmenu.all.css' />" rel="stylesheet">
+	<link href="<c:url value='/resources/css/bootstrap-datetimepicker.min.css' />" rel="stylesheet">
 </head>
 <body>
 
@@ -22,43 +23,58 @@
 	</div>
 	<a href="dashboard" class="btn btn-warning" role="button">Dashboard</a><br><br>
 	<a href="documents" class="btn btn-primary" role="button">View Documents</a><br><br>
-	
+	<form method="POST" enctype="multipart/form-data" action="create">
 <div id="createDocument">
 	<h2 class="text-center">Create Document</h2>
-	<form method="POST" enctype="multipart/form-data" action="create">
-		Document Name: <input type="text" class="form-control" name="title"><br/>
-		Description: <textarea name="description" class="form-control" rows="5"></textarea></br>
-		Author Name: <input type="text" class="form-control" name="authorName"><br/>
-	<input type="button" name="next" id="nextCD" class="btn btn-success" value="Next">	
+
+		Document Name: <input type="text" class="form-control" name="title"><br>
+		Description: <textarea name="description" class="form-control" rows="5"></textarea><br>
+		Author Name: <input value="${you.username}" type="text" class="form-control" name="authorName" readonly><br>
+	<input type="button" name="next" id="nextCD" class="btn btn-success" value="Next &raquo;">	
 	
 </div>
 
 <div id="uploadDocument" class="hidden">
 	<h2 class="text-center">Upload Document</h2>
-		Revision Number: <input type="text" class="form-control" name="revNo"><br/>
-		Document Attachment: <input type="text" class="form-control" name="file"><br/>
-		Date Created: <input type="text" class="form-control" name="dateCreated"><br/>
-		Status: <input type="text" class="form-control" name="status"><br/>
-	<input type="button" name="previous" id="previous" class="btn btn-success" value="Previous">
-	<input type="button" name="next" id="nextUD" class="btn btn-success" value="Next">	
+		Revision Number: <input value="1" type="number" min="1" class="form-control" name="revNo" readonly><br/>
+		Document Attachment: <input type="text" class="form-control" name="file"><br>
+		Date Created:
+		<div class="form-group">
+			<div class='input-group date' id='datetimepicker'>
+				<input type='text' class="form-control" name="dateCreated" />
+				<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+				</span>
+			</div>
+		</div>
+		Status:
+		<select class="form-control" name="status">
+		  <option>Active</option>
+		  <option>Inactive</option>
+		  <option>Outdated</option>
+		</select>
+		<br>
+	<input type="button" name="previous" id="previous" class="btn btn-success" value="&laquo; Previous">
+	<input type="button" name="next" id="nextUD" class="btn btn-success" value="Next &raquo;">	
 		
 </div>
 
 <div id="addDistributee" class="hidden">
 	<h2 class="text-center">Add Distributee</h2>
-		UserName: <input type="text" class="form-control" name="userName"><br/>
-		DistributionDate: <input type="text" class="form-control" name="date"><br/>
-	<input type="button" name="previous" id="previous2" class="btn btn-success" value="Previous">
+		UserName: <input type="text" class="form-control" name="userName" readonly><br/>
+	<input type="button" name="previous" id="previous2" class="btn btn-success" value="&laquo; Previous">
 	<input type="submit" name="submit" id="createDoc" class="btn btn-success" value="Create Document">	
-	</form>	
+	
 </div>
+</form>	
 <%@ include file="sidemenu.jsp" %>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="<c:url value='/resources/js/moment.min.js' />"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/formValidation.min.js"></script>
 	<script src="resources/js/framework/bootstrap.min.js"></script>	
+	<script src="<c:url value='/resources/js/bootstrap-datetimepicker.min.js' />"></script>
 	<script src="<c:url value='/resources/js/jquery.mmenu.min.all.js' />"></script>
 	<script src="resources/js/main.js"></script>
 	<script src="resources/js/createDoc.js"></script>

@@ -1,6 +1,5 @@
 package com.team13.spring.db;
 
-import java.io.File;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,14 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
-import com.team13.spring.login.Encrypt;
 import com.team13.spring.model.Document;
-//import com.team13.spring.login.Encrypt;
 import com.team13.spring.model.User;
 
 public class DBManager {
@@ -61,20 +53,8 @@ public class DBManager {
 	
 	public static void main(String[] args){
 		
-		//main method for testing only
-
-		String username = "mark";
-		String password = Encrypt.crypt("hi");
-		String fname = "123";
-		String lname = "456";
-		String email = "test@testing.com";
-		String adminRole = "no";
-		
-        for(int i=1; i<25; i++){
-        	createUser(username, password, fname, lname, email, adminRole);
-        }
-		
-		System.out.println(countUsers("mark"));
+		long documentId = createDocument("test", "test", "craig");
+		addRevision(1, "a.pdf", documentId, "2015-03-25", "Active");
 		
 	}
 		
@@ -627,10 +607,11 @@ public class DBManager {
  
 	}
 	
-	public static void createDocument(String title, String description, 
+	public static long createDocument(String title, String description, 
 			String authorName){
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
+		long documentId = 0;
  
 		String sql = "INSERT INTO document_records "
 				+ "(documentId, title, description, author) "
@@ -645,19 +626,57 @@ public class DBManager {
 			preparedStatement.setString(2, description);
 			preparedStatement.setString(3, authorName);
 
-
 			
+			System.out.println(preparedStatement.toString());
 			preparedStatement.executeUpdate();
  
 			System.out.println("Record is inserted");
 			
-			
+			PreparedStatement getLastInsertId = dbConnection.prepareStatement("SELECT LAST_INSERT_ID()");
+			ResultSet rs = getLastInsertId.executeQuery();
+			if (rs.next())
+			{
+			 documentId = rs.getLong("last_insert_id()");   
+			 System.out.println("Last userId inserted: " + documentId);
+			}
 			
 		} catch (SQLException e) {
  
 			System.out.println(e.getMessage());
  
-		} 
+		}
+		return documentId; 
+		
+	}
+	
+	public static void addRevision(int revisionNo, String fileName,  long documentId,
+			String dateCreated, String status){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		String sql = "INSERT INTO revisions "
+				+ "(revisionId, revisionNo, documentAttachment, documentId, createdDate, status) "
+				+ "VALUES (NULL, ?, ?, ?, ?, ?)";
+		
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setInt(1, revisionNo);
+			preparedStatement.setString(2, fileName);
+			preparedStatement.setLong(3, documentId);
+			preparedStatement.setString(4, dateCreated);
+			preparedStatement.setString(5, status);
+			System.out.println(preparedStatement.toString());
+			preparedStatement.executeUpdate();
+ 
+			System.out.println("Revision is inserted");
+
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
 		
 	}
 	

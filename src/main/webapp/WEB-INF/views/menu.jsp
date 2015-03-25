@@ -29,7 +29,7 @@
 
       				<c:otherwise>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img src="resources/img/notification.png" height="20px"><span class="color badge">4</span></a>
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img src="<c:url value='/resources/img/notification.png' />" height="20px"><span class="color badge">4</span></a>
 						<ul class="dropdown-menu" role="menu" style="padding:10px;">
                     			<li><b>Edmond </b> sent you a document</li>
                     			<li class="divider"></li>

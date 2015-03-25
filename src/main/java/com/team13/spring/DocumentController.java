@@ -35,11 +35,13 @@ public class DocumentController {
 }
 
 	@RequestMapping(value = {"/createDocument"}, method = RequestMethod.GET)
-	public String createDocument(HttpServletRequest request){
+	public String createDocument(HttpServletRequest request, Model model){
 		
 		if(!hasRole(request, "ROLE_USER")){
 			return "403";
 		}
+		int id = (Integer) request.getSession().getAttribute("id");
+		model.addAttribute("you", DBManager.getUserById(id));
 		
 		return "createDocument";
 	}
@@ -47,16 +49,16 @@ public class DocumentController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(
 			@RequestParam("title") String title, @RequestParam("description") String description,
-			@RequestParam("authorName") String authorName,
-			HttpServletRequest request){
+			@RequestParam("authorName") String authorName, @RequestParam("revNo") int revNo, @RequestParam("file") String file,
+			@RequestParam("dateCreated") String dateCreated, @RequestParam("status") String status, HttpServletRequest request){
 		
 		if(!hasRole(request, "ROLE_USER")){
 			return "403";
 		}
 		
 		//DBManager.createDocument(title, description, authorName, revNo, fileName, dateCreated, status, userName, date);
-		DBManager.createDocument(title, description, authorName);
-		
+		long documentId = DBManager.createDocument(title, description, authorName);
+		DBManager.addRevision(revNo, file, documentId, dateCreated, status);
 
 		return "redirect:/createDocument";
 	}

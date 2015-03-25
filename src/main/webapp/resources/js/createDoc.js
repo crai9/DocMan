@@ -15,5 +15,10 @@ $(document).ready(function() {
     	$("#addDistributee").addClass('hidden');
     	$("#uploadDocument").removeClass('hidden');
     });
+	$('#datetimepicker').datetimepicker({
+		format: 'YYYY-MM-DD'
+	});
+
 });
+
 
