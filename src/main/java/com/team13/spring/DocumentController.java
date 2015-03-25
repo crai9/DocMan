@@ -60,7 +60,7 @@ public class DocumentController {
 		long documentId = DBManager.createDocument(title, description, authorName);
 		DBManager.addRevision(revNo, file, documentId, dateCreated, status);
 
-		return "redirect:/createDocument";
+		return "redirect:/viewDoc/" + documentId;
 	}
 	
 	@RequestMapping(value = {"/documents"}, method = RequestMethod.GET)
