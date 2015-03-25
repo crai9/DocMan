@@ -130,7 +130,6 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <script src="resources/js/bootstrap.min.js"></script>
             <script src="resources/js/jquery.mmenu.min.all.js"></script>
-            <script src="resources/js/createDoc.js"></script>
             <script src="resources/js/main.js"></script>
 </body>
 
