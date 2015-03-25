@@ -62,6 +62,9 @@
   background-color: #428bca;
 }
 
+.badge {
+	background-color:red;
+}
 
 /*
  * Main content

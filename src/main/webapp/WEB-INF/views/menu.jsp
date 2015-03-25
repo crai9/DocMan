@@ -29,9 +29,18 @@
 
       				<c:otherwise>
 					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img src="resources/img/notification.png" height="20px"><span class="color badge">4</span></a>
+						<ul class="dropdown-menu" role="menu" style="padding:10px;">
+                    			<li><b>Edmond </b> sent you a document</li>
+                    			<li class="divider"></li>
+                    			<li><b>Craig </b> sent you a document</li>
+                  			</ul>
+						</li>
                         <li><a href="<c:url value='/dashboard' />">Dashboard</a></li>
-                        <li class="dropdown">
-                  			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${username} <span class="caret"></span></a>
+                        <li class="dropdown active">
+                  			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><c:if test="${admin == true}">
+							<span class="badge">Admin</span>
+						</c:if> ${username}<span class="caret"></span></a>
                   			<ul class="dropdown-menu" role="menu">
                     			<li><a href="<c:url value='/account' />">Account</a></li>
                     			<li class="divider"></li>
