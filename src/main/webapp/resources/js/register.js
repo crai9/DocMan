@@ -39,7 +39,7 @@ $(document).ready(function() {
                     },
                     remote: {
                         message: 'The username is not available',
-                        url: '/DocMan/checkUser',
+                        url: 'checkUser',
                         type: 'GET'
                     }
                 }

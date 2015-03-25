@@ -87,7 +87,7 @@ public class LoginController {
 					request.getSession().setAttribute("admin", true);
 				}
 				if(hasRole(request, "ROLE_USER")){
-					request.getSession().setAttribute("user", true);
+					request.getSession().setAttribute("u", true);
 				}
 				
 				return "redirect:/dashboard";
