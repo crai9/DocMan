@@ -37,3 +37,9 @@ navbar-brand img{
 	background-color: #00cc00;
 	margin-left:-5px;
 }
+.pointer{
+	cursor: pointer;
+}
+.notification-padding{
+	padding: 10px;
+}

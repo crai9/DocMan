@@ -26,10 +26,16 @@
             </div>
             <h3>Quick Links</h3>
             <div class="well well-lg centered-nav">
-                <a href="createDocument" class="btn btn-lg btn-success">New Document</a>
-                <a href="documents" class="btn btn-lg btn-info">View All Documents</a>
-                <a href="documents/own" class="btn btn-lg btn-warning">Your Documents</a>
-                <a href="account" class="btn btn-lg btn-danger">Your Account</a>
+            	<div class="btn-group" role="group">
+	                <a href="createDocument" class="btn btn-lg btn-success">New Document</a>
+	                <a href="documents" class="btn btn-lg btn-info">All Documents</a>
+	                <a href="documents/own" class="btn btn-lg btn-warning">Your Documents</a>
+	                <a href="account" class="btn btn-lg btn-danger">Your Account</a>
+	                <c:if test="${admin == true}">
+				        <a class="btn btn-primary btn-lg" href="<c:url value='/users/page/1'/>">Users List</a>
+				        <a class="btn btn-primary btn-lg" href="<c:url value='/registerPage'/>">New User</span></a>
+        			</c:if>
+                </div>
             </div>
             <div class="panel panel-default">
 
