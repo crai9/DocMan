@@ -25,53 +25,48 @@
             </div>
             <h4><a class="btn btn-warning" href="<c:url value='/dashboard' />">Dashboard</a></h4>
             <h4><a class="btn btn-success" href="<c:url value='/createDocument' />">Create Document</a></h4>
+            <h4><a class="btn btn-primary" href="<c:url value='#' />">Edit Document</a></h4>
 
-			<div class="row">
-	  <div class="col-md-6">
+		<div class="row" style="background-color:white; margin-top:50px; padding:20px;">
+	  		<div class="col-md-4">
+	  			<h3>Title: ${document.title}</h3>
+	  			<h4><b>Description:</b> ${document.description}</h4>
+	  			<p><b>Author:</b> ${document.author}</p>  	
+	  		</div>
 	  
-	  <h3>Title: ${document.title}</h3>
-	  <p><b>Description:</b> ${document.description}</p>
-	  <p><b>Author:</b> ${document.author}</p>  
-	
-	  </div>
-  	  
+  	   		<div class="col-md-4">	  
+	  			<h3>Date Created: ${document.createdDate}</h3>
+	  			<h4>Distribution Date: ${document.createdDate}</h4>
+	  		</div>
 
-  	  <div class="col-md-6">
-  	  	
-  	  <table class="table table-bordered">
-  	  <tr>
-  	  	<th>Revision Number</th>
-  	  	<td>${document.revisionNo}</td>
-  	  </tr>
-  	    	  <tr>
-  	  	<th>Document Attached</th>
-  	  	<td>${document.documentAttached}</td>
-  	  </tr>
-  	    	  <tr>
-  	  	<th>Date Created</th>
-  	  	<td>${document.createdDate}</td>
-  	  </tr>
-  	  <tr>
-  	  	<th>Status</th>
-  	  	<td>${document.status}</td>
-  	  </tr>
+  	  		<div class="col-md-4">
+  	  			<table class="table table-bordered">
+  	  				<tr>
+  	  					<th>Revision Number</th>
+  	  					<td>${document.revisionNo}</td>
+  	  				</tr>
+  	    	  		<tr>
+  	  					<th>Document Attached/<br>Download</th>
+  	  					<td><a href="#">${document.documentAttached}</a></td>
+  	  				</tr>
+  	    	 
+				  	<tr>
+  	  					<th>Status</th>
+  	  					<td>${document.status}</td>
+  	  				</tr>
   	  
-  	  <tr>
-  	  	<th>From</th>
-  	  	<td>Edmond</td>
-  	  </tr>
+  	  				<tr>
+  	  					<th>From</th>
+  	  					<td>${document.author}</td>
+  	  				</tr>
   	  
-  	  <tr>
-  	  	<th>To</th>
-  	  	<td>Craig</td>
-  	  </tr>
-  	  
-  	  <tr>
-  	  	<th>Distribution Date</th>
-  	  	<td>21/02/2014</td>
-  	  </tr>
-  	  </table>
-  	  </div>
+  	  				<tr>
+  	  					<th>To</th>
+  	  					<td>Craig</td>
+  	  				</tr>
+
+  	  			</table>
+  	  	</div>
   	  
   	<!--<embed src="../resources/docs/eh.pdf" width="500" height="375">-->
 </div>
