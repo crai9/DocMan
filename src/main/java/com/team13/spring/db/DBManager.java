@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.team13.spring.model.Document;
@@ -53,8 +55,7 @@ public class DBManager {
 	
 	public static void main(String[] args){
 		
-		long documentId = createDocument("test", "test", "craig");
-		addRevision(1, "a.pdf", documentId, "2015-03-25", "Active");
+		System.out.println(getUserIdByUsername("craig"));
 		
 	}
 		
@@ -162,6 +163,37 @@ public class DBManager {
 			preparedStatement.executeUpdate();
  
 			System.out.println("Role Added");
+
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		} 
+		
+	}
+	
+	public static void addDistributee(int userId, int revisionId){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		
+		String sql = "INSERT INTO distributees"
+				+ "(distributeeId, userId, revisionId, distributionDate) VALUES"
+				+ "(NULL, ?, ?, ?)";
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(2, revisionId);
+			preparedStatement.setString(3, date);
+			
+			preparedStatement.executeUpdate();
+ 
+			System.out.println("Distributee Added");
 
 			
 		} catch (SQLException e) {
@@ -323,6 +355,38 @@ public class DBManager {
  
 		}
 		return null;
+	}
+	
+	public static int getUserIdByUsername(String username){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setString(1, username);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			int id = 0;
+			
+			if(rs.next()){
+	        	id = rs.getInt("userId");
+			}
+			
+			return id;
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return 0;
 	}
 	
 	public static Boolean checkIfUserExists(String username){

@@ -60,7 +60,12 @@
 
 <div id="addDistributee" class="hidden">
 	<h2 class="text-center">Add Distributee</h2>
-		UserName: <input type="text" class="form-control" name="userName" readonly><br/>
+		UserName: <input id="addUser" type="text" class="form-control" name="userName">
+		<button id="push" onclick="return false;" class="btn btn-success" >Add</button><br><br>
+		<ol id="listUsers">
+		</ol>
+		<br>
+	<input value="[]" class="hidden" id="distributees" type="text" class="form-control" name="distributees" readonly><br/>
 	<input type="button" name="previous" id="previous2" class="btn btn-success" value="&laquo; Previous">
 	<input type="submit" name="submit" id="createDoc" class="btn btn-success" value="Create Document">	
 	

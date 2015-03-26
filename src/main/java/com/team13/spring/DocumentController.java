@@ -2,6 +2,7 @@ package com.team13.spring;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,8 @@ import com.team13.spring.db.DBManager;
 import com.team13.spring.login.Encrypt;
 import com.team13.spring.model.User;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,16 +53,29 @@ public class DocumentController {
 	public String create(
 			@RequestParam("title") String title, @RequestParam("description") String description,
 			@RequestParam("authorName") String authorName, @RequestParam("revNo") int revNo, @RequestParam("file") String file,
-			@RequestParam("dateCreated") String dateCreated, @RequestParam("status") String status, HttpServletRequest request){
+			@RequestParam("dateCreated") String dateCreated, @RequestParam("status") String status,
+			@RequestParam(value = "distributees", required = false) String distributeesJSON, HttpServletRequest request) throws JSONException{
 		
 		if(!hasRole(request, "ROLE_USER")){
 			return "403";
 		}
 		
-		//DBManager.createDocument(title, description, authorName, revNo, fileName, dateCreated, status, userName, date);
+	    ArrayList<String> stringArray = new ArrayList<String>();
+	    JSONArray jsonArray = new JSONArray(distributeesJSON);
+
+	    for (int i = 0; i < jsonArray.length(); i++) {
+	        stringArray.add(jsonArray.getString(i));
+	    }
+
 		long documentId = DBManager.createDocument(title, description, authorName);
 		DBManager.addRevision(revNo, file, documentId, dateCreated, status);
-
+		
+		for(String dist : stringArray){
+			int userId = Integer.parseInt(dist);
+			DBManager.addDistributee(userId, (int) documentId);
+			System.out.println(userId);
+		}
+		
 		return "redirect:/viewDoc/" + documentId;
 	}
 	
