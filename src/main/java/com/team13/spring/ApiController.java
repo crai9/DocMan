@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team13.spring.db.DBManager;
+import com.team13.spring.model.ExistingUser;
 import com.team13.spring.model.User;
 import com.team13.spring.model.UserStatus;
 
@@ -46,6 +47,17 @@ public class ApiController {
 
 		
 		return u;
+	}
+	
+	@RequestMapping(value = {"/validUser"})
+	public ExistingUser validPerson(@RequestParam("username") String username){
+		
+		ExistingUser e = new ExistingUser();
+		
+		e.setValid(DBManager.checkIfUserExists(username));
+		e.setId(DBManager.getUserIdByUsername(username));
+		
+		return e;
 	}
 	
 	@RequestMapping(value = {"/getAllUsers"})

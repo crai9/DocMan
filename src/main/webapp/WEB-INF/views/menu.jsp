@@ -12,7 +12,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div>
-                  	  <a href="#menu"><img class="move-logo-right navbar-brand" src="<c:url value='/resources/img/DocMan.png' />" /></a>
+                  	  <a href="#menu"><img class="move-logo-right navbar-brand doc-logo" src="<c:url value='/resources/img/DocMan.png' />" /></a>
                 	</div>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">

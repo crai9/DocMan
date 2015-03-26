@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.team13.spring.model.Document;
@@ -53,8 +55,7 @@ public class DBManager {
 	
 	public static void main(String[] args){
 		
-		long documentId = createDocument("test", "test", "craig");
-		addRevision(1, "a.pdf", documentId, "2015-03-25", "Active");
+		System.out.println(getUserIdByUsername("craig"));
 		
 	}
 		
@@ -172,6 +173,37 @@ public class DBManager {
 		
 	}
 	
+	public static void addDistributee(int userId, int revisionId){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		
+		String sql = "INSERT INTO distributees"
+				+ "(distributeeId, userId, revisionId, distributionDate) VALUES"
+				+ "(NULL, ?, ?, ?)";
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(2, revisionId);
+			preparedStatement.setString(3, date);
+			
+			preparedStatement.executeUpdate();
+ 
+			System.out.println("Distributee Added");
+
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		} 
+		
+	}
+	
 	public static void removeRole(long userId, String ROLE){
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -258,6 +290,30 @@ public class DBManager {
 		
 	}
 	
+	public static void deleteDocumentById(int id){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "DELETE FROM document_records WHERE documentId = ?";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setInt(1, id);
+
+			preparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		
+	}
+	
 	public static User getUserById(int id){
 		
 		Connection dbConnection = null;
@@ -299,6 +355,38 @@ public class DBManager {
  
 		}
 		return null;
+	}
+	
+	public static int getUserIdByUsername(String username){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setString(1, username);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			int id = 0;
+			
+			if(rs.next()){
+	        	id = rs.getInt("userId");
+			}
+			
+			return id;
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return 0;
 	}
 	
 	public static Boolean checkIfUserExists(String username){
@@ -690,14 +778,16 @@ public static List<Document> allDocuments(String search){
 
 		sql = "SELECT document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status "
 				+ "FROM document_records "
-				+ "INNER JOIN revisions "
-				+ "ON document_records.documentId = revisions.documentId ";
+				+ "INNER JOIN "
+				+ "(SELECT `documentId`, `createdDate`, `status` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
+				+ "ON document_records.documentId = revisions.documentId "
+				+ "GROUP BY document_records.documentId";
 	
 		try {
 			dbConnection = getDBConnection();
 			
 			preparedStatement = dbConnection.prepareStatement(sql);
-			
+			System.out.println(preparedStatement.toString());
 			preparedStatement.executeQuery();
 			
 			System.out.println(preparedStatement.toString());
@@ -734,9 +824,8 @@ public static Document getDocumentById(int id){
 	
 	PreparedStatement preparedStatement = null;
 	
-	String sql = null;
 
-	sql = "SELECT document_records.documentId, document_records.title, document_records.description, document_records.author, revisions.revisionId, revisions.revisionNo, revisions.documentAttachment, revisions.createdDate, revisions.status "
+	String sql = "SELECT document_records.documentId, document_records.title, document_records.description, document_records.author, revisions.revisionId, revisions.revisionNo, revisions.documentAttachment, revisions.createdDate, revisions.status "
 			+ "FROM document_records "
 			+ "INNER JOIN revisions "
 			+ "ON document_records.documentId = revisions.documentId "
