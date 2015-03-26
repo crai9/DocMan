@@ -258,6 +258,30 @@ public class DBManager {
 		
 	}
 	
+	public static void deleteDocumentById(int id){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "DELETE FROM document_records WHERE documentId = ?";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setInt(1, id);
+
+			preparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		
+	}
+	
 	public static User getUserById(int id){
 		
 		Connection dbConnection = null;
@@ -690,14 +714,16 @@ public static List<Document> allDocuments(String search){
 
 		sql = "SELECT document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status "
 				+ "FROM document_records "
-				+ "INNER JOIN revisions "
-				+ "ON document_records.documentId = revisions.documentId ";
+				+ "INNER JOIN "
+				+ "(SELECT `documentId`, `createdDate`, `status` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
+				+ "ON document_records.documentId = revisions.documentId "
+				+ "GROUP BY document_records.documentId";
 	
 		try {
 			dbConnection = getDBConnection();
 			
 			preparedStatement = dbConnection.prepareStatement(sql);
-			
+			System.out.println(preparedStatement.toString());
 			preparedStatement.executeQuery();
 			
 			System.out.println(preparedStatement.toString());
@@ -734,9 +760,8 @@ public static Document getDocumentById(int id){
 	
 	PreparedStatement preparedStatement = null;
 	
-	String sql = null;
 
-	sql = "SELECT document_records.documentId, document_records.title, document_records.description, document_records.author, revisions.revisionId, revisions.revisionNo, revisions.documentAttachment, revisions.createdDate, revisions.status "
+	String sql = "SELECT document_records.documentId, document_records.title, document_records.description, document_records.author, revisions.revisionId, revisions.revisionNo, revisions.documentAttachment, revisions.createdDate, revisions.status "
 			+ "FROM document_records "
 			+ "INNER JOIN revisions "
 			+ "ON document_records.documentId = revisions.documentId "

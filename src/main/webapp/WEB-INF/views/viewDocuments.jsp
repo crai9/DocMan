@@ -44,7 +44,7 @@
                         
 
                         <td><a href="" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="" class="btn btn-sm btn-danger">Delete</a>
+                            <a onclick="confirmDeleteDocument(${document.id})" class="btn btn-sm btn-danger">Delete</a>
                             <a href="" class="btn btn-sm btn-warning">Download</a>
                             <a href='viewDoc/${document.id}' class="btn btn-sm btn-info">View Doc</a>
                         </td>

@@ -85,4 +85,19 @@ public class DocumentController {
 		return "viewDoc";
 	}
 	
+	//Delete User
+	@RequestMapping(value = "/document/delete/{id}")
+	public String deleteDocument(HttpServletRequest request, @PathVariable int id){
+		
+		if(!hasRole(request, "ROLE_USER")){
+			return "403";
+		}
+		
+		DBManager.deleteDocumentById(id);
+		
+		System.out.println("Removed row with id " + id);
+		
+		return "redirect:/dashboard";
+	}
+	
 }
