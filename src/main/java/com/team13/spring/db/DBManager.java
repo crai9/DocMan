@@ -55,8 +55,8 @@ public class DBManager {
 	
 	public static void main(String[] args){
 		
-		System.out.println(getUserIdByUsername("craig"));
-		
+		System.out.println(countDocuments());
+		System.out.println(countDocuments("cool"));
 	}
 		
 	
@@ -180,7 +180,7 @@ public class DBManager {
 		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		
 		String sql = "INSERT INTO distributees"
-				+ "(distributeeId, userId, revisionId, distributionDate) VALUES"
+				+ "(distributeeId, userId, documentId, distributionDate) VALUES"
 				+ "(NULL, ?, ?, ?)";
  
 		try {
@@ -520,7 +520,7 @@ public class DBManager {
 		
 		PreparedStatement preparedStatement = null;
  
-		String sql = "SELECT count(userId) AS total FROM users WHERE username = ?";
+		String sql = "SELECT count(userId) AS total FROM users WHERE username LIKE ?";
 		
 		try {
 			dbConnection = getDBConnection();
@@ -768,7 +768,161 @@ public class DBManager {
 		
 	}
 	
-public static List<Document> allDocuments(String search){
+	public static int countDocuments(String search){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT count(DISTINCT documentId) as total "
+				+ "FROM document_records "
+				+ "WHERE documentId LIKE ? OR title LIKE ? OR description LIKE ? OR author LIKE ?";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+			
+			search = "%" + search + "%";
+			
+			preparedStatement.setString(1, search);
+			preparedStatement.setString(2, search);
+			preparedStatement.setString(3, search);
+			preparedStatement.setString(4, search);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			
+			
+			if(rs.next()){
+				int count = rs.getInt("total");
+				return count;
+			} 
+			
+
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return 0;
+	}
+	
+	public static int countDocuments(){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT count(DISTINCT documentId) as total FROM document_records;";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			
+			
+			if(rs.next()){
+				int count = rs.getInt("total");
+				return count;
+			} 
+			
+
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return 0;
+	}
+	
+	public static List<Document> allDocumentsPaged(String search, double perPage, int start){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+		
+		String sql = null;
+		
+		if(search == null){
+			sql = "SELECT document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status "
+					+ "FROM document_records "
+					+ "INNER JOIN "
+					+ "(SELECT `documentId`, `createdDate`, `status` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
+					+ "ON document_records.documentId = revisions.documentId "
+					+ "GROUP BY document_records.documentId "
+					+ "LIMIT ? OFFSET ?";
+			
+		} else {
+			sql = "SELECT document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status "
+					+ "FROM document_records "
+					+ "INNER JOIN "
+					+ "(SELECT `documentId`, `createdDate`, `status` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
+					+ "ON document_records.documentId = revisions.documentId "
+					+ "WHERE title LIKE ? OR document_records.documentId LIKE ? OR author LIKE ? OR description LIKE ? "
+					+ "GROUP BY document_records.documentId "
+					+ "LIMIT ? OFFSET ?";
+		}
+		
+			
+	
+		try {
+			dbConnection = getDBConnection();
+			
+			preparedStatement = dbConnection.prepareStatement(sql);
+			if(search != null){
+				search = "%" + search + "%";
+				preparedStatement.setString(1, search);
+				preparedStatement.setString(2, search);
+				preparedStatement.setString(3, search);
+				preparedStatement.setString(4, search);
+				preparedStatement.setInt(5, (int)perPage);
+				preparedStatement.setInt(6, start);
+			
+			} else {
+				
+				preparedStatement.setInt(1, (int)perPage);
+				preparedStatement.setInt(2, start);
+				
+			}
+			System.out.println(preparedStatement);
+			preparedStatement.executeQuery();
+			
+			System.out.println(preparedStatement.toString());
+			
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            List<Document> all = new ArrayList<Document>();
+            while(rs.next()){
+
+            	Document u = new Document();
+            	
+            	u.setId(rs.getInt("documentId"));
+            	
+            	u.setTitle(rs.getString("title"));
+            	u.setAuthor(rs.getString("author"));
+            	u.setCreatedDate(rs.getString("createdDate"));
+            	u.setStatus(rs.getString("status"));
+            	
+            	System.out.println(u.getTitle());
+            	System.out.println(u.getId());
+            	all.add(u);
+            }
+
+           return all;
+           
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return null; 
+		
+	}
+
+	public static List<Document> allDocuments(String search){
 		
 		Connection dbConnection = null;
 		

@@ -79,15 +79,95 @@ public class DocumentController {
 		return "redirect:/viewDoc/" + documentId;
 	}
 	
-	@RequestMapping(value = {"/documents"}, method = RequestMethod.GET)
-	public String documents(Model model, HttpServletRequest request){
+	@RequestMapping(value = {"/documents/page/{pageNo}"}, method = RequestMethod.GET)
+	public String documents(Model model, HttpServletRequest request, @PathVariable int pageNo){
 		if(!hasRole(request, "ROLE_USER")){
 			return "403";
 		}
 		
 		String s = null;
 		
-		model.addAttribute("document", DBManager.allDocuments(s));
+		double total = DBManager.countDocuments();
+		double perPage = 10;
+		int pages = (int) Math.ceil(total / perPage);
+		int nextPage, prevPage;
+		
+		if(pages > 1){
+			if(pageNo <= 1){
+				pageNo = 1;
+				prevPage = pageNo;
+				nextPage = pageNo + 1;
+			} else if(pageNo >= pages) {
+				pageNo = pages;
+				nextPage = pageNo;
+				prevPage = pageNo - 1;
+			} else {
+				nextPage = pageNo + 1;
+				prevPage = pageNo - 1;
+			}	
+		} else {
+			nextPage = 0;
+			prevPage = 0;
+		}
+
+		
+		int start = (int) ((pageNo - 1) * (perPage));
+		
+		System.out.println("There will be " + pages + " pages.");
+		System.out.println("You are on page:  " + pageNo);
+		
+		model.addAttribute("documents", DBManager.allDocumentsPaged(s, perPage, start));
+		model.addAttribute("totalPages", (int) pages);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("nextPage", nextPage);
+		model.addAttribute("prevPage", prevPage);
+		
+		return "viewDocuments";
+	}
+	
+	@RequestMapping(value = {"/documents/search/{search}/page/{pageNo}"}, method = RequestMethod.GET)
+	public String documentsSearch(Model model, HttpServletRequest request, @PathVariable int pageNo, @PathVariable String search){
+		if(!hasRole(request, "ROLE_USER")){
+			return "403";
+		}
+		
+		String s = search;
+		
+		double total = DBManager.countDocuments(search);
+		double perPage = 10;
+		int pages = (int) Math.ceil(total / perPage);
+		int nextPage, prevPage;
+		
+		if(pages > 1){
+			if(pageNo <= 1){
+				pageNo = 1;
+				prevPage = pageNo;
+				nextPage = pageNo + 1;
+			} else if(pageNo >= pages) {
+				pageNo = pages;
+				nextPage = pageNo;
+				prevPage = pageNo - 1;
+			} else {
+				nextPage = pageNo + 1;
+				prevPage = pageNo - 1;
+			}	
+		} else {
+			nextPage = 0;
+			prevPage = 0;
+		}
+
+		
+		int start = (int) ((pageNo - 1) * (perPage));
+		
+		System.out.println("There will be " + pages + " pages.");
+		System.out.println("You are on page:  " + pageNo);
+		
+		model.addAttribute("documents", DBManager.allDocumentsPaged(s, perPage, start));
+		model.addAttribute("totalPages", (int) pages);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("nextPage", nextPage);
+		model.addAttribute("prevPage", prevPage);
+		
 		return "viewDocuments";
 	}
 	
