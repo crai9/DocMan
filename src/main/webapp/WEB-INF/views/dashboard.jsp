@@ -28,7 +28,7 @@
             <div class="well well-lg centered-nav">
             	<div class="btn-group" role="group">
 	                <a href="createDocument" class="btn btn-lg btn-success">New Document</a>
-	                <a href="documents" class="btn btn-lg btn-info">All Documents</a>
+	                <a href="documents/page/1" class="btn btn-lg btn-info">All Documents</a>
 	                <a href="documents/own" class="btn btn-lg btn-warning">Your Documents</a>
 	                <a href="account" class="btn btn-lg btn-danger">Your Account</a>
 	                <c:if test="${admin == true}">
