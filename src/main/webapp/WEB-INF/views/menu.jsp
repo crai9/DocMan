@@ -28,6 +28,9 @@
      			 	</c:when>
 
       				<c:otherwise>
+      				<script type="text/javascript">
+      				var userId = ${sessionScope.id}
+      				</script>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="pointer" src="<c:url value='/resources/img/notification.png' />" height="20px"><span class="color pointer badge">4</span></a>
 						<ul class="dropdown-menu notification-padding" role="menu">
