@@ -36,7 +36,7 @@
 	                          <button type="submit" class="btn btn-primary">Search</button>
 	                          <c:choose>
 	                              <c:when test="${!empty search}">
-	                                  <a href="<c:url value='/users/page/1' />" class="btn btn-primary">&laquo; Go Back</a>
+	                                  <a href="<c:url value='/documents/page/1' />" class="btn btn-primary">&laquo; Go Back</a>
 	                              </c:when>
 	                          </c:choose>
 	                      </div>
@@ -92,7 +92,12 @@
                 </c:if>
                 </c:when>
                 <c:otherwise>
-                empty list :(
+                    <a href="<c:url value='/documents/page/1' />" class="btn btn-primary" role="button">&laquo; Go back</a>
+                    <br>
+                    <br>
+                    <div class="alert alert-danger btn-sm" role="alert">
+                        No results!
+                    </div>
                 </c:otherwise>
                 </c:choose>
 
