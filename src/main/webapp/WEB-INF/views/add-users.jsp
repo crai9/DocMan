@@ -78,13 +78,7 @@
             </div>
         </div>
     </div>
-        <div class="form-group">
-        <label class="col-xs-3 control-label">Captcha</label>
-        <div class="col-xs-8">
-            <!-- The captcha container -->
-            <div id="captchaContainer"></div>
-        </div>
-    </div>
+       
     <div class="form-group">
         <div class="col-xs-9 col-xs-offset-3">
             <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Submit</button>

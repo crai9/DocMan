@@ -49,7 +49,4 @@ $("#push").click(function() {
             }
 
         });
-
-
-
 });

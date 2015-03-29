@@ -94,6 +94,8 @@
 					</div>
 				</div>
 				
+
+				
 				<div class="form-group">
 					<div class="col-xs-9 col-xs-offset-3">
 						<button type="button" name="previous" id="previous" class="btn btn-success">Previous</button>
@@ -116,10 +118,20 @@
 			</div>
 		</div>
 		
+	<!-- #messages is where the messages are placed inside -->
+    	<div class="form-group">
+        	<div class="col-xs-9 col-xs-offset-3">
+            	<div class="bg-danger">
+            		<ol id="messages">
+            		</ol>
+            	</div>
+        	</div>
+    	</div>
+		
 		<div class="form-group">
 			<div class="col-xs-9 col-xs-offset-3">
 				<button type="button" name="previous" id="previous2" class="btn btn-success">Previous</button>
-				<button type="submit" id="submit" class="btn btn-primary" name="submit" value="Sign up">Create Document</button>
+				<button type="submit" id="submitBtn" class="btn btn-primary" name="submit" value="Sign up">Create Document</button>
 			</div>
 		</div>
 		</div>

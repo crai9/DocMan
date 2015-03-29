@@ -1,6 +1,9 @@
 $(document).ready(function() {
     	$('#create').formValidation({
 	        framework: 'bootstrap',
+	        err: {
+	            container: '#messages'
+	        },
 	        icon: {
 	            valid: 'glyphicon glyphicon-ok',
 	            invalid: 'glyphicon glyphicon-remove',
@@ -47,4 +50,5 @@ $(document).ready(function() {
 	           }	
 	        }
     	});
+
     });
