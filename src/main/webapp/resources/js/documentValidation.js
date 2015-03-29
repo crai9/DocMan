@@ -6,6 +6,7 @@ $(document).ready(function() {
 	            invalid: 'glyphicon glyphicon-remove',
 	            validating: 'glyphicon glyphicon-refresh'
 	        },
+	       
 	        addOns: {
 	            mandatoryIcon: {
 	                icon: 'glyphicon glyphicon-asterisk'

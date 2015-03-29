@@ -130,7 +130,10 @@
 <%@ include file="sidemenu.jsp" %>
 </div>
 </div>
+	
+	<script src="resources/js/moment.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="resources/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/formValidation.min.js"></script>
 	<script src="resources/js/framework/bootstrap.min.js"></script>
@@ -139,6 +142,7 @@
 	<script src="resources/js/main.js"></script>
 	<script src="resources/js/documentValidation.js"></script>
 	<script src="resources/js/createDoc.js"></script>
+	
 	
 </body>
 </html>

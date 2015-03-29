@@ -1,30 +1,6 @@
 $(document).ready(function() {
 	
     $("#nextCD").click(function() {
-    	$('#create').formValidation({
-	        framework: 'bootstrap',
-	        icon: {
-	            valid: 'glyphicon glyphicon-ok',
-	            invalid: 'glyphicon glyphicon-remove',
-	            validating: 'glyphicon glyphicon-refresh'
-	        },
-	        fields: {
-	            title: {
-	                	validators: {
-	                		notEmpty: {
-	                			message: 'The first name is required'
-	                		}
-	                	}
-	            	},
-	            	description: {
-	            		validators: {
-	            			notEmpty: {
-	            				message: 'wrtie a desceririon'
-	            			}
-	            		}
-	            	}
-	        	}
-    	});
     	$("#uploadDocument").removeClass('hidden');
         $("#createDocument").addClass('hidden');
     });
