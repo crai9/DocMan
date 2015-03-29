@@ -78,6 +78,13 @@
             </div>
         </div>
     </div>
+        <div class="form-group">
+        <label class="col-xs-3 control-label">Captcha</label>
+        <div class="col-xs-8">
+            <!-- The captcha container -->
+            <div id="captchaContainer"></div>
+        </div>
+    </div>
     <div class="form-group">
         <div class="col-xs-9 col-xs-offset-3">
             <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Submit</button>
@@ -96,5 +103,7 @@
 	<script src="<c:url value='/resources/js/jquery.mmenu.min.all.js' />"></script>
 	<script src="resources/js/main.js"></script>
 	<script src="<c:url value='/resources/js/register.js' />"></script>
+	<script src="resources/js/mandatoryIcon.js"></script>
+	<script src="resources/js/reCaptcha2.js"></script>
 </body>
 </html>
