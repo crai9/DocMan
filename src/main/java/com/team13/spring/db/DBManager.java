@@ -901,6 +901,95 @@ public class DBManager {
 		return 0;
 	}
 	
+	public static List<Document> allYourDocumentsPaged(String search, double perPage, int start, int id){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+		
+		String sql = null;
+		
+		if(search == null){
+			sql = "SELECT u.userId, document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status "
+					+ "FROM document_records "
+					+ "INNER JOIN "
+					+ "(SELECT `documentId`, `createdDate`, `status` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
+					+ "ON document_records.documentId = revisions.documentId "
+					+ "INNER JOIN users u ON u.username = document_records.author "
+					+ "WHERE u.userId = ? "
+					+ "GROUP BY document_records.documentId "
+					+ "LIMIT ? OFFSET ?";
+			
+		} else {
+			sql = "SELECT u.userId, document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status "
+					+ "FROM document_records "
+					+ "INNER JOIN "
+					+ "(SELECT `documentId`, `createdDate`, `status` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
+					+ "ON document_records.documentId = revisions.documentId "
+					+ "INNER JOIN users u ON u.username = document_records.author "
+					+ "WHERE title LIKE ? OR document_records.documentId LIKE ? OR author LIKE ? OR description LIKE ? AND u.userId = ? "
+					+ "GROUP BY document_records.documentId "
+					+ "LIMIT ? OFFSET ?";
+		}
+		
+			
+	
+		try {
+			dbConnection = getDBConnection();
+			
+			preparedStatement = dbConnection.prepareStatement(sql);
+			if(search != null){
+				search = "%" + search + "%";
+				preparedStatement.setString(1, search);
+				preparedStatement.setString(2, search);
+				preparedStatement.setString(3, search);
+				preparedStatement.setString(4, search);
+				preparedStatement.setInt(5, id);
+				preparedStatement.setInt(6, (int)perPage);
+				preparedStatement.setInt(7, start);
+			
+			} else {
+				
+				preparedStatement.setInt(1, id);
+				preparedStatement.setInt(2, (int)perPage);
+				preparedStatement.setInt(3, start);
+				
+			}
+			System.out.println(preparedStatement);
+			preparedStatement.executeQuery();
+			
+			System.out.println(preparedStatement.toString());
+			
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            List<Document> all = new ArrayList<Document>();
+            while(rs.next()){
+
+            	Document u = new Document();
+            	
+            	u.setId(rs.getInt("documentId"));
+            	
+            	u.setTitle(rs.getString("title"));
+            	u.setAuthor(rs.getString("author"));
+            	u.setCreatedDate(rs.getString("createdDate"));
+            	u.setStatus(rs.getString("status"));
+            	
+            	System.out.println(u.getTitle());
+            	System.out.println(u.getId());
+            	all.add(u);
+            }
+
+           return all;
+           
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return null; 
+		
+	}
+	
 	public static List<Document> allDocumentsPaged(String search, double perPage, int start){
 		
 		Connection dbConnection = null;

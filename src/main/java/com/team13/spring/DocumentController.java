@@ -85,6 +85,51 @@ public class DocumentController {
 
 		return "test";
 	}
+	@RequestMapping(value = {"/documents/own"}, method = RequestMethod.GET)
+	public String yourDocuments(Model model, HttpServletRequest request){
+		if(!hasRole(request, "ROLE_USER")){
+			return "403";
+		}
+		
+		String s = null;
+		int pageNo = 1;
+		double total = DBManager.countDocuments();
+		double perPage = 10000;
+		int pages = (int) Math.ceil(total / perPage);
+		int nextPage, prevPage;
+		
+		if(pages > 1){
+			if(pageNo <= 1){
+				pageNo = 1;
+				prevPage = pageNo;
+				nextPage = pageNo + 1;
+			} else if(pageNo >= pages) {
+				pageNo = pages;
+				nextPage = pageNo;
+				prevPage = pageNo - 1;
+			} else {
+				nextPage = pageNo + 1;
+				prevPage = pageNo - 1;
+			}	
+		} else {
+			nextPage = 0;
+			prevPage = 0;
+		}
+
+		
+		int start = (int) ((pageNo - 1) * (perPage));
+		int id = (Integer) request.getSession().getAttribute("id");
+		System.out.println("There will be " + pages + " pages.");
+		System.out.println("You are on page:  " + pageNo);
+		model.addAttribute("yourdocs", true);
+		model.addAttribute("documents", DBManager.allYourDocumentsPaged(s, perPage, start, id));
+		model.addAttribute("totalPages", (int) pages);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("nextPage", nextPage);
+		model.addAttribute("prevPage", prevPage);
+		
+		return "viewDocuments";
+	}
 	
 	@RequestMapping(value = {"/documents/page/{pageNo}"}, method = RequestMethod.GET)
 	public String documents(Model model, HttpServletRequest request, @PathVariable int pageNo){

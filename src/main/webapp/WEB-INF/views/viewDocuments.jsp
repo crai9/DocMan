@@ -21,12 +21,13 @@
     <%@ include file="menu.jsp" %>
         <div class="container top">
             <div class="page-header">
-                <h1>Document List</h1>
+                <h1><c:if test="${yourdocs == true}">Your </c:if>Document List</h1>
             </div>
             <h4><a class="btn btn-warning" href="<c:url value='/dashboard' />">Dashboard</a></h4>
             <h4><a class="btn btn-success" href="<c:url value='/createDocument' />">Create Document</a></h4>
 			<c:choose>
                 <c:when test="${!empty documents}">
+                <c:if test="${yourdocs != true}">
 	                <form id="docSearch">
 	                  <div class="form-group">
 	                      <div class="row">
@@ -42,6 +43,7 @@
 	                      </div>
 	                  </div>
 	              </form>
+	              </c:if>
 	              <br>
                 <div class="table-responsive">
 	                <table class="table table-striped table-hover table-bordered">
