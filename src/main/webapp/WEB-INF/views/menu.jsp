@@ -30,14 +30,15 @@
       				<c:otherwise>
       				<script type="text/javascript">
       				var userId = ${sessionScope.id}
+      				
       				</script>
+      				<audio id="sound">
+					  <source src="<c:url value='/resources/sound/sound.mp3' />" type="audio/mpeg">
+					</audio>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="pointer" src="<c:url value='/resources/img/notification.png' />" height="20px"><span class="color pointer badge">4</span></a>
-						<ul class="dropdown-menu notification-padding" role="menu">
-                    			<li><b>Edmond </b> sent you a document</li>
-                    			<li class="divider"></li>
-                    			<li><b>Craig </b> sent you a document</li>
-                  			</ul>
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="pointer" src="<c:url value='/resources/img/notification.png' />" height="20px"><span id="count" style="display: none;" class="color pointer badge">4</span></a>
+						<ul id="notifications" class="dropdown-menu notification-padding" role="menu">
+                  		</ul>
 						</li>
                         <li><a href="<c:url value='/dashboard' />">Dashboard</a></li>
                         <li class="dropdown">

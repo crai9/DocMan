@@ -12,12 +12,19 @@
     </style>
 
     <script type="text/javascript" charset="utf-8">
-    function addmsg(type, count, msg){
-        /* Simple helper to add a div.
-        type is the name of a CSS class (old/new/error).
-        msg is the contents of the div */
-        $("#messages").append(
-            "<div class='msg "+ type +"'>"+ count + msg +"</div>"
+    function addmsg(type, count, notifications){
+    	var htmlString = "";
+    	for(var i = 0; i < notifications.length; i++){
+    		htmlString = htmlString + notifications[i].from + " shared "
+    		+ "<a href='/DocMan/viewDoc/" + notifications[i].documentId + "'> "
+    		+notifications[i].documentTitle + "</a> with you. <br>";
+    	}
+        $("#messages").html(
+            "<div class='msg "+ type +"'>"
+            + count
+            + "<br>"
+            + htmlString 
+            +"</div>"
         );
     }
 	
@@ -34,8 +41,7 @@
             success: function(data){ 
                 data = JSON.parse(data);
             	var count = data.count;
-                addmsg("new", count, data);
-                console.log(data.notifications);
+                addmsg("new", count, data.notifications);
                 setTimeout(
                     waitForMsg, 
                     3000 
@@ -51,7 +57,10 @@
     };
 
     $(document).ready(function(){
-        waitForMsg(); /* Start the inital request */
+    	if(userId){
+            waitForMsg(); /* Start the inital request */
+    	}
+
     });
     
     

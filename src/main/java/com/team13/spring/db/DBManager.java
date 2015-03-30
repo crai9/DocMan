@@ -843,7 +843,7 @@ public class DBManager {
  
 		String sql = "SELECT count(notificationId) as total "
 				+ "FROM notifications "
-				+ "WHERE `to` = ?";
+				+ "WHERE `to` = ? AND `seen` = 0";
 		
 		try {
 			dbConnection = getDBConnection();
