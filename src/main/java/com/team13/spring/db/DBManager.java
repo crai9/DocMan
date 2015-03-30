@@ -1024,7 +1024,7 @@ public static Document getDocumentById(int id){
 	}
 	return null;
 }
-public static int getPassword(String password) throws SQLException {
+public static int password(String password) throws SQLException {
 	 
 	Connection dbConnection = null;
 	

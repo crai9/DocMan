@@ -151,9 +151,8 @@ public class LoginController {
 		System.out.println("Password: " + password);
 		System.out.println("Encryption: " + encPass);
 		
-		
 		return "account";
-	}
+}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(
