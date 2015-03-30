@@ -1024,4 +1024,54 @@ public static Document getDocumentById(int id){
 	}
 	return null;
 }
+public static int getPassword(String password) throws SQLException {
+	 
+	Connection dbConnection = null;
+	
+	PreparedStatement preparedStatement = null;
+
+	String sql = "SELECT * FROM users WHERE password = ? LIMIT 1";
+	
+
+	try {
+		dbConnection = getDBConnection();
+		preparedStatement = dbConnection.prepareStatement(sql);
+
+		preparedStatement.setString(1, password);
+
+		preparedStatement.executeQuery();
+		
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        while(rs.next()){
+
+            String name = rs.getString("firstName");
+            String last = rs.getString("lastName");
+            
+            System.out.print("First Name: " + name);
+            System.out.print(", Last Name: " + last);
+            System.out.print("\n");
+            
+            return rs.getInt("userId");
+
+        }
+
+	} catch (SQLException e) {
+
+		System.out.println(e.getMessage());
+
+	} finally {
+
+		if (preparedStatement != null) {
+			preparedStatement.close();
+		}
+
+		if (dbConnection != null) {
+			dbConnection.close();
+		}
+
+	}
+	return 0;
+
+}
 }

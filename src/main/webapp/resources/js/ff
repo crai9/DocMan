@@ -1,0 +1,45 @@
+@RequestMapping(value = {"/login"}, method = RequestMethod.POST)
+	public String process(HttpServletRequest request, @RequestParam("username") String username, @RequestParam("password") String password) {
+		
+		String encPass = Encrypt.crypt(password);
+		
+		System.out.println("Username: " + username);
+		System.out.println("Password: " + password);
+		System.out.println("Password Encrypted: " + encPass);
+		
+		//TODO Validate
+		
+		try {
+			int id = DBManager.login(username, encPass);
+			if(id != 0){
+				System.out.println("Success");
+				String[] roles = DBManager.getUserRolesById(id);
+				
+				User u = DBManager.getUserById(id);
+				String fn = u.getFirstName();
+				
+				request.getSession().setAttribute("roles", roles);
+				request.getSession().setAttribute("id", id);
+				request.getSession().setAttribute("username", fn);
+				request.getSession().setAttribute("authenticated", true);
+				System.out.println("Added roles to session");
+				
+				if(hasRole(request, "ROLE_ADMIN")){
+					request.getSession().setAttribute("admin", true);
+				}
+				if(hasRole(request, "ROLE_USER")){
+					request.getSession().setAttribute("u", true);
+				}
+				
+				return "redirect:/dashboard";
+			} else { 
+				System.out.println("Failed");
+			}
+		} catch (SQLException e) {
+			// 
+			e.printStackTrace();
+		}
+		
+		return "redirect:/loginPage?success=no";
+	}
+	

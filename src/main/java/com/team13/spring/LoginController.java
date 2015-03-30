@@ -128,13 +128,31 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/account", method = RequestMethod.GET)
-	public String viewAccount(HttpServletRequest request){
+	public String viewAccount(Model model, HttpServletRequest request){
 		
 		if(!hasRole(request, "ROLE_USER")){
 			return "403";
 		}
 		
-		return "notImplemented";
+		int id = (Integer) request.getSession().getAttribute("id");
+		
+		model.addAttribute("users", DBManager.getUserById(id));
+		
+		return "account";
+	}
+	
+	@RequestMapping(value = "/updateAccount", method = RequestMethod.POST)
+	public String updateAccount(HttpServletRequest request, 
+			@RequestParam("password") String password){
+		
+		
+		String encPass = Encrypt.crypt(password);
+		
+		System.out.println("Password: " + password);
+		System.out.println("Encryption: " + encPass);
+		
+		
+		return "account";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
