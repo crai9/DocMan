@@ -134,11 +134,16 @@ if (location.port == "8080") {
 } else {
     docUrl = '/viewDoc/';
 }
-
+var mark;
+if (location.port == "8080") {
+    mark = '/DocMan/markAsRead';
+} else {
+    mark = '/markAsRead';
+}
 function addmsg(type, count, notifications) {
     var htmlString = "";
     for (var i = 0; i < notifications.length; i++) {
-        htmlString = htmlString + "<li><a href='" + docUrl + notifications[i].documentId + "'> " + notifications[i].from + " shared " + notifications[i].documentTitle + " with you.</a></li>";
+        htmlString = htmlString + "<li><a id='" + notifications[i].notificationId + "' class='markAsRead' href='" + docUrl + notifications[i].documentId + "'> " + notifications[i].from + " shared " + notifications[i].documentTitle + " with you.</a></li>";
     }
     $("#count").html(count);
     if (count < 1) {
@@ -151,6 +156,22 @@ function addmsg(type, count, notifications) {
     }
     theCount = count;
     $("#notifications").html(htmlString);
+    $('.markAsRead').click(function (e) {
+        e.preventDefault();                   // prevent default anchor behavior
+        var goTo = this.getAttribute("href"); // store anchor href
+        var docId = this.getAttribute("id");
+        console.log("marking id: " + docId);
+        $.ajax({
+        	type: "GET",
+        	url: mark,
+        	data: {id: docId},
+            success: function(data) {
+                	window.location = goTo;  
+            }
+        	
+        })
+       
+    });
 
 
 }
