@@ -6,9 +6,21 @@ $(document).ready(function() {
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },
+        addOns: {
+        	mandatoryIcon: {
+        		icon: 'glyphicon glyphicon-asterisk'
+        	},
+            reCaptcha2: {
+                element: 'captchaContainer',
+                language: 'en',
+                theme: 'light',
+                siteKey: '6LdgOwETAAAAALA9auuNVKFeXizXcYFrKOVC_vs-',
+                timeout: 120,
+                message: 'The captcha is not valid'
+            }
+        },
         fields: {
             fname: {
-                row: '.col-xs-2',
                 validators: {
                     notEmpty: {
                         message: 'The first name is required'
@@ -16,7 +28,6 @@ $(document).ready(function() {
                 }
             },
             lname: {
-                row: '.col-xs-3',
                 validators: {
                     notEmpty: {
                         message: 'The last name is required'

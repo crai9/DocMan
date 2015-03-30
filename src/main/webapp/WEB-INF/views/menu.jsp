@@ -52,9 +52,6 @@
                   			</ul>
                 		</li>
                     </ul>
-                    <form class="navbar-form navbar-right">
-                        <input name="search" type="text" class="form-control" placeholder="Search...">
-                    </form>
       				</c:otherwise>
 				</c:choose>
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.team13.spring.db.DBManager;
 import com.team13.spring.login.Encrypt;
+import com.team13.spring.model.Document;
 import com.team13.spring.model.User;
 
 import org.json.JSONArray;
@@ -201,5 +202,40 @@ public class DocumentController {
 		
 		return "redirect:/dashboard";
 	}
+	
+	//Revise Document
+	@RequestMapping(value = {"/reviseDocument/{id}"}, method = RequestMethod.GET)
+	public String reviseDocument(Model model, HttpServletRequest request, @PathVariable int id){
+		if(!hasRole(request, "ROLE_USER")){
+			return "403";
+		}
+		
+		Document revisionNo = DBManager.getDocumentById(id);
+		int number = revisionNo.getRevisionNo();
+		revisionNo.setRevisionNo(number + 1);
+		
+		model.addAttribute("revision", revisionNo);
+		model.addAttribute("revisionNo", number + 1);
+		
+		return "revise";
+		
+	}
+	
+	@RequestMapping(value = "/revise", method = RequestMethod.POST)
+	public String revise(
+			@RequestParam("documentId") long documentId,
+			@RequestParam("revNo") int revNo, @RequestParam("file") String file,
+			@RequestParam("dateCreated") String dateCreated, @RequestParam("status") String status,
+			HttpServletRequest request){
+		
+		if(!hasRole(request, "ROLE_USER")){
+			return "403";
+		}
+		
+		DBManager.addRevision(revNo, file, documentId, dateCreated, status);
+		
+		return "redirect:/viewDoc/" + documentId;
+	}
+	
 	
 }

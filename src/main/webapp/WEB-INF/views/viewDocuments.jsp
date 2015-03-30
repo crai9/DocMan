@@ -36,7 +36,7 @@
 	                          <button type="submit" class="btn btn-primary">Search</button>
 	                          <c:choose>
 	                              <c:when test="${!empty search}">
-	                                  <a href="<c:url value='/users/page/1' />" class="btn btn-primary">&laquo; Go Back</a>
+	                                  <a href="<c:url value='/documents/page/1' />" class="btn btn-primary">&laquo; Go Back</a>
 	                              </c:when>
 	                          </c:choose>
 	                      </div>
@@ -60,7 +60,8 @@
 	                        <td>${document.status}</td>
 	                        
 	
-	                        <td><a href="" class="btn btn-primary btn-sm">Edit</a>
+	                        <td>
+	                        	<a href="<c:url value='/reviseDocument/${document.id}'/>" class="btn btn-primary btn-sm">Revise</a>
 	                            <a onclick="confirmDeleteDocument(${document.id})" class="btn btn-sm btn-danger">Delete</a>
 	                            <a href="" class="btn btn-sm btn-warning">Download</a>
 	                            <a href="<c:url value='/viewDoc/${document.id}' />" class="btn btn-sm btn-info">View Doc</a>
@@ -92,7 +93,12 @@
                 </c:if>
                 </c:when>
                 <c:otherwise>
-                empty list :(
+                    <a href="<c:url value='/documents/page/1' />" class="btn btn-primary" role="button">&laquo; Go back</a>
+                    <br>
+                    <br>
+                    <div class="alert alert-danger btn-sm" role="alert">
+                        No results!
+                    </div>
                 </c:otherwise>
                 </c:choose>
 

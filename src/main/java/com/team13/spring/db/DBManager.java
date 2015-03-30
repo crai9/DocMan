@@ -795,6 +795,7 @@ public class DBManager {
 		
 	}
 	
+	
 	public static int countDocuments(String search){
 		
 		Connection dbConnection = null;
@@ -1074,6 +1075,7 @@ public class DBManager {
 	        	n.setDocumentTitle(rs.getString("title"));
 	        	n.setFrom(rs.getString("fullName"));
 
+
 	        	all.add(n);
 	        }
 	
@@ -1085,6 +1087,7 @@ public class DBManager {
 	
 		}
 		return null;
+
 	}
 
 	public static Document getDocumentById(int id){
@@ -1122,7 +1125,7 @@ public class DBManager {
 	        	d.setTitle(rs.getString("title"));
 	        	d.setDescription(rs.getString("description"));
 	        	d.setAuthor(rs.getString("author"));
-	        	d.setRevisionNo(rs.getString("revisionNo"));
+	        	d.setRevisionNo(rs.getInt("revisionNo"));
 	        	d.setDocumentAttached(rs.getString("documentAttachment"));
 	        	d.setCreatedDate(rs.getString("createdDate"));
 	        	d.setStatus(rs.getString("status"));

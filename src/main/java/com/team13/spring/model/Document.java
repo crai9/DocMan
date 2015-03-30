@@ -7,7 +7,7 @@ public class Document {
 	private String description;
 	private String author;
 	
-	private String revisionNo;
+	private int revisionNo;
 	private String documentAttached;
 	private String createdDate;
 	private String status;
@@ -44,11 +44,11 @@ public class Document {
 		this.author = author;
 	}
 	
-	public String getRevisionNo(){
+	public int getRevisionNo(){
 		return revisionNo;
 	}
 	
-	public void setRevisionNo(String revisionNo){
+	public void setRevisionNo(int revisionNo){
 		this.revisionNo = revisionNo;
 	}
 	

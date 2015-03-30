@@ -1,8 +1,10 @@
 $(document).ready(function() {
+	
     $("#nextCD").click(function() {
-        $("#uploadDocument").removeClass('hidden');
+    	$("#uploadDocument").removeClass('hidden');
         $("#createDocument").addClass('hidden');
     });
+    
     $("#nextUD").click(function() {
         $("#addDistributee").removeClass('hidden');
         $("#uploadDocument").addClass('hidden');
@@ -17,8 +19,7 @@ $(document).ready(function() {
     });
     $('#datetimepicker').datetimepicker({
         format: 'YYYY-MM-DD'
-    });
-
+    });    
 });
 
 var distributees = new Array();
@@ -42,13 +43,10 @@ $("#push").click(function() {
                 //add to ol
                 $('#listUsers').append('<li>' + user + '</li>');
             } else if (!user) {
-                alert("empty");
+               alert("empty");
             } else {
-                alert("not a valid user");
+            	alert("not a valid user");
             }
 
         });
-
-
-
 });

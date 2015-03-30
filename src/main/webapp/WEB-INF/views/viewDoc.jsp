@@ -26,6 +26,7 @@
             <h4><a class="btn btn-warning" href="<c:url value='/dashboard' />">Dashboard</a></h4>
             <h4><a class="btn btn-success" href="<c:url value='/createDocument' />">Create Document</a></h4>
             <h4><a class="btn btn-primary" href="<c:url value='#' />">Edit Document</a></h4>
+            <h4><a class="btn btn-primary" href="<c:url value='/documents/page/1' />">View Document</a></h4>
 
 		<div class="row" style="background-color:white; margin-top:50px; padding:20px;">
 	  		<div class="col-md-4">
