@@ -62,7 +62,7 @@ public class ApiController {
 		
 		return e;
 	}
-	
+
 	@RequestMapping(value = {"/getAllUsers"})
 	public String[] allUsers(){
 		
@@ -80,6 +80,14 @@ public class ApiController {
 		n.setNotifications(DBManager.getNotificationsByUserId(id));
 
 		return n;
+	}
+	
+	@RequestMapping(value = {"/markAsRead"})
+	public String read(@RequestParam("id") int id){
+		
+		DBManager.markAsRead(id);
+
+		return "";
 	}
 	
 }

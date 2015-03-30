@@ -267,6 +267,32 @@ public class DBManager {
 		
 	}
 	
+	public static void markAsRead(int id){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "UPDATE notifications SET "
+				+ "seen = 1 "
+				+ "WHERE `notificationId` = ?";
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 			
+			preparedStatement.setInt(1, id);
+
+			preparedStatement.executeUpdate();
+ 
+			System.out.println(preparedStatement.toString());
+ 
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		} 
+		
+	}
+	
 	public static void deleteUserById(int id){
 		
 		Connection dbConnection = null;
