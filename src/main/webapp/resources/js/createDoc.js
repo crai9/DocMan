@@ -43,9 +43,9 @@ $("#push").click(function() {
                 //add to ol
                 $('#listUsers').append('<li>' + user + '</li>');
             } else if (!user) {
-                alert("empty");
+               alert("empty");
             } else {
-                alert("not a valid user");
+            	alert("not a valid user");
             }
 
         });

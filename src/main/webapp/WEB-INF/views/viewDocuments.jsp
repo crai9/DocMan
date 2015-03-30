@@ -60,7 +60,8 @@
 	                        <td>${document.status}</td>
 	                        
 	
-	                        <td><a href="" class="btn btn-primary btn-sm">Edit</a>
+	                        <td>
+	                        	<a href="<c:url value='/reviseDocument/${document.id}'/>" class="btn btn-primary btn-sm">Revise</a>
 	                            <a onclick="confirmDeleteDocument(${document.id})" class="btn btn-sm btn-danger">Delete</a>
 	                            <a href="" class="btn btn-sm btn-warning">Download</a>
 	                            <a href="<c:url value='/viewDoc/${document.id}' />" class="btn btn-sm btn-info">View Doc</a>

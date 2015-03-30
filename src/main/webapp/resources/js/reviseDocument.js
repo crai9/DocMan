@@ -1,9 +1,6 @@
 $(document).ready(function() {
-    	$('#create').formValidation({
+    	$('#revise').formValidation({
 	        framework: 'bootstrap',
-	        err: {
-	            container: '#messages'
-	        },
 	        icon: {
 	            valid: 'glyphicon glyphicon-ok',
 	            invalid: 'glyphicon glyphicon-remove',
@@ -16,20 +13,6 @@ $(document).ready(function() {
 	            }
 	        },
 	        fields: {
-	            title: {
-	                	validators: {
-	                		notEmpty: {
-	                			message: 'Document Name is required!'
-	                		}
-	                	}
-	            	},
-	           description: {
-	        	   validators: {
-	        		   notEmpty: {
-	        			   message: 'Document Description is required!'
-	        		   }
-	        	   }
-	           }, 
 	           file: {
 	        	   validators: {
 	        		   notEmpty: {
@@ -47,7 +30,14 @@ $(document).ready(function() {
 	        			   message: 'Example: 2015-03-21'
 	        		   }
 	        	   }
-	           }	
+	           },
+	           status: {
+	        	   validators: {
+	        		   notEmpty: {
+	        			   message: 'Status required!'
+	        		   }
+	        	   }
+	           }
 	        }
     	});
 

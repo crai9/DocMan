@@ -25,7 +25,7 @@
 	<a href="dashboard" class="btn btn-warning" role="button">Dashboard</a><br><br>
 	<a href="documents/page/1" class="btn btn-primary" role="button">View Documents</a><br><br>
 	
-	<form enctype="multipart/form-data" action="create" id="create"  method="POST" class="form-horizontal">	
+	<form action="create" enctype="multipart/form-data" id="create" method="POST" class="form-horizontal">	
 		
 		<div id="createDocument">
 			<h2 class="text-center">Create Document</h2>

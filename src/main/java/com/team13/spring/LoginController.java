@@ -332,6 +332,11 @@ public class LoginController {
 			return "403";
 		}
 		
+		// Cannot delete super user
+		if(id == 231){
+			return "403";
+		}
+		
 		DBManager.deleteUserById(id);
 		
 		System.out.println("Removed row with id " + id);
