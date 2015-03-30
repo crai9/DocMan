@@ -140,8 +140,10 @@ if (location.port == "8080") {
 } else {
     mark = '/markAsRead';
 }
+var title = document.title;
 function addmsg(type, count, notifications) {
     var htmlString = "";
+    var noNotifications = "<li>You have no notifications.</li>";
     for (var i = 0; i < notifications.length; i++) {
         htmlString = htmlString + "<li><a id='" + notifications[i].notificationId + "' class='markAsRead' href='" + docUrl + notifications[i].documentId + "'> " + notifications[i].from + " shared " + notifications[i].documentTitle + " with you.</a></li>";
     }
@@ -155,7 +157,14 @@ function addmsg(type, count, notifications) {
         sound.play();
     }
     theCount = count;
-    $("#notifications").html(htmlString);
+    if(count > 0){
+    	$("#notifications").html(htmlString);
+    	document.title = "(" + count + ") " + title;
+    } else {
+    	$("#notifications").html(noNotifications);
+    	document.title = title;
+    }
+    
     $('.markAsRead').click(function (e) {
         e.preventDefault();                   // prevent default anchor behavior
         var goTo = this.getAttribute("href"); // store anchor href
