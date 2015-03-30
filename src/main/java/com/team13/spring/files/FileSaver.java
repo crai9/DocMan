@@ -25,25 +25,15 @@ public class FileSaver {
                 
                 
                 File f = new File(File.separator);
-                	
+            	
                 //Change this depending on where Project's folder is
-                File home = new File(System.getProperty("user.home") + f + "Documents" + f + "Development" + f + "Java" + f + "DocMan");
-                	
-                if (!home.exists())
-                    home.mkdirs();
-                	
-                File dir = new File(home.toString() + f + "src" + f + "main" + f + "webapp" + f + "resources" + f + "docs");
-                	
-                System.out.println("dir is:" + dir);
-
-                if (!dir.exists())
-                    dir.mkdirs();
-                
-                System.out.println(dir.getAbsolutePath());
+                File home = new File(f + "var" + f + "www" + f + "html");
+               
+                System.out.println(home.getAbsolutePath());
                 
                 //need to rename files to stop duplicates
                 
-                File afile = new File(dir + File.separator + name);
+                File afile = new File(home + File.separator + name);
                 System.out.println("abs file: " + afile.getAbsoluteFile());
                 
                 BufferedOutputStream stream = 

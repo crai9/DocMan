@@ -79,6 +79,12 @@ public class DocumentController {
 		return "redirect:/viewDoc/" + documentId;
 	}
 	
+	@RequestMapping(value = {"/test"})
+	public String test(){
+
+		return "test";
+	}
+	
 	@RequestMapping(value = {"/documents/page/{pageNo}"}, method = RequestMethod.GET)
 	public String documents(Model model, HttpServletRequest request, @PathVariable int pageNo){
 		if(!hasRole(request, "ROLE_USER")){

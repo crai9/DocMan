@@ -1,5 +1,7 @@
 package com.team13.spring;
 
+import notifications.NotificationHandler;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.team13.spring.db.DBManager;
 import com.team13.spring.model.ExistingUser;
+import com.team13.spring.model.NotificationSet;
 import com.team13.spring.model.User;
 import com.team13.spring.model.UserStatus;
 
@@ -59,13 +62,32 @@ public class ApiController {
 		
 		return e;
 	}
-	
+
 	@RequestMapping(value = {"/getAllUsers"})
 	public String[] allUsers(){
 		
 		String[] s = DBManager.allUsersToArray();
 		
 		return s;
+	}
+	
+	@RequestMapping(value = {"/getNotifications"})
+	public NotificationSet test(@RequestParam("id") int id){
+		
+		NotificationSet n = new NotificationSet();
+		
+		n.setCount(DBManager.countNotifications(id));
+		n.setNotifications(DBManager.getNotificationsByUserId(id));
+
+		return n;
+	}
+	
+	@RequestMapping(value = {"/markAsRead"})
+	public String read(@RequestParam("id") int id){
+		
+		DBManager.markAsRead(id);
+
+		return "";
 	}
 	
 }

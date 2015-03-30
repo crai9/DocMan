@@ -29,7 +29,7 @@ public class WebController {
 		}
 	}
 	
-	@RequestMapping(value = {"/", "/home", "/index"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/home", "/index"}, method = RequestMethod.GET)
 	public ModelAndView homePage(@RequestParam(value = "login", required = false, defaultValue = "false") Boolean login) {
 		
 		ModelAndView model = new ModelAndView();
@@ -39,7 +39,7 @@ public class WebController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	@RequestMapping(value = {"/dashboard", "/"}, method = RequestMethod.GET)
 	public String dashboard(Model model, HttpServletRequest request) {
 
 		if(!hasRole(request, "ROLE_USER")){

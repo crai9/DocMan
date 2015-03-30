@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.team13.spring.model.Document;
+import com.team13.spring.model.Notification;
 import com.team13.spring.model.User;
 
 public class DBManager {
@@ -55,8 +56,8 @@ public class DBManager {
 	
 	public static void main(String[] args){
 		
-		System.out.println(countDocuments());
-		System.out.println(countDocuments("cool"));
+		System.out.println(countNotifications(204));
+		
 	}
 		
 	
@@ -257,6 +258,32 @@ public class DBManager {
 			System.out.println(preparedStatement.toString());
 			
 			System.out.println("Record is updated in users table");
+ 
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		} 
+		
+	}
+	
+	public static void markAsRead(int id){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "UPDATE notifications SET "
+				+ "seen = 1 "
+				+ "WHERE `notificationId` = ?";
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 			
+			preparedStatement.setInt(1, id);
+
+			preparedStatement.executeUpdate();
+ 
+			System.out.println(preparedStatement.toString());
  
 		} catch (SQLException e) {
  
@@ -808,6 +835,41 @@ public class DBManager {
 		return 0;
 	}
 	
+	public static int countNotifications(int id){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "SELECT count(notificationId) as total "
+				+ "FROM notifications "
+				+ "WHERE `to` = ? AND `seen` = 0";
+		
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+
+			preparedStatement.setInt(1, id);
+			System.out.println(preparedStatement.toString());
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			
+			
+			if(rs.next()){
+				int count = rs.getInt("total");
+				return count;
+			} 
+			
+
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+		return 0;
+	}
+	
 	public static int countDocuments(){
 		
 		Connection dbConnection = null;
@@ -971,56 +1033,109 @@ public class DBManager {
 		return null; 
 		
 	}
-
-public static Document getDocumentById(int id){
 	
-	Connection dbConnection = null;
+	public static List<Notification> getNotificationsByUserId(int id){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+		
 	
-	PreparedStatement preparedStatement = null;
+		String sql = "SELECT n.`notificationId`, n.`documentId`, n.`from`, d.`title`, CONCAT(u.`firstName`, ' ', u.`lastName`) as fullName "
+					+ "FROM notifications n "
+					+ "INNER JOIN document_records d "
+					+ "ON `d`.`documentId` = n.`documentId` "
+					+ "INNER JOIN users u "
+					+ "ON u.`userId` = n.`from` "
+					+ "WHERE n.`to` = ? AND n.`seen` = 0;";
 	
+		try {
+			dbConnection = getDBConnection();
+			
+			preparedStatement = dbConnection.prepareStatement(sql);
+			
+			preparedStatement.setInt(1, id);
+			
+			preparedStatement.executeQuery();
+			
+			System.out.println(preparedStatement.toString());
+			
+	        ResultSet rs = preparedStatement.executeQuery();
+	        
 
-	String sql = "SELECT document_records.documentId, document_records.title, document_records.description, document_records.author, revisions.revisionId, revisions.revisionNo, revisions.documentAttachment, revisions.createdDate, revisions.status "
-			+ "FROM document_records "
-			+ "INNER JOIN revisions "
-			+ "ON document_records.documentId = revisions.documentId "
-			+ "WHERE document_records.documentId = ?";
+	        List<Notification> all = new ArrayList<Notification>();
+	        while(rs.next()){
+	        	
+		        Notification n = new Notification();
+	        	
+	        	n.setNotificationId(rs.getInt("notificationId"));
+	        	n.setDocumentId(rs.getInt("documentId"));
+	        	n.setFromId(rs.getInt("from"));
+	        	n.setDocumentTitle(rs.getString("title"));
+	        	n.setFrom(rs.getString("fullName"));
 
-	try {
-		dbConnection = getDBConnection();
-		
-		preparedStatement = dbConnection.prepareStatement(sql);
-		
-		preparedStatement.setInt(1, id);
-		
-		preparedStatement.executeQuery();
-		
-		System.out.println(preparedStatement.toString());
-		
-        ResultSet rs = preparedStatement.executeQuery();
-        
-        Document d = new Document();
-        
-        while(rs.next()){
-        	
-        	
-        	d.setId(rs.getInt("documentId"));
-        	d.setTitle(rs.getString("title"));
-        	d.setDescription(rs.getString("description"));
-        	d.setAuthor(rs.getString("author"));
-        	d.setRevisionNo(rs.getString("revisionNo"));
-        	d.setDocumentAttached(rs.getString("documentAttachment"));
-        	d.setCreatedDate(rs.getString("createdDate"));
-        	d.setStatus(rs.getString("status"));
-        	
-        }
-
-       return d;
-       
-	} catch (SQLException e) {
-
-		System.out.println(e.getMessage());
-
+	        	all.add(n);
+	        }
+	
+	       return all;
+	       
+		} catch (SQLException e) {
+	
+			System.out.println(e.getMessage());
+	
+		}
+		return null;
 	}
-	return null;
-}
+
+	public static Document getDocumentById(int id){
+		
+		Connection dbConnection = null;
+		
+		PreparedStatement preparedStatement = null;
+		
+	
+		String sql = "SELECT document_records.documentId, document_records.title, document_records.description, document_records.author, revisions.revisionId, revisions.revisionNo, revisions.documentAttachment, revisions.createdDate, revisions.status "
+				+ "FROM document_records "
+				+ "INNER JOIN revisions "
+				+ "ON document_records.documentId = revisions.documentId "
+				+ "WHERE document_records.documentId = ?";
+	
+		try {
+			dbConnection = getDBConnection();
+			
+			preparedStatement = dbConnection.prepareStatement(sql);
+			
+			preparedStatement.setInt(1, id);
+			
+			preparedStatement.executeQuery();
+			
+			System.out.println(preparedStatement.toString());
+			
+	        ResultSet rs = preparedStatement.executeQuery();
+	        
+	        Document d = new Document();
+	        
+	        while(rs.next()){
+	        	
+	        	
+	        	d.setId(rs.getInt("documentId"));
+	        	d.setTitle(rs.getString("title"));
+	        	d.setDescription(rs.getString("description"));
+	        	d.setAuthor(rs.getString("author"));
+	        	d.setRevisionNo(rs.getString("revisionNo"));
+	        	d.setDocumentAttached(rs.getString("documentAttachment"));
+	        	d.setCreatedDate(rs.getString("createdDate"));
+	        	d.setStatus(rs.getString("status"));
+	        	
+	        }
+	
+	       return d;
+	       
+		} catch (SQLException e) {
+	
+			System.out.println(e.getMessage());
+	
+		}
+		return null;
+	}
 }
