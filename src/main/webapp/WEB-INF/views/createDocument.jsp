@@ -131,7 +131,7 @@
 		<div class="form-group">
 			<div class="col-xs-9 col-xs-offset-3">
 				<button type="button" name="previous" id="previous2" class="btn btn-success">Previous</button>
-				<button type="submit" id="submitBtn" class="btn btn-primary" name="submit" value="Sign up">Create Document</button>
+				<button type="submit" id="submitBtn" class="btn btn-primary" name="go" value="Sign up">Create Document</button>
 			</div>
 		</div>
 		</div>

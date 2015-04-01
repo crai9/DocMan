@@ -68,12 +68,16 @@ public class DocumentController {
 	        stringArray.add(jsonArray.getString(i));
 	    }
 
-		long documentId = DBManager.createDocument(title, description, authorName);
-		DBManager.addRevision(revNo, file, documentId, dateCreated, status);
+		
+	    long documentId = DBManager.createDocument(title, description, authorName);
+		int authorId = DBManager.getUserIdByUsername(authorName);
+	    DBManager.addRevision(revNo, file, documentId, dateCreated, status);
+		
 		
 		for(String dist : stringArray){
 			int userId = Integer.parseInt(dist);
 			DBManager.addDistributee(userId, (int) documentId);
+			DBManager.notify(documentId, userId, authorId);
 			System.out.println(userId);
 		}
 		

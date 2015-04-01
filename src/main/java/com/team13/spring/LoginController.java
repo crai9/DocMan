@@ -113,7 +113,7 @@ public class LoginController {
 			request.getSession().removeAttribute("user");
 
 			
-		return "redirect:/home";
+		return "redirect:/";
 	}
 	
 	// Register Page

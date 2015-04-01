@@ -56,6 +56,7 @@ public class DBManager {
 	}
 	
 	public static void main(String[] args){
+	
 		
 	}
 		
@@ -163,6 +164,35 @@ public class DBManager {
 			preparedStatement.executeUpdate();
  
 			System.out.println("Role Added");
+
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		} 
+		
+	}
+	
+	public static void notify(long documentId, int userId, int authorId){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String sql = "INSERT INTO notifications "
+				+ "(notificationId, seen, documentId, `to`, `from`) VALUES "
+				+ "(NULL, 0, ?, ?, ?)";
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setLong(1, documentId);
+			preparedStatement.setInt(2, userId);
+			preparedStatement.setInt(3, authorId);
+			
+			preparedStatement.executeUpdate();
+ 
+			System.out.println("Notified");
 
 			
 		} catch (SQLException e) {
@@ -889,7 +919,6 @@ public class DBManager {
 			preparedStatement = dbConnection.prepareStatement(sql);
 
 			preparedStatement.setInt(1, id);
-			System.out.println(preparedStatement.toString());
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			
@@ -1186,7 +1215,6 @@ public class DBManager {
 			
 			preparedStatement.executeQuery();
 			
-			System.out.println(preparedStatement.toString());
 			
 	        ResultSet rs = preparedStatement.executeQuery();
 	        

@@ -25,7 +25,9 @@
             </div>
             <h4><a class="btn btn-warning" href="<c:url value='/dashboard' />">Dashboard</a></h4>
             <h4><a class="btn btn-success" href="<c:url value='/createDocument' />">Create Document</a></h4>
-            <h4><a class="btn btn-primary" href="<c:url value='/reviseDocument/${document.id}' />">Revise</a></h4>
+            	<c:choose>
+	<c:when test="${document.id != 0}">
+	           <h4><a class="btn btn-primary" href="<c:url value='/reviseDocument/${document.id}' />">Revise</a></h4>
 
 		<div class="row" style="background-color:white; margin-top:50px; padding:20px;">
 	  		<div class="col-md-4">
@@ -67,6 +69,14 @@
 
   	  			</table>
   	  	</div>
+	</c:when>
+	<c:otherwise>
+	<div class="alert alert-danger" role="alert">
+		Document with that id doesn't exist
+	</div>
+	</c:otherwise>
+	</c:choose>
+ 
   	  
   	<!--<embed src="../resources/docs/eh.pdf" width="500" height="375">-->
 </div>

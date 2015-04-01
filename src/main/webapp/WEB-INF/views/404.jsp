@@ -18,7 +18,7 @@
 <div class="page-header">
 <h1>Error 404</h1>
 </div>
-<a href="<c:url value='/home' />" class="btn btn-primary btn-sm" role="button">&laquo; Go home</a><br><br>
+<a href="<c:url value='/' />" class="btn btn-primary btn-sm" role="button">&laquo; Go home</a><br><br>
 <div class="alert alert-danger" role="alert">
 	This page doesn't exist
 </div>

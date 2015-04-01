@@ -43,7 +43,7 @@ public class WebController {
 	public String dashboard(Model model, HttpServletRequest request) {
 
 		if(!hasRole(request, "ROLE_USER")){
-			return "403";
+			return "login-form";
 		}
 
 		if(hasRole(request, "ROLE_ADMIN")){
