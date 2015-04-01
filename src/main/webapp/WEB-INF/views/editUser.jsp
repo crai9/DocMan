@@ -141,11 +141,11 @@
 	</div>
 </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="../../resources/js/bootstrap.min.js"></script>
-	<script src="../../resources/js/formValidation.min.js"></script>
-	<script src="../../resources/js/framework/bootstrap.min.js"></script>
+	<script src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
+	<script src="<c:url value='/resources/js/formValidation.min.js' />"></script>
+	<script src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
 	<script src="<c:url value='/resources/js/jquery.mmenu.min.all.js' />"></script>
-	<script src="../../resources/js/main.js"></script>
+	<script src="<c:url value='/resources/js/main.js' />"></script>
 	<script src="<c:url value='../../resources/js/edit.js' />"></script>
 </body>
 </html>

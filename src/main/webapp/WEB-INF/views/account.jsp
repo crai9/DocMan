@@ -20,13 +20,14 @@
 	<div class="page-header">
   		<h1>My Account</h1>
 	</div>
-	<a href="../../users/page/1" class="btn btn-default btn-xs" role="button">&laquo; Back to list</a><br><br>
 	
-	<form id="updateAccount" class="form-horizontal" method="POST" action="updateAccount">
+	<c:choose>
+	<c:when test="${users.id != 0}">
+	<form id="editForm" class="form-horizontal" method="GET" action="updateAccount">
 	<div class="form-group">
 	 <label class="col-xs-3 control-label">Full name</label>
         <div class="col-xs-2">
-        	<input type="hidden" name="id" value="${user.id}">
+        	<input type="hidden" name="id" id="id" value="${users.id}">
             <input type="text" class="form-control" name="fname" value="${users.firstName}"/>
         </div>
         <div class="col-xs-3">
@@ -44,30 +45,44 @@
 	    <div class="form-group">
         <label class="col-xs-3 control-label">Username</label>
         <div class="col-xs-5">
-            <input type="text" class="form-control" name="username" value="${users.username}"/>
+            <input type="text" class="form-control" name="username" id="username" value="${users.username}"/>
         </div>
     </div>
     
-     <div class="form-group">
+    <div class="form-group">
+    
+    <label class="col-xs-3 control-label"></label>
+    <div id="error" class="col-xs-5 text-center alert alert-danger hidden" role="alert">
+            The password you entered doesn't match database password!
+        </div>
+    </div>
+    
+    	    <div class="form-group">
+    	    
         <label class="col-xs-3 control-label">Old Password</label>
+        
+        
+        
         <div class="col-xs-5">
-            <input type="password" class="form-control" name="password" />
+            <input type="password" class="form-control" name="password" id="password" />
         </div>
     </div>
     
-     <div class="form-group">
+    	    <div class="form-group">
         <label class="col-xs-3 control-label">New Password</label>
         <div class="col-xs-5">
-            <input type="password" class="form-control" name="newpassword" />
+            <input type="password" class="form-control" name="nPassword" id="nPassword" "/>
         </div>
     </div>
     
-     <div class="form-group">
+    	    <div class="form-group">
         <label class="col-xs-3 control-label">Confirm New Password</label>
         <div class="col-xs-5">
-            <input type="password" class="form-control" name="cnewpassword" />
+            <input type="password" class="form-control" name="cPassword" id="cPpassword""/>
         </div>
     </div>
+    
+    
     
 	<div class="form-group">
         <div class="col-xs-9 col-xs-offset-3">
@@ -75,6 +90,8 @@
         </div>
     </div>
 	</form>
+	</c:when>
+	</c:choose>
 	
 	<div class="container top">
 	<%@ include file="footer.jsp" %>
@@ -88,5 +105,6 @@
 	<script src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
 	<script src="<c:url value='/resources/js/jquery.mmenu.min.all.js' />"></script>
 	<script src="<c:url value='/resources/js/main.js' />"></script>
+	<script src="<c:url value='/resources/js/account.js' />"></script>
 </body>
 </html>

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.team13.spring.login.Encrypt;
 import com.team13.spring.model.Document;
 import com.team13.spring.model.User;
 
@@ -55,8 +56,9 @@ public class DBManager {
 	
 	public static void main(String[] args){
 		
-		System.out.println(countDocuments());
-		System.out.println(countDocuments("cool"));
+		String password = "123456";
+		
+		updateAccountUser(228, "edmond", Encrypt.crypt(password), "Edmond", "Hobeika", "ehobei200@caledonian.ac.uk.com");
 	}
 		
 	
@@ -266,6 +268,43 @@ public class DBManager {
 		
 	}
 	
+	public static void updateAccountUser(int id, String username, String encPassN, String fname, String lname, String email){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+ 
+		String sql = "UPDATE users SET "
+				+ "firstName = ?, lastName = ?, email = ?, username = ?, password = ? "
+				+ "WHERE userId = ?";
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(sql);
+ 
+			preparedStatement.setString(1, fname);
+			preparedStatement.setString(2, lname);
+			preparedStatement.setString(3, email);
+			preparedStatement.setString(4, username);
+			preparedStatement.setString(5, encPassN);
+			preparedStatement.setInt(6, id);
+			
+			preparedStatement.executeUpdate();
+ 
+			System.out.println(preparedStatement.toString());
+			
+			System.out.println("Your account has been updated");
+			
+			
+			
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		} 
+		
+	}
+	
+	
+	
 	public static void deleteUserById(int id){
 		
 		Connection dbConnection = null;
@@ -338,6 +377,7 @@ public class DBManager {
 	        	u.setEmail(rs.getString("email"));
 	        	u.setFirstName(rs.getString("firstName"));
 	        	u.setLastName(rs.getString("lastName"));
+	        	u.setPassword(rs.getString("password"));
 			} else {
 				//don't return null
 				u.setId(0);
@@ -345,6 +385,7 @@ public class DBManager {
 	        	u.setEmail("");
 	        	u.setFirstName("");
 	        	u.setLastName("");
+	        	u.setPassword("");
 			}
 			
 			return u;
@@ -1047,9 +1088,11 @@ public static int password(String password) throws SQLException {
 
             String name = rs.getString("firstName");
             String last = rs.getString("lastName");
+            String password1 = rs.getString("password");
             
             System.out.print("First Name: " + name);
             System.out.print(", Last Name: " + last);
+            System.out.print(", Password: " + password1);
             System.out.print("\n");
             
             return rs.getInt("userId");

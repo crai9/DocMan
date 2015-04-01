@@ -138,21 +138,54 @@ public class LoginController {
 		
 		model.addAttribute("users", DBManager.getUserById(id));
 		
+
+		
 		return "account";
 	}
 	
-	@RequestMapping(value = "/updateAccount", method = RequestMethod.POST)
-	public String updateAccount(HttpServletRequest request, 
-			@RequestParam("password") String password){
+	@RequestMapping(value = "/updateAccount", method = RequestMethod.GET)
+	public String account(Model model, HttpServletRequest request,
+			@RequestParam("id") int id,
+			@RequestParam("password") String password,
+			@RequestParam("nPassword") String nPassword,
+			@RequestParam("cPassword") String cPassword,
+			@RequestParam("fname") String fname, @RequestParam("lname") String lname, 
+			@RequestParam("email") String email, @RequestParam("username") String username){
 		
-		
+		System.out.println(id);
 		String encPass = Encrypt.crypt(password);
-		
 		System.out.println("Password: " + password);
 		System.out.println("Encryption: " + encPass);
 		
-		return "account";
-}
+		String encPassN = Encrypt.crypt(nPassword);
+		String encPassNC = Encrypt.crypt(cPassword);
+		System.out.println("Encryption: " + encPassN);
+		System.out.println("Encryption: " + encPassNC);
+		
+		User u = DBManager.getUserById(id);
+		String dbPassword = u.getPassword();
+		
+		if(dbPassword.equals(encPass)){
+			System.out.println("DB password & Value password match");
+			
+			if(!nPassword.equals(cPassword)){
+				System.out.println("Password don't match");
+			} else {
+				System.out.println("updating...");
+				
+				DBManager.updateAccountUser(id, username, encPassN, fname, lname, email);
+				request.getSession().setAttribute("username", fname);
+				System.out.println("Done!");
+			}
+			
+		} else {
+			System.out.println("They dont match");
+			return "redirect:/account?success=no";
+		}
+
+
+		return "redirect:/dashboard";
+	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(
@@ -309,7 +342,10 @@ public class LoginController {
 			//something changed
 			System.out.println("Roles stay the same");
 		}
-
+		
+		if(DBManager.checkIfUserExists(username)){
+			System.out.println("User exists");
+		}
 		
 		DBManager.updateUser(id, username, fname, lname, email);
 		
