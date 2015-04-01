@@ -18,7 +18,7 @@ body{
   	z-index: 1031;
 }
 
-.doc-logo:hover {
+.doc-logo:hover, .badge:hover {
   -webkit-filter: brightness(1.3);
   -moz-filter: brightness(1.3);
   -ms-filter: brightness(1.3);
@@ -29,6 +29,10 @@ body{
 .open-sidebar a{
 	/* color: #9d9d9d; */
 	color: red;
+}
+
+ul.notification-padding > li:nth-child(1n+2) {
+	border-top: 1px solid #eee;
 }
 
 .move-logo-right{

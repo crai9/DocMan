@@ -1,7 +1,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="navbar-wrapper">
     <div class="container">
-
+		<c:if test='${empty sessionScope.id}'>
+			<script type="text/javascript">
+			var userId = 0;
+			</script>
+		</c:if>
+		<c:if test='${!empty sessionScope.id}'>
+			<script type="text/javascript">
+			var userId = ${sessionScope.id}
+			</script>
+		</c:if>
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -28,10 +37,6 @@
      			 	</c:when>
 
       				<c:otherwise>
-      				<script type="text/javascript">
-      				var userId = ${sessionScope.id}
-      				
-      				</script>
       				<audio id="sound">
 					  <source src="<c:url value='/resources/sound/sound.mp3' />" type="audio/mpeg">
 					</audio>
