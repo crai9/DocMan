@@ -48,14 +48,15 @@ $(document).ready(function() {
                         message: 'The username can only consist of alphabetical, number, dot and underscore'
                     },
                     remote: {
-                        message: 'The username is not available',
-                        url: '../../checkUser',
-                        data: function(validator) {
-                            return {
-                                id: validator.getFieldElements('id').val()
-                            };
-                        },
-                        type: 'GET'
+                    	 url: '../../checkUser/',
+                         // Send { username: 'its value', email: 'its value' } to the back-end
+                         data: function(validator) {
+                             return {
+                                 id: validator.getFieldElements('id').val()
+                             };
+                         },
+                         message: 'The username is not available',
+                         type: 'GET'
                     }
                 }
             }
