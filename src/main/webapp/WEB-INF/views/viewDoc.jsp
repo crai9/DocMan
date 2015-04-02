@@ -49,22 +49,12 @@
   	  				</tr>
   	    	  		<tr>
   	  					<th>Document Attached/<br>Download</th>
-  	  					<td><a href="#">${document.documentAttached}</a></td>
+  	  					<td><a href="/content/${document.documentAttached}">${document.documentAttached}</a></td>
   	  				</tr>
   	    	 
 				  	<tr>
   	  					<th>Status</th>
   	  					<td>${document.status}</td>
-  	  				</tr>
-  	  
-  	  				<tr>
-  	  					<th>From</th>
-  	  					<td>${document.author}</td>
-  	  				</tr>
-  	  
-  	  				<tr>
-  	  					<th>To</th>
-  	  					<td>Craig</td>
   	  				</tr>
 
   	  			</table>

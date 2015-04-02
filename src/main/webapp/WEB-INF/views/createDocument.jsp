@@ -10,9 +10,10 @@
 	<title>Create Document</title>
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="resources/css/formValidation.min.css" rel="stylesheet">
-	<link href="resources/css/global.css" rel="stylesheet">
 	<link href="<c:url value='/resources/css/jquery.mmenu.all.css' />" rel="stylesheet">
 	<link href="<c:url value='/resources/css/bootstrap-datetimepicker.min.css' />" rel="stylesheet">
+	<link href="resources/css/typeahead.css" rel="stylesheet">
+	<link href="resources/css/global.css" rel="stylesheet">
 </head>
 <body>
 
@@ -28,7 +29,6 @@
 	<form action="create" enctype="multipart/form-data" id="create" method="POST" class="form-horizontal">	
 		
 		<div id="createDocument">
-			<h2 class="text-center">Create Document</h2>
 
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Document Name</label>
@@ -59,7 +59,6 @@
 		</div>
 		
 		<div id="uploadDocument" class="hidden">
-			<h2 class="text-center">Upload Document</h2>
 				
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Revision number</label>
@@ -71,7 +70,7 @@
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Document Attachment</label>
 					<div class="col-xs-6">
-						<input type="text" class="form-control" name="file" id="file"/>
+						<input type="file" class="form-control" name="file" id="file"/>
 					</div>
 				</div>
 				
@@ -105,13 +104,14 @@
 </div>				
 				
 	<div id="addDistributee" class="hidden">
-		<h2 class="text-center">Add Distributee</h2>
 		
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Username:</label>
 			<div class="col-xs-6">
 				<input id="addUser" type="text" class="form-control" name="userName">
-				<button id="push" onclick="return false;" class="btn btn-success">Add</button>
+				<br>
+				<br>
+				<button id="push" onclick="return false;" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
 				<ol id="listUsers">
 				</ol>
 				<input value="[]" class="hidden" id="distributees" type="text" class="form-control" name="distributees" readonly><br/>
@@ -151,6 +151,7 @@
 	<script src="resources/js/framework/bootstrap.min.js"></script>
 	<script src="<c:url value='/resources/js/jquery.mmenu.min.all.js' />"></script>
 	<script src="resources/js/mandatoryIcon.js"></script>
+	<script src="resources/js/typeahead.js"></script>
 	<script src="resources/js/main.js"></script>
 	<script src="resources/js/documentValidation.js"></script>
 	<script src="resources/js/createDoc.js"></script>

@@ -1,5 +1,7 @@
 package com.team13.spring;
 
+import java.util.List;
+
 import notifications.NotificationHandler;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,6 +71,14 @@ public class ApiController {
 		String[] s = DBManager.allUsersToArray();
 		
 		return s;
+	}
+	
+	@RequestMapping(value = {"/queryUsers"})
+	public List<User> queryUsers(@RequestParam("name") String search){
+		
+		List<User> lu = DBManager.allUsers(search);
+		
+		return lu;
 	}
 	
 	@RequestMapping(value = {"/getNotifications"})

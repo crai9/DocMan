@@ -55,3 +55,84 @@ navbar-brand img{
 .notification-padding{
 	padding: 10px;
 }
+
+.tt-dropdown-menu {
+	width: calc(100% - 2px);
+	border: 1px solid #bbb;
+	border-top: 0;
+	padding: 0;
+	background-color: #fff;
+}
+
+.tt-suggestion {
+	padding: 5px 10px;
+	margin: 0;
+	cursor: pointer;
+}
+
+tt-suggestion p {
+	margin: 5px 0;
+}
+
+tt-suggestion .tt-cursor {
+	background-color: #21d413;
+}
+
+.tt-hint {
+	color: #bbb;
+}
+
+.twitter-typeahead {
+	width: 100%; 
+}
+
+.tt-dropdown-menu {
+	width: 100%;
+}
+
+.tt-hint {
+    width: 100%;
+}
+
+#autocomplete li.selected { 
+  background-color:#428bca;
+  color:green;
+}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+color: red;
+text-decoration: none;
+outline: 0;
+background-color: #aaa;
+background-image: -moz-linear-gradient(top, #aaa, #aaa);
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#aaa), to(#aaa));
+background-image: -webkit-linear-gradient(top, #aaa, #aaa);
+background-image: -o-linear-gradient(top, #aaa, #aaa);
+background-image: linear-gradient(to bottom, #aaa, #aaa);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aaaaaa', endColorstr='#aaaaaa', GradientType=0);
+}
+
+.twitter-typeahead .tt-hint {
+    display: block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    border: 1px solid transparent;
+    border-radius:4px;
+}
+.twitter-typeahead .hint-small {
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+    line-height: 1.5;
+}
+.twitter-typeahead .hint-large {
+    height: 45px;
+    padding: 10px 16px;
+    font-size: 18px;
+    border-radius: 6px;
+    line-height: 1.33;
+}

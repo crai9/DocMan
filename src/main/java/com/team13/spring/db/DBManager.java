@@ -864,7 +864,7 @@ public class DBManager {
 	}
 	
 	
-	public static int countDocuments(String search){
+	public static int countDocuments(String search, int userId){
 		
 		Connection dbConnection = null;
 		
@@ -872,7 +872,9 @@ public class DBManager {
  
 		String sql = "SELECT count(DISTINCT documentId) as total "
 				+ "FROM document_records "
-				+ "WHERE documentId LIKE ? OR title LIKE ? OR description LIKE ? OR author LIKE ?";
+				+ "INNER JOIN distributees dis "
+				+ "ON dis.documentId = document_records.documentId "
+				+ "WHERE documentId LIKE ? OR title LIKE ? OR description LIKE ? OR author LIKE ? AND dis.userId = ?";
 		
 		try {
 			dbConnection = getDBConnection();
@@ -884,6 +886,7 @@ public class DBManager {
 			preparedStatement.setString(2, search);
 			preparedStatement.setString(3, search);
 			preparedStatement.setString(4, search);
+			preparedStatement.setInt(5, userId);
 			
 			ResultSet rs = preparedStatement.executeQuery();
 			
@@ -938,17 +941,23 @@ public class DBManager {
 		return 0;
 	}
 	
-	public static int countDocuments(){
+	public static int countDocuments(int userId){
 		
 		Connection dbConnection = null;
 		
 		PreparedStatement preparedStatement = null;
  
-		String sql = "SELECT count(DISTINCT documentId) as total FROM document_records;";
+		String sql = "SELECT count(DISTINCT documentId) as total FROM document_records "
+				+ "INNER JOIN distributees dis "
+				+ "ON dis.documentId = document_records.documentId "
+				+ "WHERE dis.userId = ?";
 		
 		try {
 			dbConnection = getDBConnection();
 			preparedStatement = dbConnection.prepareStatement(sql);
+			
+			preparedStatement.setInt(1, userId);
+			
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			
@@ -1057,7 +1066,7 @@ public class DBManager {
 		
 	}
 	
-	public static List<Document> allDocumentsPaged(String search, double perPage, int start){
+	public static List<Document> allDocumentsPaged(String search, double perPage, int start, int userId){
 		
 		Connection dbConnection = null;
 		
@@ -1066,21 +1075,26 @@ public class DBManager {
 		String sql = null;
 		
 		if(search == null){
-			sql = "SELECT document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status "
+			sql = "SELECT document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status, revisions.documentAttachment "
 					+ "FROM document_records "
 					+ "INNER JOIN "
-					+ "(SELECT `documentId`, `createdDate`, `status` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
+					+ "(SELECT `documentId`, `createdDate`, `status`, `documentAttachment` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
 					+ "ON document_records.documentId = revisions.documentId "
+					+ "INNER JOIN distributees dis "
+					+ "ON dis.documentId = document_records.documentId "
+					+ "WHERE dis.userId = ? "
 					+ "GROUP BY document_records.documentId "
 					+ "LIMIT ? OFFSET ?";
 			
 		} else {
-			sql = "SELECT document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status "
+			sql = "SELECT document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status, revisions.documentAttachment "
 					+ "FROM document_records "
 					+ "INNER JOIN "
-					+ "(SELECT `documentId`, `createdDate`, `status` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
+					+ "(SELECT `documentId`, `createdDate`, `status`, `documentAttachment` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
 					+ "ON document_records.documentId = revisions.documentId "
-					+ "WHERE title LIKE ? OR document_records.documentId LIKE ? OR author LIKE ? OR description LIKE ? "
+					+ "INNER JOIN distributees dis "
+					+ "ON dis.documentId = document_records.documentId "
+					+ "WHERE title LIKE ? OR document_records.documentId LIKE ? OR author LIKE ? OR description LIKE ? AND dis.userId = ? "
 					+ "GROUP BY document_records.documentId "
 					+ "LIMIT ? OFFSET ?";
 		}
@@ -1097,13 +1111,15 @@ public class DBManager {
 				preparedStatement.setString(2, search);
 				preparedStatement.setString(3, search);
 				preparedStatement.setString(4, search);
-				preparedStatement.setInt(5, (int)perPage);
-				preparedStatement.setInt(6, start);
+				preparedStatement.setInt(5, userId);
+				preparedStatement.setInt(6, (int)perPage);
+				preparedStatement.setInt(7, start);
 			
 			} else {
 				
-				preparedStatement.setInt(1, (int)perPage);
-				preparedStatement.setInt(2, start);
+				preparedStatement.setInt(1, userId);
+				preparedStatement.setInt(2, (int)perPage);
+				preparedStatement.setInt(3, start);
 				
 			}
 			System.out.println(preparedStatement);
@@ -1124,9 +1140,7 @@ public class DBManager {
             	u.setAuthor(rs.getString("author"));
             	u.setCreatedDate(rs.getString("createdDate"));
             	u.setStatus(rs.getString("status"));
-            	
-            	System.out.println(u.getTitle());
-            	System.out.println(u.getId());
+            	u.setDocumentAttached(rs.getString("documentAttachment"));
             	all.add(u);
             }
 
