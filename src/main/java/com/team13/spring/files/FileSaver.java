@@ -3,12 +3,24 @@ package com.team13.spring.files;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Random;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileSaver {
 	
-	public static String writeFile(String name, MultipartFile file) {
+	public static int makeFileToken() {
+
+		int min = 100000;
+		int max = 999999;
+	    Random rand = new Random();
+
+	    int randomNum = rand.nextInt((max - min) + 1) + min;
+
+	    return randomNum;
+	}
+	
+	public static String writeFile(String name, MultipartFile file, int gen) {
 
 		if (!file.isEmpty()) {
             try {
@@ -27,8 +39,11 @@ public class FileSaver {
                 File f = new File(File.separator);
             	
                 //Change this depending on where Project's folder is
-                File home = new File(f + "var" + f + "www" + f + "html");
+                File home = new File(f + "var" + f + "www" + f + "html" + f + gen );
                
+                if (!home.exists())
+                    home.mkdirs();
+                
                 System.out.println(home.getAbsolutePath());
                 
                 //need to rename files to stop duplicates

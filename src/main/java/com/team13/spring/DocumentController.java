@@ -73,10 +73,13 @@ public class DocumentController {
 		
 	    long documentId = DBManager.createDocument(title, description, authorName);
 		int authorId = DBManager.getUserIdByUsername(authorName);
+		int gen = FileSaver.makeFileToken();
+		String uniquePath = gen + "/" + file.getOriginalFilename();
 		
-		FileSaver.writeFile(file.getOriginalFilename(), file);
 		
-	    DBManager.addRevision(revNo, file.getOriginalFilename(), documentId, dateCreated, status);
+		FileSaver.writeFile(file.getOriginalFilename(), file, gen);
+		
+	    DBManager.addRevision(revNo, uniquePath, documentId, dateCreated, status);
 		
 		int you = (Integer) request.getSession().getAttribute("id");
 		for(String dist : stringArray){
@@ -283,7 +286,7 @@ public class DocumentController {
 	@RequestMapping(value = "/revise", method = RequestMethod.POST)
 	public String revise(
 			@RequestParam("documentId") long documentId,
-			@RequestParam("revNo") int revNo, @RequestParam("file") String file,
+			@RequestParam("revNo") int revNo, @RequestParam("file") MultipartFile file,
 			@RequestParam("dateCreated") String dateCreated, @RequestParam("status") String status,
 			HttpServletRequest request){
 		
@@ -291,7 +294,13 @@ public class DocumentController {
 			return "403";
 		}
 		
-		DBManager.addRevision(revNo, file, documentId, dateCreated, status);
+		int gen = FileSaver.makeFileToken();
+		String uniquePath = gen + "/" + file.getOriginalFilename();
+		
+		System.out.println("unique path would be: " + uniquePath);
+		
+		DBManager.addRevision(revNo, uniquePath, documentId, dateCreated, status);
+		FileSaver.writeFile(file.getOriginalFilename(), file, gen);
 		
 		return "redirect:/viewDoc/" + documentId;
 	}

@@ -23,7 +23,7 @@ public class FileUploadController {
     public @ResponseBody String FileUpload(@RequestParam("name") String name, 
             @RequestParam("file") MultipartFile file){
     	
-    	return FileSaver.writeFile(name, file);
+    	return FileSaver.writeFile(name, file, 5);
     }
 
 }
