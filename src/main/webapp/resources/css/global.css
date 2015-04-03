@@ -136,3 +136,39 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aaaaaa', endC
     border-radius: 6px;
     line-height: 1.33;
 }
+
+ol.circles-list {
+    list-style-type: none;
+    list-style-type: decimal !ie; IE 7- hack
+     
+    margin: 0;
+    margin-left: 0em;
+    padding: 0;
+    padding-top: 15px; 
+    counter-reset: li-counter;
+}
+ol.circles-list > li{
+    position: relative;
+    margin-bottom: 2px;
+    padding-top: 0.8em;
+    padding-left: 0.5em;
+    min-height: 3em;
+}
+/* ol.circles-list > li:before {
+    position: absolute;
+    top: 0;
+    left: -1.33em;
+    width: 1.3em;
+    height: 1.3em;
+     
+    font-size: 1.8em;
+    line-height: 1.2;
+    text-align: center;
+    color: #f5f5f5;
+ 
+    border: 3px solid #c5c5c5;
+    border-radius: 50%;
+    background-color: #464646;
+    content: counter(li-counter);
+    counter-increment: li-counter;
+} */

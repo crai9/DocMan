@@ -1,11 +1,6 @@
 $(document).ready(function() {
 	$('#editForm').formValidation({
-		framwork: 'bootstrap',
-		icon: {
-			valid: 'glyphican glyphican-ok',
-			invalid: 'glyphican glyphican-remove',
-			validating: 'glyphican glyphican-refresh',
-		}, 
+		framwork: 'bootstrap', 
 		fields: {
 			fname: {
 				validators: {

@@ -126,6 +126,10 @@ $(document).ready(function() {
     }
 });
 
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 var theCount = 999;
 var sound = document.getElementById("sound");
 var docUrl;
@@ -145,7 +149,7 @@ function addmsg(type, count, notifications) {
     var htmlString = "";
     var noNotifications = "<li>You have no notifications.</li>";
     for (var i = 0; i < notifications.length; i++) {
-        htmlString = htmlString + "<li><a id='" + notifications[i].notificationId + "' class='markAsRead' href='" + docUrl + notifications[i].documentId + "'> " + notifications[i].from + " shared " + notifications[i].documentTitle + " with you.</a></li>";
+        htmlString = htmlString + "<li><a id='" + notifications[i].notificationId + "' class='markAsRead' href='" + docUrl + notifications[i].documentId + "'> " + notifications[i].from.capitalize() + " shared " + notifications[i].documentTitle + " with you.</a></li>";
     }
     $("#count").html(count);
     if (count < 1) {

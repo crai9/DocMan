@@ -112,7 +112,7 @@
 				<br>
 				<br>
 				<button id="push" onclick="return false;" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
-				<ol id="listUsers">
+				<ol class="circles-list" id="listUsers">
 				</ol>
 				<input value="[]" class="hidden" id="distributees" type="text" class="form-control" name="distributees" readonly><br/>
 			</div>

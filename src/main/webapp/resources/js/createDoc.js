@@ -64,7 +64,7 @@ $("#push").click(function() {
                 var json = JSON.stringify(distributees);
                 $("#distributees").val(json);
                 //add to ol
-                $('#listUsers').append('<li>' + user + '</li>');
+                $('#listUsers').append("<li class='bg-success'>" + user.capitalize() + '</li>');
             } else if (!user) {
                alert("empty");
             } else {

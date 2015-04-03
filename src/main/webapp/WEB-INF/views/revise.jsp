@@ -38,7 +38,7 @@
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Document Attachment</label>
 					<div class="col-xs-6">
-						<input type="text" class="form-control" name="file" id="file" value="${revision.documentAttached}"/>
+						<input type="file" class="form-control " name="file" id="file" value="${revision.documentAttached}"/>
 					</div>
 				</div>
 				
@@ -79,7 +79,6 @@
 	<script src="<c:url value='/resources/js/jquery.mmenu.min.all.js' />"></script>
 	<script src="<c:url value='/resources/js/mandatoryIcon.js'/>"></script>
 	<script src="<c:url value='/resources/js/main.js'/>"></script>
-	<script src="<c:url value='/resources/js/createDoc.js'/>"></script>
 	<script src="<c:url value='/resources/js/reviseDocument.js'/>"></script>
 	
 	
