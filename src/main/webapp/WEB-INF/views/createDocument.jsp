@@ -70,7 +70,14 @@
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Document Attachment</label>
 					<div class="col-xs-8">
-						<input type="file" class="form-control" name="file" id="file"/>
+						<div class="input-group">
+			                <span class="input-group-btn">
+			                    <span class="btn btn-primary btn-file">
+			                        Browse&hellip; <input type="file" name="file" id="file">
+			                    </span>
+			                </span>
+			                <input type="text" class="form-control" readonly>
+			            </div>
 					</div>
 				</div>
 				

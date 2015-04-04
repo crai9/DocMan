@@ -8,7 +8,8 @@
         <li><a href="<c:url value='/registerPage'/>">Add a User</a></li>
         </c:if>
         <c:if test="${u == true}">
-        <li><a href="<c:url value='/documents'/>">View Documents</a></li>
+        <li><a href="<c:url value='/documents/page/1'/>">View Documents</a></li>
+        <li><a href="<c:url value='/documents/own'/>">Your Documents</a></li>
         <li><a href="<c:url value='/createDocument'/>">Create Documents</a></li>
         <li><a href="<c:url value='/dashboard'/>">Dashboard</a></li>
         <li><a href="<c:url value='/logout'/>">Log Out</a></li>

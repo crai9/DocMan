@@ -34,19 +34,25 @@
 						<input type="number" min="1" class="form-control" name="revNo" value="${revisionNo}" readonly/>
 					</div>
 				</div>
-				
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Document Attachment</label>
 					<div class="col-xs-8">
-						<input type="file" class=" " name="file" id="file" value="${revision.documentAttached}"/>
+						<div class="input-group">
+			                <span class="input-group-btn">
+			                    <span class="btn btn-primary btn-file">
+			                        Browse&hellip; <input id="file" type="file" name="file">
+			                    </span>
+			                </span>
+			                <input type="text" class="form-control" readonly>
+			            </div>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Date Created</label>
-					<div class="col-xs-8 input-group date" style="padding-left: 15px; width: 62.333333%;" id="datetimepicker">
-						<input type="text" class="form-control" name="dateCreated" id="dateCreated" value="${revision.createdDate}"/>
-						<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+					<div class="col-xs-7 input-group date" style="padding-left: 15px; width: 62.333333%;" id="datetimepicker">
+						<input type="text" class="form-control" name="dateCreated" id="dateCreated" />
+						<span style="border-radius: 0px 5px 5px 0px;" class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 					</div>
 				</div>
 				

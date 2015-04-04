@@ -34,6 +34,12 @@ $(document).ready(function() {
 	        	   validators: {
 	        		   notEmpty: {
 	        			   message: 'You need to upload a file!'
+	        		   },
+	        		   file: {
+	        			   type: 'image/png,image/jpeg,image/gif,text/plain,application/pdf,application/vnd.ms-powerpoint,application/kswps,' 
+	        				   + 'video/mp4,video/mpeg,application/msword,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.presentationml.presentation,'
+	        				   + 'application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+	        			   message: 'That file is not valid'
 	        		   }
 	        	   }
 	           },
