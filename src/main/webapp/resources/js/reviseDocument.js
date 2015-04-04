@@ -1,4 +1,8 @@
 $(document).ready(function() {
+	
+    $('#datetimepicker').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });  
     	$('#revise').formValidation({
 	        framework: 'bootstrap',
 	        icon: {

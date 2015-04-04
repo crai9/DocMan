@@ -29,7 +29,7 @@
                     <form id="search">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-xs-4">
+                                <div class="col-xs-6">
                                     <input id="query" type="text" name="search" class="form-control" placeholder="Search usernames here...." />
                                 </div>
                                 <button type="submit" class="btn btn-primary">Search</button>

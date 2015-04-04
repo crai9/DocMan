@@ -27,45 +27,45 @@
 	<form id="registerForm" class="form-horizontal" action="register" method="POST">
     <div class="form-group">
         <label class="col-xs-3 control-label">Full name</label>
-        <div class="col-xs-2">
-            <input type="text" class="form-control" name="fname" placeholder="First name" />
+        <div class="col-xs-4">
+            <input type="text" class="form-control" name="fname" placeholder="First" />
         </div>
-        <div class="col-xs-3">
-            <input type="text" class="form-control" name="lname" placeholder="Last name" />
+        <div class="col-xs-4">
+            <input type="text" class="form-control" name="lname" placeholder="Last" />
         </div>
     </div>
 
     <div class="form-group">
         <label class="col-xs-3 control-label">Username</label>
-        <div class="col-xs-5">
+        <div class="col-xs-8">
             <input type="text" class="form-control" name="username" />
         </div>
     </div>
 
     <div class="form-group">
         <label class="col-xs-3 control-label">Email address</label>
-        <div class="col-xs-5">
+        <div class="col-xs-8">
             <input type="text" class="form-control" name="email" />
         </div>
     </div>
 
     <div class="form-group">
         <label class="col-xs-3 control-label">Password</label>
-        <div class="col-xs-5">
+        <div class="col-xs-8">
             <input type="password" class="form-control" name="password" />
         </div>
     </div>
     
     <div class="form-group">
         <label class="col-xs-3 control-label">Confirm Password</label>
-        <div class="col-xs-5">
+        <div class="col-xs-8">
             <input type="password" class="form-control" name="cpassword" />
         </div>
     </div>
 
     <div class="form-group">
         <label class="col-xs-3 control-label">Admin</label>
-        <div class="col-xs-3">
+        <div class="col-xs-8">
             <div class="radio">
                 <label>
                     <input type="radio" name="adminRole" value="no" checked="checked" /> No
@@ -97,7 +97,5 @@
 	<script src="<c:url value='/resources/js/jquery.mmenu.min.all.js' />"></script>
 	<script src="resources/js/main.js"></script>
 	<script src="<c:url value='/resources/js/register.js' />"></script>
-	<script src="resources/js/mandatoryIcon.js"></script>
-	<script src="resources/js/reCaptcha2.js"></script>
 </body>
 </html>

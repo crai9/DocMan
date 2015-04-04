@@ -66,8 +66,6 @@ public class LoginController {
 		System.out.println("Password: " + password);
 		System.out.println("Password Encrypted: " + encPass);
 		
-		//TODO Validate
-		
 		try {
 			int id = DBManager.login(username, encPass);
 			if(id != 0){
@@ -197,8 +195,6 @@ public class LoginController {
 		if(!hasRole(request, "ROLE_ADMIN")){
 			return "403";
 		}
-		
-		//TODO Add more validation
 		
 		if (DBManager.checkIfUserExists(username)){
 			

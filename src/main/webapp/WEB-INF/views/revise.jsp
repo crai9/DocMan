@@ -30,21 +30,21 @@
 				<div class="form-group">
 					<input type="hidden" name="documentId" value="${revision.id}"/>
 					<label class="col-xs-3 control-label">Revision number</label>
-					<div class="col-xs-6">
+					<div class="col-xs-8">
 						<input type="number" min="1" class="form-control" name="revNo" value="${revisionNo}" readonly/>
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Document Attachment</label>
-					<div class="col-xs-6">
-						<input type="file" class="form-control " name="file" id="file" value="${revision.documentAttached}"/>
+					<div class="col-xs-8">
+						<input type="file" class=" " name="file" id="file" value="${revision.documentAttached}"/>
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Date Created</label>
-					<div class="col-xs-3 input-group date" id="datetimepicker">
+					<div class="col-xs-8 input-group date" style="padding-left: 15px; width: 62.333333%;" id="datetimepicker">
 						<input type="text" class="form-control" name="dateCreated" id="dateCreated" value="${revision.createdDate}"/>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 					</div>
@@ -52,8 +52,14 @@
 				
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Status</label>
-					<div class="col-xs-6">
-						<input type="text" class="form-control" name="status" id="status" value="${revision.status}"/>
+					<div class="col-xs-8">
+						<select class="form-control" name="status">
+							<option<c:if test="${revision.status == 'Active'}"> selected </c:if>>Active</option>
+							
+							<option<c:if test="${revision.status == 'Inactive'}"> selected </c:if>>Inactive</option>
+							
+							<option<c:if test="${revision.status == 'Outdated'}"> selected </c:if>>Outdated</option>
+						</select>
 					</div>
 				</div>
 		
@@ -77,7 +83,6 @@
 	<script src="<c:url value='/resources/js/formValidation.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/framework/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/jquery.mmenu.min.all.js' />"></script>
-	<script src="<c:url value='/resources/js/mandatoryIcon.js'/>"></script>
 	<script src="<c:url value='/resources/js/main.js'/>"></script>
 	<script src="<c:url value='/resources/js/reviseDocument.js'/>"></script>
 	

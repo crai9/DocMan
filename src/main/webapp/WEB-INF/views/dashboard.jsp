@@ -26,23 +26,22 @@
             </div>
             <h3>Quick Links</h3>
             <div class="well well-lg centered-nav">
-            	<div class="btn-group" role="group">
 	                <a href="createDocument" class="btn btn-lg btn-success">New Document</a>
 	                <a href="documents/page/1" class="btn btn-lg btn-info">All Documents</a>
 	                <a href="documents/own" class="btn btn-lg btn-warning">Your Documents</a>
 	                <a href="account" class="btn btn-lg btn-danger">Your Account</a>
 	                <c:if test="${admin == true}">
 				        <a class="btn btn-primary btn-lg" href="<c:url value='/users/page/1'/>">Users List</a>
-				        <a class="btn btn-primary btn-lg" href="<c:url value='/registerPage'/>">New User</span></a>
+				        <a class="btn btn-primary btn-lg" href="<c:url value='/registerPage'/>">New User</a>
         			</c:if>
-                </div>
+                
             </div>
             <div class="panel panel-default">
 
                 <div class="panel-heading">
                     <h4>Documents shared with you</h4></div>
                 <div class="panel-body">
-                    <p>The most recent documents that have been shared with you, click here to <a href="documents" class="btn btn-primary btn-xs">See more</a> documents.</p>
+                    <p>The most recent documents that have been shared with you, click here to <a href="documents/page/1" class="btn btn-primary btn-xs">See more</a> documents.</p>
                 </div>
 
                 <!-- Table -->

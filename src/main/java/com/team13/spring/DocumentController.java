@@ -1,7 +1,5 @@
 package com.team13.spring;
 
-import java.io.File;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -9,9 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.team13.spring.db.DBManager;
 import com.team13.spring.files.FileSaver;
-import com.team13.spring.login.Encrypt;
 import com.team13.spring.model.Document;
-import com.team13.spring.model.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class DocumentController {
@@ -155,6 +149,7 @@ public class DocumentController {
 		String s = null;
 		
 		double total = DBManager.countDocuments(userId);
+		System.out.println(total);
 		double perPage = 10;
 		int pages = (int) Math.ceil(total / perPage);
 		int nextPage, prevPage;

@@ -26,25 +26,25 @@
 	<form id="editForm" class="form-horizontal" method="GET" action="../../edit">
 	<div class="form-group">
 	 <label class="col-xs-3 control-label">Full name</label>
-        <div class="col-xs-2">
+        <div class="col-xs-4">
         	<input type="hidden" name="id" value="${user.id}">
             <input type="text" class="form-control" name="fname" value="${user.firstName}"/>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-4">
             <input type="text" class="form-control" name="lname" value="${user.lastName}" />
         </div>
     </div>
     
      <div class="form-group">
         <label class="col-xs-3 control-label">Email address</label>
-        <div class="col-xs-5">
+        <div class="col-xs-8">
             <input type="text" class="form-control" name="email" value="${user.email}" />
         </div>
     </div>
 	
 	    <div class="form-group">
         <label class="col-xs-3 control-label">Username</label>
-        <div class="col-xs-5">
+        <div class="col-xs-8">
             <input type="text" class="form-control" name="username" value="${user.username}"/>
         </div>
     </div>
@@ -52,7 +52,7 @@
     <c:when test="${!admin}">
     <div class="form-group">
        <label class="col-xs-3 control-label">Admin</label>
-       <div class="col-xs-3">
+       <div class="col-xs-8">
            <div class="radio">
                <label>
                    <input type="radio" name="adminRole" value="no" /> No
@@ -67,7 +67,7 @@
     </div>
     <div class="form-group hidden">
         <label class="col-xs-3 control-label">Original Admin</label>
-        <div class="col-xs-3">
+        <div class="col-xs-8">
             <div class="radio">
                 <label>
                     <input type="radio" name="originalAdminRole" value="no" disabled /> No

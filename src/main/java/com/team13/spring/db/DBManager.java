@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.team13.spring.login.Encrypt;
 import com.team13.spring.model.Document;
 import com.team13.spring.model.Notification;
 import com.team13.spring.model.User;
@@ -870,7 +869,7 @@ public class DBManager {
 		
 		PreparedStatement preparedStatement = null;
  
-		String sql = "SELECT count(DISTINCT documentId) as total "
+		String sql = "SELECT count(DISTINCT document_records.documentId) as total "
 				+ "FROM document_records "
 				+ "INNER JOIN distributees dis "
 				+ "ON dis.documentId = document_records.documentId "
@@ -947,7 +946,7 @@ public class DBManager {
 		
 		PreparedStatement preparedStatement = null;
  
-		String sql = "SELECT count(DISTINCT documentId) as total FROM document_records "
+		String sql = "SELECT count(DISTINCT document_records.documentId) as total FROM document_records "
 				+ "INNER JOIN distributees dis "
 				+ "ON dis.documentId = document_records.documentId "
 				+ "WHERE dis.userId = ?";
@@ -957,10 +956,8 @@ public class DBManager {
 			preparedStatement = dbConnection.prepareStatement(sql);
 			
 			preparedStatement.setInt(1, userId);
-			
+			System.out.println(preparedStatement.toString());
 			ResultSet rs = preparedStatement.executeQuery();
-			
-			
 			
 			if(rs.next()){
 				int count = rs.getInt("total");

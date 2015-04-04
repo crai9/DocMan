@@ -32,21 +32,21 @@
 
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Document Name</label>
-					<div class="col-xs-6">
+					<div class="col-xs-8">
 						<input type="text" class="form-control" name="title"  id="title" placeholder="Document Name"/>
 					</div>
 				</div>
 				
 				<div class="form-group">
 				<label class="col-xs-3 control-label">Description</label>
-				<div class="col-xs-6">
+				<div class="col-xs-8">
 					<textarea name="description" id="description" class="form-control" rows="5"></textarea>
 				</div>
 				</div>
 				
 				<div class="form-group">
 				<label class="col-xs-3 control-label">Author Name</label>
-				<div class="col-xs-6">
+				<div class="col-xs-8">
 					<input type="text" class="form-control" value="${you.username}" name="authorName" readonly/>
 				</div>
 				</div>
@@ -62,21 +62,21 @@
 				
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Revision number</label>
-					<div class="col-xs-6">
+					<div class="col-xs-8">
 						<input value="1" type="number" min="1" class="form-control" name="revNo" readonly/>
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Document Attachment</label>
-					<div class="col-xs-6">
+					<div class="col-xs-8">
 						<input type="file" class="form-control" name="file" id="file"/>
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Date Created</label>
-					<div class="col-xs-3 input-group date" id="datetimepicker">
+					<div class="col-xs-7 input-group date" style="padding-left: 15px;   width: 62.333333%;" id="datetimepicker">
 						<input type="text" class="form-control" name="dateCreated" id="dateCreated"/>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 					</div>
@@ -84,7 +84,7 @@
 				
 				<div class="form-group">
 					<label class="col-xs-3 control-label">Status</label>
-					<div class="col-xs-6">
+					<div class="col-xs-8">
 						<select class="form-control" name="status">
 							<option>Active</option>
 							<option>Inactive</option>
@@ -107,7 +107,7 @@
 		
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Username:</label>
-			<div class="col-xs-6">
+			<div class="col-xs-8">
 				<input id="addUser" type="text" class="form-control" name="userName">
 				<br>
 				<br>
