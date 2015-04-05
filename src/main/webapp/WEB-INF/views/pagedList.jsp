@@ -13,6 +13,7 @@
     <link href="<c:url value='/resources/css/global.css' />" rel="stylesheet">
     <link href="<c:url value='/resources/css/jquery.mmenu.all.css' />" rel="stylesheet">
     <link href="<c:url value='/resources/css/sweet-alert.css' />" rel="stylesheet">
+    <link href="<c:url value='/resources/css/typeahead.css' />" rel="stylesheet">
 
 </head>
 
@@ -106,6 +107,7 @@
         <script src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
         <script src="<c:url value='/resources/js/formValidation.min.js' />"></script>
         <script src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
+     	<script src="<c:url value='/resources/js/typeahead.js' />"></script>
         <script src="<c:url value='/resources/js/main.js' />"></script>
         <script src="<c:url value='/resources/js/users.js' />"></script>
 		<script src="<c:url value='/resources/js/jquery.mmenu.min.all.js' />"></script>

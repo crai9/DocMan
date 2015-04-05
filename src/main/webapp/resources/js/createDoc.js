@@ -43,12 +43,19 @@ $(document).ready( function() {
       
   });
 });
+
+var querypath;
+if (location.port == "8080") {
+    querypath = '/DocMan/queryUsers?name=%QUERY';
+} else {
+    querypath = '/queryUsers?name=%QUERY';
+}
 $(document).ready(function(){
 	
 	var users = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('username'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		remote: "queryUsers?name=%QUERY"
+		remote: querypath
 	});
 	
 	users.initialize();
@@ -60,7 +67,14 @@ $(document).ready(function(){
 	}, {
 		name: "users",
 		displayKey: "username",
-		source: users.ttAdapter()
+		source: users.ttAdapter(),
+		templates: {
+			suggestion: function(s){
+				var suggestion = s.firstName + " " + s.lastName + " - <strong>" + s.username + "</strong>";
+				return suggestion;
+			}
+			
+		}
 	});
 	
 });
