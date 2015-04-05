@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.team13.spring.db.DBManager;
+
 
 @Controller
 public class WebController {
@@ -50,6 +52,9 @@ public class WebController {
 		} else {
 			model.addAttribute("admin", false);
 		}
+		int id = (Integer) request.getSession().getAttribute("id");
+		model.addAttribute("documents", DBManager.allDocumentsPaged(null, 5, 0, id));
+		model.addAttribute("owndocuments", DBManager.allYourDocumentsPaged(null, 5, 0, id));
 		
 		return "dashboard";
 	}

@@ -983,10 +983,10 @@ public class DBManager {
 		String sql = null;
 		
 		if(search == null){
-			sql = "SELECT u.userId, document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status "
+			sql = "SELECT u.userId, document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status, revisions.documentAttachment, revisions.revisionNo "
 					+ "FROM document_records "
 					+ "INNER JOIN "
-					+ "(SELECT `documentId`, `createdDate`, `status` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
+					+ "(SELECT `documentId`, `createdDate`, `status`, `documentAttachment`, `revisionNo` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
 					+ "ON document_records.documentId = revisions.documentId "
 					+ "INNER JOIN users u ON u.username = document_records.author "
 					+ "WHERE u.userId = ? "
@@ -994,10 +994,10 @@ public class DBManager {
 					+ "LIMIT ? OFFSET ?";
 			
 		} else {
-			sql = "SELECT u.userId, document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status "
+			sql = "SELECT u.userId, document_records.documentId, document_records.title, document_records.author, revisions.createdDate, revisions.status, revisions.documentAttachment, revisions.revisionNo "
 					+ "FROM document_records "
 					+ "INNER JOIN "
-					+ "(SELECT `documentId`, `createdDate`, `status` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
+					+ "(SELECT `documentId`, `createdDate`, `status`, `documentAttachment`, `revisionNo` FROM `revisions` ORDER BY `revisionNo` DESC) revisions "
 					+ "ON document_records.documentId = revisions.documentId "
 					+ "INNER JOIN users u ON u.username = document_records.author "
 					+ "WHERE title LIKE ? OR document_records.documentId LIKE ? OR author LIKE ? OR description LIKE ? AND u.userId = ? "
@@ -1028,8 +1028,6 @@ public class DBManager {
 				preparedStatement.setInt(3, start);
 				
 			}
-			System.out.println(preparedStatement);
-			preparedStatement.executeQuery();
 			
 			System.out.println(preparedStatement.toString());
 			
@@ -1043,12 +1041,11 @@ public class DBManager {
             	u.setId(rs.getInt("documentId"));
             	
             	u.setTitle(rs.getString("title"));
+            	u.setRevisionNo(rs.getInt("revisionNo"));
             	u.setAuthor(rs.getString("author"));
             	u.setCreatedDate(rs.getString("createdDate"));
             	u.setStatus(rs.getString("status"));
-            	
-            	System.out.println(u.getTitle());
-            	System.out.println(u.getId());
+            	u.setDocumentAttached(rs.getString("documentAttachment"));
             	all.add(u);
             }
 
@@ -1119,8 +1116,6 @@ public class DBManager {
 				preparedStatement.setInt(3, start);
 				
 			}
-			System.out.println(preparedStatement);
-			preparedStatement.executeQuery();
 			
 			System.out.println(preparedStatement.toString());
 			

@@ -45,6 +45,8 @@
                 </div>
 
                 <!-- Table -->
+                <c:choose>
+                <c:when test="${!empty documents}">
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -56,27 +58,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">Sample</th>
-                                <td>Not Craig</td>
-                                <td>2/11/14</td>
+                        <c:forEach items="${documents}" var="document">
+                                <tr id="${document.id}">
+                                <th scope="row">${document.title}</th>
+                                <td>${document.author}</td>
+                                <td>${document.createdDate}</td>
                                 <td>
-                                    <a href="" class="btn btn-xs btn-info">View</a>
-                                    <a href="" class="btn btn-xs btn-warning">Download</a>
+                                    <a href="<c:url value='/viewDoc/${document.id}'/>" class="btn btn-xs btn-info">View</a>
+                                    <a href="/content/${document.documentAttached}" class="btn btn-xs btn-warning">Download</a>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">Secret Document</th>
-                                <td>Someone</td>
-                                <td>1/3/2015</td>
-                                <td>
-                                    <a href="" class="btn btn-xs btn-info">View</a>
-                                    <a href="" class="btn btn-xs btn-warning">Download</a>
-                                </td>
-                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
+                </c:when>
+                <c:otherwise>
+                                No documents have been shared with you
+                </c:otherwise>
+                </c:choose>
+
             </div>
 
             <div class="panel panel-default">
@@ -87,44 +88,42 @@
                     <p>The most recent documents you've created. <a href="documents/own" class="btn btn-primary btn-xs">More</a>
                         <br>Create another document? <a href="createDocument" class="btn btn-success btn-xs">Create</a></p>
                 </div>
-
-                <!-- Table -->
+				<c:choose>
+                <c:when test="${!empty owndocuments}">
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Views</th>
+                                <th>Revision</th>
                                 <th>Created</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">Sample</th>
-                                <td>43</td>
-                                <td>2/11/14</td>
+                        <c:forEach items="${owndocuments}" var="document">
+                            <tr id="${document.id}">
+                                <th scope="row">${document.title}</th>
+                                <td>${document.revisionNo}</td>
+                                <td>${document.createdDate}</td>
                                 <td>
-                                    <a href="" class="btn btn-xs btn-info">View</a>
-                                    <a href="" class="btn btn-primary btn-xs">Revise</a>
-                                    <a href="" class="btn btn-xs btn-warning">Download</a>
-                                    <a href="" class="btn btn-xs btn-danger">Delete</a>
+                                    <a href="<c:url value='/viewDoc/${document.id}'/>" class="btn btn-xs btn-info">View</a>
+                                    <a href="<c:url value='/reviseDocument/${document.id}'/>" class="btn btn-primary btn-xs">Revise</a>
+                                    <a href="/content/${document.documentAttached}" class="btn btn-xs btn-warning">Download</a>
+                                    <a onclick="confirmDeleteDocument(${document.id})" class="btn btn-xs btn-danger">Delete</a>
                                 </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Secret Document</th>
-                                <td>72</td>
-                                <td>1/3/2015</td>
-                                <td>
-                                    <a href="" class="btn btn-xs btn-info">View</a>
-                                    <a href="" class="btn btn-primary btn-xs">Revise</a>
-                                    <a href="" class="btn btn-xs btn-warning">Download</a>
-                                    <a href="" class="btn btn-xs btn-danger">Delete</a>
-                                </td>
-                            </tr>
+                            </tr>                        
+                        </c:forEach>
+
                         </tbody>
                     </table>
                 </div>
+                </c:when>
+                <c:otherwise>
+                You've made no documents
+                </c:otherwise>
+                </c:choose>
+                <!-- Table -->
             </div>
 
             <%@ include file="footer.jsp" %>
