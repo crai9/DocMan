@@ -1,13 +1,17 @@
 package com.team13.spring;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.team13.spring.db.DBManager;
+import com.team13.spring.email.Sender;
 import com.team13.spring.files.FileSaver;
 import com.team13.spring.model.Document;
+import com.team13.spring.model.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +55,7 @@ public class DocumentController {
 			@RequestParam("title") String title, @RequestParam("description") String description,
 			@RequestParam("authorName") String authorName, @RequestParam("revNo") int revNo, @RequestParam("file") MultipartFile file,
 			@RequestParam("dateCreated") String dateCreated, @RequestParam("status") String status,
-			@RequestParam(value = "distributees", required = false) String distributeesJSON, HttpServletRequest request) throws JSONException{
+			@RequestParam(value = "distributees", required = false) String distributeesJSON, HttpServletRequest request) throws JSONException, FileNotFoundException, IOException{
 		
 		if(!hasRole(request, "ROLE_USER")){
 			return "403";
@@ -76,14 +80,20 @@ public class DocumentController {
 	    DBManager.addRevision(revNo, uniquePath, documentId, dateCreated, status);
 		
 		int you = (Integer) request.getSession().getAttribute("id");
+		User u = DBManager.getUserById(you);
+		
+		ArrayList<String> emails = new ArrayList<String>();
 		for(String dist : stringArray){
 			int userId = Integer.parseInt(dist);
+			User e = DBManager.getUserById(userId);
+			emails.add(e.getEmail());
 			DBManager.addDistributee(userId, (int) documentId);
 			DBManager.notify(documentId, userId, authorId);
 			System.out.println(userId);
 		}
 		DBManager.addDistributee(you, (int) documentId);
-		
+
+		Sender.newDocument((int) documentId, title, u.getFirstName() + " " + u.getLastName(), emails.toArray(new String[emails.size()]));
 		return "redirect:/viewDoc/" + documentId;
 	}
 	
