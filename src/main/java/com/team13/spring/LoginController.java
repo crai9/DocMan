@@ -6,6 +6,7 @@ import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 
 import com.team13.spring.db.DBManager;
+import com.team13.spring.email.Sender;
 import com.team13.spring.login.Encrypt;
 import com.team13.spring.model.User;
 
@@ -209,7 +210,8 @@ public class LoginController {
 			String encPass = Encrypt.crypt(password);
 			
 			DBManager.createUser(username, encPass, fname, lname, email, adminRole);
-
+			//send email
+			Sender.newAccount(username, cpassword, email, fname);
 
 			}
 		
