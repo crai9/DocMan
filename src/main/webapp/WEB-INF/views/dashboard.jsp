@@ -74,7 +74,10 @@
                 </div>
                 </c:when>
                 <c:otherwise>
-                                No documents have been shared with you
+                                
+                <div class="panel-body">
+                    <p>No documents have been shared with you</p>
+                </div>
                 </c:otherwise>
                 </c:choose>
 
@@ -120,7 +123,9 @@
                 </div>
                 </c:when>
                 <c:otherwise>
-                You've made no documents
+                <div class="panel-body">
+                    <p>You haven't made any documents yet.</p>
+                </div>
                 </c:otherwise>
                 </c:choose>
                 <!-- Table -->

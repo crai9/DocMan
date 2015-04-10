@@ -67,7 +67,7 @@
 	                        	<a href="<c:url value='/reviseDocument/${document.id}'/>" class="btn btn-primary btn-sm">Revise</a>
 	                            <a onclick="confirmDeleteDocument(${document.id})" class="btn btn-sm btn-danger">Delete</a>
 	                        </c:if> 
-	                            <a href="/content/${document.documentAttached}" class="btn btn-sm btn-warning">Download</a>
+	                            <a href="/content/${document.documentAttached}" class="btn btn-sm btn-warning" download>Download</a>
 	                            <a href="<c:url value='/viewDoc/${document.id}' />" class="btn btn-sm btn-info">View Doc</a>
 	                        </td>
 	                    </tr>

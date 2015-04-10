@@ -27,7 +27,7 @@
             <h4><a class="btn btn-success" href="<c:url value='/createDocument' />">Create Document</a></h4>
             	<c:choose>
 	<c:when test="${document.id != 0}">
-	           <h4><a class="btn btn-primary" href="<c:url value='/reviseDocument/${document.id}' />">Revise</a></h4>
+
 
 		<div class="row" style="background-color:white; margin-top:50px; padding:20px;">
 	  		<div class="col-md-4">
